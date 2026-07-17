@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>暖汤咖啡馆</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>暖汤咖啡馆</h1>
+      <p>按喜好上饮料，赚钱升级店铺</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>金币：<span id="gold">0</span></div>
+        <div>店铺等级：<span id="level">1</span>/2</div>
+        <div>服务客人：<span id="served">0</span></div>
+        <div id="order">等待客人…</div>
+        <div id="drinks" class="drinks"></div>
+        <button id="upgrade" type="button">升级店铺 (25金)</button>
+        <p class="hint">点对应饮品招待当前客人</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">暖汤咖啡馆</h2>
+        <p id="overlay-msg">服务 8 位客人并升级到 2 级店铺即可打烊胜利。</p>
+        <button id="btn-start" type="button">开门营业</button>
+      </div>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

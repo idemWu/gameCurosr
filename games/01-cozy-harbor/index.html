@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>港湾日记</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>港湾日记</h1>
+      <p>在海边小镇完成今日待办 · 无种田</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>待办完成：<span id="done">0</span>/3</div>
+        <div>对话：<span id="talks">0</span></div>
+        <ul id="quests"></ul>
+        <p class="hint">WASD/方向键移动，靠近人物按 E 交谈</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">港湾日记</h2>
+        <p id="overlay-msg">今天要在小镇办三件事：问候灯塔看守、帮渔铺送货、去咖啡馆坐坐。</p>
+        <button id="btn-start" type="button">开始今天</button>
+      </div>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
