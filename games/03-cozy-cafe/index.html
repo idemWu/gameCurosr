@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>暖汤咖啡馆</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top">
-      <h1>暖汤咖啡馆</h1>
-      <p>按喜好上饮料，赚钱升级店铺</p>
-    </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>金币：<span id="gold">0</span></div>
-        <div>店铺等级：<span id="level">1</span>/2</div>
-        <div>服务客人：<span id="served">0</span></div>
-        <div id="order">等待客人…</div>
-        <div id="drinks" class="drinks"></div>
-        <button id="upgrade" type="button">升级店铺 (25金)</button>
-        <p class="hint">点对应饮品招待当前客人</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay">
-      <div class="panel">
-        <h2 id="overlay-title">暖汤咖啡馆</h2>
-        <p id="overlay-msg">服务 8 位客人并升级到 2 级店铺即可打烊胜利。</p>
-        <button id="btn-start" type="button">开门营业</button>
-      </div>
-    </div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>暖汤咖啡馆 · Longplay</title>
+<link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body>
+<div id="app">
+<header class="top"><h1>暖汤咖啡馆</h1><p>14 天经营 · 约 30–50 分钟</p></header>
+<main>
+<canvas id="game" width="480" height="270"></canvas>
+<aside class="hud">
+<div>第 <span id="day">1</span>/14 天 · 金 <span id="gold">0</span></div>
+<div>今日服务 <span id="today">0</span>/8 · 累计 <span id="served">0</span></div>
+<div>配方 <span id="rec">5</span>/14 · 店铺Lv <span id="lv">1</span></div>
+<div id="order">-</div><div id="drinks" class="row"></div>
+<button id="endday">打烊进入下一天</button><button id="upgrade">升级店铺 (40金)</button>
+<p class="hint">按订单上饮料。经营 14 天并解锁 10 配方、服务 80 人结局。</p>
+</aside></main>
+<div id="overlay" class="overlay"><div class="panel">
+<h2 id="overlay-title">暖汤咖啡馆</h2><p id="overlay-msg"></p>
+<button id="btn-continue" type="button">继续</button>
+<button id="btn-start" type="button">新游戏</button>
+</div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script>
+</body></html>

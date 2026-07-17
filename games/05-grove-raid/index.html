@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>林间轻旅</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top"><h1>林间轻旅</h1><p>探索森林、击退小怪、带回宝箱</p></header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>生命：<span id="hp">5</span></div>
-        <div>宝箱：<span id="loot">0</span>/3</div>
-        <p class="hint">WASD 移动，靠近敌人自动攻击。收集 3 个宝箱回到营地（绿旗）胜利。</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">林间轻旅</h2><p id="overlay-msg">从营地出发，找齐宝箱再回来。</p><button id="btn-start">启程</button></div></div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>林间轻旅 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body><div id="app"><header class="top"><h1>林间轻旅</h1><p>5 区域 · 15 任务 · 约 30–50 分钟</p></header>
+<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>区域 <span id="zone">1</span>/5 · 任务 <span id="qi">1</span>/15</div>
+<div>生命 <span id="hp">8</span> · 本区宝箱 <span id="loot">0</span>/<span id="need">0</span></div>
+<div id="qtext">-</div><button id="nextzone">进入下一区域（需完成本区任务段）</button><p class="hint">WASD移动，靠近敌人自动攻击。完成15任务结局。</p></aside></main>
+<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">林间轻旅</h2><p id="overlay-msg"></p>
+<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>

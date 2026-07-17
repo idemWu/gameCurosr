@@ -1,37 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>晚潮钓手</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top">
-      <h1>晚潮钓手</h1>
-      <p>钓鱼、收集图鉴、解锁新钓点</p>
-    </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <label>钓点
-          <select id="spot"></select>
-        </label>
-        <div>图鉴：<span id="dex">0</span>/8</div>
-        <div>本局钓获：<span id="catch">0</span></div>
-        <ul id="log"></ul>
-        <p class="hint">点击「抛竿」，进度条在绿区时再点「收杆」</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay">
-      <div class="panel">
-        <h2 id="overlay-title">晚潮钓手</h2>
-        <p id="overlay-msg">收集 8 种鱼解锁全部钓点。先从码头开始吧。</p>
-        <button id="btn-start" type="button">出发</button>
-      </div>
-    </div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>晚潮钓手 · Longplay</title>
+<link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body>
+<div id="app">
+<header class="top"><h1>晚潮钓手</h1><p>40 种鱼 · 5 钓点 · 约 30–50 分钟</p></header>
+<main>
+<canvas id="game" width="480" height="270"></canvas>
+<aside class="hud">
+<div>图鉴 <span id="dex">0</span>/40 · 任务 <span id="qi">1</span>/8</div>
+<div>稀有 <span id="rare">0</span> · 钓点 <select id="spot"></select></div>
+<div id="qtext">-</div>
+<button id="cast" type="button">抛竿 / 收杆</button>
+<p class="hint">绿区收杆。完成 8 条任务并集齐图鉴结局。</p>
+</aside></main>
+<div id="overlay" class="overlay"><div class="panel">
+<h2 id="overlay-title">晚潮钓手</h2><p id="overlay-msg"></p>
+<button id="btn-continue" type="button">继续</button>
+<button id="btn-start" type="button">新游戏</button>
+</div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script>
+</body></html>

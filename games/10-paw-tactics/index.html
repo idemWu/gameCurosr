@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>爪爪战棋</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top"><h1>爪爪战棋</h1><p>3v3 小格子回合制</p></header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>回合：<span id="turn">我方</span></div>
-        <div id="info">点选爪爪</div>
-        <button id="end" type="button">结束回合</button>
-        <p class="hint">点选己方单位，再点目标格移动/攻击。消灭全部敌人。</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">爪爪战棋</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>爪爪战棋 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body><div id="app"><header class="top"><h1>爪爪战棋</h1><p>20 关战役 · 约 30–50 分钟</p></header>
+<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>战役 <span id="st">1</span>/20 · 回合 <span id="turn">我方</span></div>
+<div id="info">点选单位</div><button id="end">结束回合</button><p class="hint">邻格移动/攻击。赢下20场战役。</p></aside></main>
+<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">爪爪战棋</h2><p id="overlay-msg"></p>
+<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>

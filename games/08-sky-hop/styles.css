@@ -1,10 +1,10 @@
-:root{--bg:#0b1c33;--panel:#163356;--text:#eaf4ff;--accent:#7dd3fc;}
-*{box-sizing:border-box;}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
-#app{max-width:960px;margin:0 auto;padding:16px;}main{display:grid;grid-template-columns:1fr 210px;gap:12px;}
-@media(max-width:720px){main{grid-template-columns:1fr;}}
-#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #27598a;border-radius:8px;}
-.hud{background:var(--panel);border-radius:8px;padding:12px;}.hint{font-size:.85rem;opacity:.85;}
-button{border:none;background:var(--accent);color:#082f49;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;}
-.overlay.hidden{display:none;}.panel{background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:20px;max-width:420px;text-align:center;}
-.top h1{margin:0 0 4px;font-size:1.35rem;}.top p{margin:0 0 12px;opacity:.85;}
+:root{--bg:#0b1c33;--panel:#1f2937;--text:#f8fafc;--accent:#7dd3fc}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+#app{max-width:960px;margin:0 auto;padding:16px}.top h1{margin:0 0 4px}.top p{margin:0 0 12px;opacity:.85}
+main{display:grid;grid-template-columns:1fr 250px;gap:12px}@media(max-width:720px){main{grid-template-columns:1fr}}
+#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #475569;border-radius:8px}
+.hud{background:var(--panel);border-radius:8px;padding:12px;line-height:1.45;font-size:.9rem}.hint{font-size:.8rem;opacity:.85}
+button{border:none;background:var(--accent);color:#0f172a;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;width:100%;margin-top:6px}
+.row{display:flex;flex-wrap:wrap;gap:6px}.row button{width:auto}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:30}.overlay.hidden{display:none}
+.panel{background:#1f2937;border:2px solid var(--accent);border-radius:12px;padding:20px;max-width:440px;text-align:center}.panel button{margin-top:8px}

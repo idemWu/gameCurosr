@@ -1,34 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>窗边小屋</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top">
-      <h1>窗边小屋</h1>
-      <p>拖拽家具布置房间，达到目标分</p>
-    </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>布置分：<span id="score">0</span> / <span id="goal">40</span></div>
-        <div id="palette" class="palette"></div>
-        <button id="clear" type="button">清空房间</button>
-        <p class="hint">点选家具后，点击房间网格放置；再点已放家具可移除</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay">
-      <div class="panel">
-        <h2 id="overlay-title">窗边小屋</h2>
-        <p id="overlay-msg">布置房间达到 40 分。不同家具有不同分数与占地。</p>
-        <button id="btn-start" type="button">开始布置</button>
-      </div>
-    </div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>窗边小屋 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body><div id="app"><header class="top"><h1>窗边小屋</h1><p>12 委托布置 · 约 30–45 分钟</p></header>
+<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>委托 <span id="ci">1</span>/12 · <span id="ctitle">-</span></div>
+<div>分 <span id="score">0</span>/<span id="goal">0</span> · 房间 <span id="room">0</span></div>
+<div id="palette" class="row"></div><button id="clear">清空</button><button id="submit">提交委托</button><p class="hint">放置家具达成分数，完成 12 个委托结局。</p></aside></main>
+<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">窗边小屋</h2><p id="overlay-msg"></p>
+<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>

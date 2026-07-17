@@ -1,64 +1,40 @@
-# gameCurosr · 16 款休闲小游戏
+# gameCurosr · 16 款长线休闲小游戏
 
-浏览器小游戏作品集。覆盖四大类共 **16 款可玩 MVP**，**不做种菜/种田**。
+浏览器小游戏作品集。覆盖四大类共 **16 款**，主线目标约 **30–60 分钟**（含本地存档），**不做种菜/种田**。
 
 ## 快速试玩
 
 ```bash
 python3 -m http.server 8080
-# 总览卡片墙：
-# http://localhost:8080/preview/
-# 单款示例：
-# http://localhost:8080/games/01-cozy-harbor/
+# 总览：http://localhost:8080/preview/
 ```
-
-```bash
-node scripts/check-structure.mjs
-```
-
-## 四大类
-
-1. **治愈休闲** — 01–04  
-2. **轻冒险** — 05–08  
-3. **卡牌 / 放置 / 轻度策略** — 09–12  
-4. **益智 / 超休闲** — 13–16  
 
 ## 游戏清单
 
-| # | 游戏 | 类型 | 目录 | 状态 |
-|---|------|------|------|------|
-| 01 | 港湾日记 | 治愈休闲 | [`games/01-cozy-harbor/`](./games/01-cozy-harbor/) | playable |
-| 02 | 晚潮钓手 | 治愈休闲 | [`games/02-cozy-fishing/`](./games/02-cozy-fishing/) | playable |
-| 03 | 暖汤咖啡馆 | 治愈休闲 | [`games/03-cozy-cafe/`](./games/03-cozy-cafe/) | playable |
-| 04 | 窗边小屋 | 治愈休闲 | [`games/04-cozy-home/`](./games/04-cozy-home/) | playable |
-| 05 | 林间轻旅 | 轻冒险 | [`games/05-grove-raid/`](./games/05-grove-raid/) | playable |
-| 06 | 石纹遗迹 | 轻冒险 | [`games/06-ruin-puzzle/`](./games/06-ruin-puzzle/) | playable |
-| 07 | 矿灯深途 | 轻冒险 | [`games/07-mine-delve/`](./games/07-mine-delve/) | playable |
-| 08 | 云上跳岛 | 轻冒险 | [`games/08-sky-hop/`](./games/08-sky-hop/) | playable |
-| 09 | 余烬牌阵 | 策略 | [`games/09-ember-deck/`](./games/09-ember-deck/) | playable |
-| 10 | 爪爪战棋 | 策略 | [`games/10-paw-tactics/`](./games/10-paw-tactics/) | playable |
-| 11 | 桥上防线 | 策略 | [`games/11-bridge-td/`](./games/11-bridge-td/) | playable |
-| 12 | 星尘挂机 | 策略 | [`games/12-idle-stars/`](./games/12-idle-stars/) | playable |
-| 13 | 晶石三消 | 益智 | [`games/13-match-gems/`](./games/13-match-gems/) | playable |
-| 14 | 遗物合成 | 益智 | [`games/14-merge-relics/`](./games/14-merge-relics/) | playable |
-| 15 | 书架整理 | 益智 | [`games/15-shelf-sort/`](./games/15-shelf-sort/) | playable |
-| 16 | 铁匠一点通 | 益智 | [`games/16-forge-tap/`](./games/16-forge-tap/) | playable |
+| # | 游戏 | 目录 | 体量 |
+|---|------|------|------|
+| 01 | 港湾日记 | `games/01-cozy-harbor/` | 7 天日程 |
+| 02 | 晚潮钓手 | `games/02-cozy-fishing/` | 40 图鉴 |
+| 03 | 暖汤咖啡馆 | `games/03-cozy-cafe/` | 14 天经营 |
+| 04 | 窗边小屋 | `games/04-cozy-home/` | 12 委托 |
+| 05 | 林间轻旅 | `games/05-grove-raid/` | 15 任务 / 5 区 |
+| 06 | 石纹遗迹 | `games/06-ruin-puzzle/` | 40 关 |
+| 07 | 矿灯深途 | `games/07-mine-delve/` | 25 层 + 任务 |
+| 08 | 云上跳岛 | `games/08-sky-hop/` | 40 关 |
+| 09 | 余烬牌阵 | `games/09-ember-deck/` | 24 节点战役 |
+| 10 | 爪爪战棋 | `games/10-paw-tactics/` | 20 战役 |
+| 11 | 桥上防线 | `games/11-bridge-td/` | 15 地图 |
+| 12 | 星尘挂机 | `games/12-idle-stars/` | 12 里程碑 |
+| 13 | 晶石三消 | `games/13-match-gems/` | 60 关 |
+| 14 | 遗物合成 | `games/14-merge-relics/` | 8 级订单链 |
+| 15 | 书架整理 | `games/15-shelf-sort/` | 40 关 |
+| 16 | 铁匠一点通 | `games/16-forge-tap/` | 8 配方章 |
 
-登记表：[`games/_registry.json`](./games/_registry.json)
+时长预估：`docs/playtime/`  
+共用存档菜单：`shared/longplay/`
 
-## 文档
+## 验收口径
 
-- 组合说明：[`docs/portfolio.md`](./docs/portfolio.md)
-- 单款任务书：[`docs/briefs/`](./docs/briefs/)
-- 并行 Agent 提示词（可选）：[`docs/agent-prompts.md`](./docs/agent-prompts.md)
-- 共用模板：[`shared/template/`](./shared/template/)
-
-## 技术约定
-
-- Vanilla HTML / CSS / JS，打开即玩  
-- 中文 UI  
-- 原创内容；禁止种田玩法与商业素材搬运  
-
-## 分支说明
-
-本分支 `cursor/game-art-7c49` 已包含 Hub + 全部 16 款游戏目录（因 Cloud Agent 默认仅能推送当前 feature 分支，游戏未拆到 `game/NN-*` 远端分支）。
+- 主线约 30–60 分钟到结局（禁止纯空等灌水）
+- `localStorage` 存档 / 清档
+- 中文 UI

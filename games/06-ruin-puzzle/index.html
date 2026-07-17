@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>石纹遗迹</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top"><h1>石纹遗迹</h1><p>开关与路线解谜 · 8 关</p></header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>关卡：<span id="level">1</span>/8</div>
-        <button id="reset" type="button">重置本关</button>
-        <p class="hint">方向键移动。走到蓝色开关可开关对应石门（青色墙）。抵达金色出口过关。</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">石纹遗迹</h2><p id="overlay-msg">通过全部 8 关。</p><button id="btn-start">进入遗迹</button></div></div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>石纹遗迹 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body><div id="app"><header class="top"><h1>石纹遗迹</h1><p>40 关机关解谜 · 约 30–50 分钟</p></header>
+<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>关卡 <span id="level">1</span>/40</div><button id="reset">重置本关</button><p class="hint">方向键移动，蓝开关切换石门，金格过关。</p></aside></main>
+<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">石纹遗迹</h2><p id="overlay-msg"></p>
+<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>

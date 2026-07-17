@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>遗物合成</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="top"><h1>遗物合成</h1><p>合并同级遗物升级（非种菜）</p></header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
-      <aside class="hud">
-        <div>最高等级：<span id="max">1</span>/5</div>
-        <div>订单：做出 <span id="order">3</span> 级遗物 × <span id="need">2</span>（已交 <span id="done">0</span>）</div>
-        <button id="spawn" type="button">召来 1 级遗物 (免费)</button>
-        <p class="hint">拖拽/点击两个相同等级遗物合成更高一级。做出 5 级遗物并完成订单。</p>
-      </aside>
-    </main>
-    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">遗物合成</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
-  </div>
-  <script src="./main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>遗物合成 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
+</head><body><div id="app"><header class="top"><h1>遗物合成</h1><p>8 级合成订单链 · 约 30–50 分钟（非种菜）</p></header>
+<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>最高L<span id="max">1</span>/8 · 订单L<span id="olv">2</span> × <span id="oneed">3</span>（<span id="odone">0</span>）</div>
+<div>订单进度 <span id="oi">1</span>/7</div><button id="spawn">召来1级遗物</button><p class="hint">合成相同遗物。完成全部订单并做出8级。</p></aside></main>
+<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">遗物合成</h2><p id="overlay-msg"></p>
+<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
+<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>

@@ -1,26 +1,29 @@
-const canvas=document.getElementById("game"),ctx=canvas.getContext("2d");
-const overlay=document.getElementById("overlay"),title=document.getElementById("overlay-title"),msg=document.getElementById("overlay-msg"),btn=document.getElementById("btn-start");
-const dustEl=document.getElementById("dust"),rateEl=document.getElementById("rate"),dexEl=document.getElementById("dex");
-const state={running:false,dust:0,click:1,auto:0,dex:0,skins:[],pulse:0};
-function show(t,m,l){title.textContent=t;msg.textContent=m;btn.textContent=l;overlay.classList.remove("hidden");state.running=false;}
-function hud(){dustEl.textContent=String(Math.floor(state.dust));rateEl.textContent=String(state.auto);dexEl.textContent=String(state.dex);
-  document.getElementById("u1").textContent=`升级点击 (${10+state.click*8})`;
-  document.getElementById("u2").textContent=`自动星尘 (${25+state.auto*15})`;
-  document.getElementById("u3").textContent=state.dex>=3?"图鉴已满":`解锁外观 (${50+state.dex*40})`;}
-function reset(){Object.assign(state,{dust:0,click:1,auto:0,dex:0,skins:[],pulse:0});hud();}
-function start(){reset();overlay.classList.add("hidden");state.running=true;}
-document.getElementById("click").onclick=()=>{if(!state.running)return;state.dust+=state.click;state.pulse=10;hud();};
-document.getElementById("u1").onclick=()=>{const c=10+state.click*8;if(state.dust>=c){state.dust-=c;state.click+=1;hud();}};
-document.getElementById("u2").onclick=()=>{const c=25+state.auto*15;if(state.dust>=c){state.dust-=c;state.auto+=1;hud();}};
-document.getElementById("u3").onclick=()=>{if(state.dex>=3)return;const c=50+state.dex*40;if(state.dust>=c){state.dust-=c;state.dex+=1;state.skins.push(["#fde68a","#67e8f9","#f9a8d4"][state.dex-1]);hud();if(state.dex>=3)show("星图点亮","三枚星尘徽章已解锁。","再挂一会");}};
-let acc=0;
-function update(dt){if(!state.running)return;acc+=dt;if(acc>0.25){state.dust+=state.auto*acc;acc=0;hud();} if(state.pulse>0)state.pulse--;}
-let last=performance.now();
-function draw(){
-  ctx.fillStyle="#020617";ctx.fillRect(0,0,480,270);
-  for(let i=0;i<40;i++){ctx.fillStyle="#475569";ctx.fillRect((i*97)%480,(i*53)%270,2,2);}
-  ctx.fillStyle=state.pulse?"#f5d0fe":"#c084fc";ctx.beginPath();ctx.arc(240,135,40+state.pulse,0,Math.PI*2);ctx.fill();
-  state.skins.forEach((c,i)=>{ctx.fillStyle=c;ctx.beginPath();ctx.arc(160+i*80,220,16,0,Math.PI*2);ctx.fill();});
-}
-function loop(now){update((now-last)/1000);last=now;draw();requestAnimationFrame(loop);}
-btn.onclick=start;msg.textContent="点击与自动产星尘，解锁 3 个外观图鉴。";show("星尘挂机",msg.textContent,"开始");reset();requestAnimationFrame(loop);
+
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const save=LongplaySave.create('12-idle-stars',2);
+let MILES=[]; const S={running:false,dust:0,click:1,auto:0,dex:0,mi:0,ended:false,pulse:0};
+const el=id=>document.getElementById(id);
+function show(t,m,c){el('overlay-title').textContent=t;el('overlay-msg').textContent=m;el('btn-continue').style.display=c?'':'none';el('overlay').classList.remove('hidden');S.running=false}
+function hide(){el('overlay').classList.add('hidden');S.running=true}
+function persist(){save.save({dust:S.dust,click:S.click,auto:S.auto,dex:S.dex,mi:S.mi,ended:S.ended})}
+function hud(){el('dust').textContent=Math.floor(S.dust); el('rate').textContent=S.auto; el('click').textContent=S.click; el('dex').textContent=S.dex; el('mi').textContent=Math.min(12,S.mi+1); el('mt').textContent=MILES[S.mi]?MILES[S.mi].text:'完成';
+  el('u1').textContent=`升级点击 (${10+S.click*8})`; el('u2').textContent=`自动 (${25+S.auto*15})`; el('u3').textContent=S.dex>=3?'外观满':`外观 (${50+S.dex*40})`}
+function check(){const m=MILES[S.mi]; if(!m)return; let ok=false;
+  if(m.text.includes('星尘达到')&&S.dust>=m.need)ok=true;
+  if(m.text.includes('点击升级')&&S.click>=m.need)ok=true;
+  if(m.text.includes('自动产出')&&S.auto>=m.need)ok=true;
+  if(m.text.includes('外观')&&S.dex>=m.need)ok=true;
+  if(ok){S.mi++; if(S.mi>=MILES.length){S.ended=true;persist();show('星图全亮','十二里程碑点亮夜空。',false)} persist(); hud()}}
+el('tap').onclick=()=>{if(!S.running)return; S.dust+=S.click; S.pulse=8; check(); hud(); persist()};
+el('u1').onclick=()=>{const c=10+S.click*8; if(S.dust>=c){S.dust-=c;S.click++; check();hud();persist()}};
+el('u2').onclick=()=>{const c=25+S.auto*15; if(S.dust>=c){S.dust-=c;S.auto++; check();hud();persist()}};
+el('u3').onclick=()=>{if(S.dex>=3)return; const c=50+S.dex*40; if(S.dust>=c){S.dust-=c;S.dex++; check();hud();persist()}};
+let last=performance.now(),acc=0;
+function update(dt){if(!S.running)return; acc+=dt; if(acc>0.25){S.dust+=S.auto*acc; acc=0; check(); hud()} if(S.pulse>0)S.pulse--}
+function draw(){ctx.fillStyle='#020617';ctx.fillRect(0,0,480,270); ctx.fillStyle=S.pulse?'#f5d0fe':'#c084fc'; ctx.beginPath();ctx.arc(240,135,40+S.pulse,0,Math.PI*2);ctx.fill();
+  for(let i=0;i<S.dex;i++){ctx.fillStyle=['#fde68a','#67e8f9','#f9a8d4'][i];ctx.beginPath();ctx.arc(160+i*80,220,16,0,Math.PI*2);ctx.fill()}}
+function loop(now){update((now-last)/1000); last=now; draw(); requestAnimationFrame(loop)}
+el('btn-start').onclick=()=>{Object.assign(S,{dust:0,click:1,auto:0,dex:0,mi:0,ended:false});persist();hud();hide()};
+el('btn-continue').onclick=()=>{const d=save.load(); if(!d||d.ended){el('overlay-msg').textContent='无存档';return} Object.assign(S,d);hud();hide()};
+LongplayPause.mount({title:'星尘挂机',statusText:()=>`里程碑 ${S.mi}/12`,onNewGame:()=>{save.reset();el('btn-start').click()},onClearSave:()=>save.reset(),onContinue:()=>{}});
+fetch('./content/milestones.json').then(r=>r.json()).then(d=>{MILES=d.milestones; const sv=save.load(); show('星尘挂机','12里程碑活跃目标，约30–45分钟。',!!(sv&&!sv.ended)); if(sv)Object.assign(S,sv); hud(); requestAnimationFrame(loop)});
