@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>林间轻旅</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>林间轻旅</h1><p>探索森林、击退小怪、带回宝箱</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>生命：<span id="hp">5</span></div>
+        <div>宝箱：<span id="loot">0</span>/3</div>
+        <p class="hint">WASD 移动，靠近敌人自动攻击。收集 3 个宝箱回到营地（绿旗）胜利。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">林间轻旅</h2><p id="overlay-msg">从营地出发，找齐宝箱再回来。</p><button id="btn-start">启程</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

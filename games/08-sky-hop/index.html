@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>云上跳岛</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>云上跳岛</h1><p>短关卡平台跳跃，收集羽毛过关</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>关卡：<span id="level">1</span>/5</div>
+        <div>羽毛：<span id="feathers">0</span>/<span id="need">2</span></div>
+        <p class="hint">左右移动，空格/上键跳跃。收集足够羽毛碰到旗子过关。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">云上跳岛</h2><p id="overlay-msg">通过 5 关天空岛。</p><button id="btn-start">起飞</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

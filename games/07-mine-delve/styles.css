@@ -1,0 +1,10 @@
+:root{--bg:#1a1510;--panel:#2c241c;--text:#f6efe4;--accent:#eab308;}
+*{box-sizing:border-box;}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+#app{max-width:960px;margin:0 auto;padding:16px;}main{display:grid;grid-template-columns:1fr 230px;gap:12px;}
+@media(max-width:720px){main{grid-template-columns:1fr;}}
+#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #5b4632;border-radius:8px;}
+.hud{background:var(--panel);border-radius:8px;padding:12px;line-height:1.5;}.hint{font-size:.85rem;opacity:.85;}
+button{border:none;background:var(--accent);color:#1c1408;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;width:100%;margin-top:8px;}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;}
+.overlay.hidden{display:none;}.panel{background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:20px;max-width:420px;text-align:center;}
+.top h1{margin:0 0 4px;font-size:1.35rem;}.top p{margin:0 0 12px;opacity:.85;}
