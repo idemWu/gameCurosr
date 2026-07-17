@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "project": "gameCurosr",
+  "mode": "hub-plus-16-agents",
+  "rules": {
+    "noFarming": true,
+    "tech": "vanilla-html-css-js",
+    "pathIsolation": "Each game agent may only modify games/<id>-<slug>/",
+    "hubOwnsRootReadme": true
+  },
+  "games": [
+    {
+      "id": "01",
+      "slug": "cozy-harbor",
+      "branch": "game/01-cozy-harbor",
+      "name": "港湾日记",
+      "category": "治愈休闲",
+      "path": "games/01-cozy-harbor",
+      "loop": "在海边小镇走动、和 NPC 聊天、完成当日小待办（无农田）",
+      "status": "pending"
+    },
+    {
+      "id": "02",
+      "slug": "cozy-fishing",
+      "branch": "game/02-cozy-fishing",
+      "name": "晚潮钓手",
+      "category": "治愈休闲",
+      "path": "games/02-cozy-fishing",
+      "loop": "选地点/时段钓鱼、收进图鉴、解锁新钓点",
+      "status": "pending"
+    },
+    {
+      "id": "03",
+      "slug": "cozy-cafe",
+      "branch": "game/03-cozy-cafe",
+      "name": "暖汤咖啡馆",
+      "category": "治愈休闲",
+      "path": "games/03-cozy-cafe",
+      "loop": "接待客人、按喜好上饮料、用收入升级店铺",
+      "status": "pending"
+    },
+    {
+      "id": "04",
+      "slug": "cozy-home",
+      "branch": "game/04-cozy-home",
+      "name": "窗边小屋",
+      "category": "治愈休闲",
+      "path": "games/04-cozy-home",
+      "loop": "拖拽家具布置房间、达成布置评分目标",
+      "status": "pending"
+    },
+    {
+      "id": "05",
+      "slug": "grove-raid",
+      "branch": "game/05-grove-raid",
+      "name": "林间轻旅",
+      "category": "轻冒险",
+      "path": "games/05-grove-raid",
+      "loop": "俯视小地图探索、轻度碰触战斗、开宝箱回营地",
+      "status": "pending"
+    },
+    {
+      "id": "06",
+      "slug": "ruin-puzzle",
+      "branch": "game/06-ruin-puzzle",
+      "name": "石纹遗迹",
+      "category": "轻冒险",
+      "path": "games/06-ruin-puzzle",
+      "loop": "开关/石板/路线解谜，通关 6–8 关",
+      "status": "pending"
+    },
+    {
+      "id": "07",
+      "slug": "mine-delve",
+      "branch": "game/07-mine-delve",
+      "name": "矿灯深途",
+      "category": "轻冒险",
+      "path": "games/07-mine-delve",
+      "loop": "一层层下矿、挖矿石、规避或击退小怪、带着物资返回",
+      "status": "pending"
+    },
+    {
+      "id": "08",
+      "slug": "sky-hop",
+      "branch": "game/08-sky-hop",
+      "name": "云上跳岛",
+      "category": "轻冒险",
+      "path": "games/08-sky-hop",
+      "loop": "短关卡平台跳跃、收集羽毛过关",
+      "status": "pending"
+    },
+    {
+      "id": "09",
+      "slug": "ember-deck",
+      "branch": "game/09-ember-deck",
+      "name": "余烬牌阵",
+      "category": "卡牌/放置/策略",
+      "path": "games/09-ember-deck",
+      "loop": "短 rogue-lite 卡牌：每战选牌、打 5–8 场敌人",
+      "status": "pending"
+    },
+    {
+      "id": "10",
+      "slug": "paw-tactics",
+      "branch": "game/10-paw-tactics",
+      "name": "爪爪战棋",
+      "category": "卡牌/放置/策略",
+      "path": "games/10-paw-tactics",
+      "loop": "3v3 小格子回合制，技能站位取胜",
+      "status": "pending"
+    },
+    {
+      "id": "11",
+      "slug": "bridge-td",
+      "branch": "game/11-bridge-td",
+      "name": "桥上防线",
+      "category": "卡牌/放置/策略",
+      "path": "games/11-bridge-td",
+      "loop": "路径塔防，波次升级塔与陷阱",
+      "status": "pending"
+    },
+    {
+      "id": "12",
+      "slug": "idle-stars",
+      "branch": "game/12-idle-stars",
+      "name": "星尘挂机",
+      "category": "卡牌/放置/策略",
+      "path": "games/12-idle-stars",
+      "loop": "点击/自动产出、升级树、解锁图鉴皮肤",
+      "status": "pending"
+    },
+    {
+      "id": "13",
+      "slug": "match-gems",
+      "branch": "game/13-match-gems",
+      "name": "晶石三消",
+      "category": "益智/超休闲",
+      "path": "games/13-match-gems",
+      "loop": "限定步数三消，完成收集目标",
+      "status": "pending"
+    },
+    {
+      "id": "14",
+      "slug": "merge-relics",
+      "branch": "game/14-merge-relics",
+      "name": "遗物合成",
+      "category": "益智/超休闲",
+      "path": "games/14-merge-relics",
+      "loop": "合并同级遗物升级（宝石/文物，非种菜）",
+      "status": "pending"
+    },
+    {
+      "id": "15",
+      "slug": "shelf-sort",
+      "branch": "game/15-shelf-sort",
+      "name": "书架整理",
+      "category": "益智/超休闲",
+      "path": "games/15-shelf-sort",
+      "loop": "颜色/品类排序收纳解谜",
+      "status": "pending"
+    },
+    {
+      "id": "16",
+      "slug": "forge-tap",
+      "branch": "game/16-forge-tap",
+      "name": "铁匠一点通",
+      "category": "益智/超休闲",
+      "path": "games/16-forge-tap",
+      "loop": "点击锻造、升级锤子与配方的超休闲",
+      "status": "pending"
+    }
+  ]
+}
