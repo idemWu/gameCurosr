@@ -3,32 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>港湾日记</title>
+  <title>港湾日记 · Longplay</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
       <h1>港湾日记</h1>
-      <p>在海边小镇完成今日待办 · 无种田</p>
+      <p>七天港湾生活 · 约 30–45 分钟主线 · 无种田</p>
     </header>
     <main>
       <canvas id="game" width="480" height="270"></canvas>
       <aside class="hud">
-        <div>待办完成：<span id="done">0</span>/3</div>
-        <div>对话：<span id="talks">0</span></div>
+        <div>第 <span id="day">1</span> / 7 天 · <span id="period">清晨</span></div>
+        <div>今日待办：<span id="done">0</span>/<span id="need">0</span></div>
+        <div>好感合计：<span id="aff">0</span></div>
+        <div>区域：<span id="zone">码头</span></div>
         <ul id="quests"></ul>
-        <p class="hint">WASD/方向键移动，靠近人物按 E 交谈</p>
+        <p class="hint">WASD 移动 · E 交谈 · 完成当日待办后点「结束今天」</p>
+        <button id="endday" type="button">结束今天</button>
+        <button id="travel" type="button">前往下一区域</button>
       </aside>
     </main>
     <div id="overlay" class="overlay">
       <div class="panel">
         <h2 id="overlay-title">港湾日记</h2>
-        <p id="overlay-msg">今天要在小镇办三件事：问候灯塔看守、帮渔铺送货、去咖啡馆坐坐。</p>
-        <button id="btn-start" type="button">开始今天</button>
+        <p id="overlay-msg">在七天里认识镇民、完成待办，迎来灯火庆典。</p>
+        <button id="btn-continue" type="button">继续旅程</button>
+        <button id="btn-start" type="button">新的一周</button>
       </div>
     </div>
   </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
   <script src="./main.js"></script>
 </body>
 </html>

@@ -1,0 +1,604 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "world": 1,
+      "moves": 21,
+      "need": 12,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第1关"
+    },
+    {
+      "id": 2,
+      "world": 1,
+      "moves": 20,
+      "need": 13,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第2关"
+    },
+    {
+      "id": 3,
+      "world": 1,
+      "moves": 19,
+      "need": 13,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第3关"
+    },
+    {
+      "id": 4,
+      "world": 1,
+      "moves": 18,
+      "need": 14,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第4关"
+    },
+    {
+      "id": 5,
+      "world": 1,
+      "moves": 17,
+      "need": 14,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第5关"
+    },
+    {
+      "id": 6,
+      "world": 1,
+      "moves": 16,
+      "need": 15,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第6关"
+    },
+    {
+      "id": 7,
+      "world": 1,
+      "moves": 15,
+      "need": 15,
+      "colors": 4,
+      "rocks": 0,
+      "ice": 0,
+      "title": "世界1 · 第7关"
+    },
+    {
+      "id": 8,
+      "world": 1,
+      "moves": 14,
+      "need": 16,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第8关"
+    },
+    {
+      "id": 9,
+      "world": 1,
+      "moves": 13,
+      "need": 16,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第9关"
+    },
+    {
+      "id": 10,
+      "world": 1,
+      "moves": 22,
+      "need": 17,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第10关"
+    },
+    {
+      "id": 11,
+      "world": 1,
+      "moves": 21,
+      "need": 17,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第11关"
+    },
+    {
+      "id": 12,
+      "world": 1,
+      "moves": 20,
+      "need": 18,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第12关"
+    },
+    {
+      "id": 13,
+      "world": 1,
+      "moves": 19,
+      "need": 18,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第13关"
+    },
+    {
+      "id": 14,
+      "world": 1,
+      "moves": 18,
+      "need": 19,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 0,
+      "title": "世界1 · 第14关"
+    },
+    {
+      "id": 15,
+      "world": 1,
+      "moves": 17,
+      "need": 19,
+      "colors": 4,
+      "rocks": 1,
+      "ice": 1,
+      "title": "世界1 · 第15关"
+    },
+    {
+      "id": 16,
+      "world": 2,
+      "moves": 16,
+      "need": 20,
+      "colors": 4,
+      "rocks": 2,
+      "ice": 1,
+      "title": "世界2 · 第16关"
+    },
+    {
+      "id": 17,
+      "world": 2,
+      "moves": 15,
+      "need": 20,
+      "colors": 4,
+      "rocks": 2,
+      "ice": 1,
+      "title": "世界2 · 第17关"
+    },
+    {
+      "id": 18,
+      "world": 2,
+      "moves": 14,
+      "need": 21,
+      "colors": 4,
+      "rocks": 2,
+      "ice": 1,
+      "title": "世界2 · 第18关"
+    },
+    {
+      "id": 19,
+      "world": 2,
+      "moves": 13,
+      "need": 21,
+      "colors": 4,
+      "rocks": 2,
+      "ice": 1,
+      "title": "世界2 · 第19关"
+    },
+    {
+      "id": 20,
+      "world": 2,
+      "moves": 22,
+      "need": 22,
+      "colors": 5,
+      "rocks": 2,
+      "ice": 2,
+      "title": "世界2 · 第20关"
+    },
+    {
+      "id": 21,
+      "world": 2,
+      "moves": 21,
+      "need": 22,
+      "colors": 5,
+      "rocks": 2,
+      "ice": 2,
+      "title": "世界2 · 第21关"
+    },
+    {
+      "id": 22,
+      "world": 2,
+      "moves": 20,
+      "need": 23,
+      "colors": 5,
+      "rocks": 2,
+      "ice": 2,
+      "title": "世界2 · 第22关"
+    },
+    {
+      "id": 23,
+      "world": 2,
+      "moves": 19,
+      "need": 23,
+      "colors": 5,
+      "rocks": 2,
+      "ice": 2,
+      "title": "世界2 · 第23关"
+    },
+    {
+      "id": 24,
+      "world": 2,
+      "moves": 18,
+      "need": 24,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 2,
+      "title": "世界2 · 第24关"
+    },
+    {
+      "id": 25,
+      "world": 2,
+      "moves": 17,
+      "need": 24,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 3,
+      "title": "世界2 · 第25关"
+    },
+    {
+      "id": 26,
+      "world": 2,
+      "moves": 16,
+      "need": 25,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 3,
+      "title": "世界2 · 第26关"
+    },
+    {
+      "id": 27,
+      "world": 2,
+      "moves": 15,
+      "need": 25,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 3,
+      "title": "世界2 · 第27关"
+    },
+    {
+      "id": 28,
+      "world": 2,
+      "moves": 14,
+      "need": 26,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 3,
+      "title": "世界2 · 第28关"
+    },
+    {
+      "id": 29,
+      "world": 2,
+      "moves": 13,
+      "need": 26,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 3,
+      "title": "世界2 · 第29关"
+    },
+    {
+      "id": 30,
+      "world": 2,
+      "moves": 22,
+      "need": 27,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 4,
+      "title": "世界2 · 第30关"
+    },
+    {
+      "id": 31,
+      "world": 3,
+      "moves": 21,
+      "need": 27,
+      "colors": 5,
+      "rocks": 3,
+      "ice": 4,
+      "title": "世界3 · 第31关"
+    },
+    {
+      "id": 32,
+      "world": 3,
+      "moves": 20,
+      "need": 28,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 4,
+      "title": "世界3 · 第32关"
+    },
+    {
+      "id": 33,
+      "world": 3,
+      "moves": 19,
+      "need": 28,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 4,
+      "title": "世界3 · 第33关"
+    },
+    {
+      "id": 34,
+      "world": 3,
+      "moves": 18,
+      "need": 29,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 4,
+      "title": "世界3 · 第34关"
+    },
+    {
+      "id": 35,
+      "world": 3,
+      "moves": 17,
+      "need": 29,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 5,
+      "title": "世界3 · 第35关"
+    },
+    {
+      "id": 36,
+      "world": 3,
+      "moves": 16,
+      "need": 30,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 5,
+      "title": "世界3 · 第36关"
+    },
+    {
+      "id": 37,
+      "world": 3,
+      "moves": 15,
+      "need": 30,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 5,
+      "title": "世界3 · 第37关"
+    },
+    {
+      "id": 38,
+      "world": 3,
+      "moves": 14,
+      "need": 31,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 5,
+      "title": "世界3 · 第38关"
+    },
+    {
+      "id": 39,
+      "world": 3,
+      "moves": 13,
+      "need": 31,
+      "colors": 5,
+      "rocks": 4,
+      "ice": 5,
+      "title": "世界3 · 第39关"
+    },
+    {
+      "id": 40,
+      "world": 3,
+      "moves": 22,
+      "need": 32,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 6,
+      "title": "世界3 · 第40关"
+    },
+    {
+      "id": 41,
+      "world": 3,
+      "moves": 21,
+      "need": 32,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 6,
+      "title": "世界3 · 第41关"
+    },
+    {
+      "id": 42,
+      "world": 3,
+      "moves": 20,
+      "need": 33,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 6,
+      "title": "世界3 · 第42关"
+    },
+    {
+      "id": 43,
+      "world": 3,
+      "moves": 19,
+      "need": 33,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 6,
+      "title": "世界3 · 第43关"
+    },
+    {
+      "id": 44,
+      "world": 3,
+      "moves": 18,
+      "need": 34,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 6,
+      "title": "世界3 · 第44关"
+    },
+    {
+      "id": 45,
+      "world": 3,
+      "moves": 17,
+      "need": 34,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 7,
+      "title": "世界3 · 第45关"
+    },
+    {
+      "id": 46,
+      "world": 4,
+      "moves": 16,
+      "need": 35,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 7,
+      "title": "世界4 · 第46关"
+    },
+    {
+      "id": 47,
+      "world": 4,
+      "moves": 15,
+      "need": 35,
+      "colors": 5,
+      "rocks": 5,
+      "ice": 7,
+      "title": "世界4 · 第47关"
+    },
+    {
+      "id": 48,
+      "world": 4,
+      "moves": 14,
+      "need": 36,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 7,
+      "title": "世界4 · 第48关"
+    },
+    {
+      "id": 49,
+      "world": 4,
+      "moves": 13,
+      "need": 36,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 7,
+      "title": "世界4 · 第49关"
+    },
+    {
+      "id": 50,
+      "world": 4,
+      "moves": 22,
+      "need": 37,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 8,
+      "title": "世界4 · 第50关"
+    },
+    {
+      "id": 51,
+      "world": 4,
+      "moves": 21,
+      "need": 37,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 8,
+      "title": "世界4 · 第51关"
+    },
+    {
+      "id": 52,
+      "world": 4,
+      "moves": 20,
+      "need": 38,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 8,
+      "title": "世界4 · 第52关"
+    },
+    {
+      "id": 53,
+      "world": 4,
+      "moves": 19,
+      "need": 38,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 8,
+      "title": "世界4 · 第53关"
+    },
+    {
+      "id": 54,
+      "world": 4,
+      "moves": 18,
+      "need": 39,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 8,
+      "title": "世界4 · 第54关"
+    },
+    {
+      "id": 55,
+      "world": 4,
+      "moves": 17,
+      "need": 39,
+      "colors": 5,
+      "rocks": 6,
+      "ice": 9,
+      "title": "世界4 · 第55关"
+    },
+    {
+      "id": 56,
+      "world": 4,
+      "moves": 16,
+      "need": 40,
+      "colors": 5,
+      "rocks": 7,
+      "ice": 9,
+      "title": "世界4 · 第56关"
+    },
+    {
+      "id": 57,
+      "world": 4,
+      "moves": 15,
+      "need": 40,
+      "colors": 5,
+      "rocks": 7,
+      "ice": 9,
+      "title": "世界4 · 第57关"
+    },
+    {
+      "id": 58,
+      "world": 4,
+      "moves": 14,
+      "need": 41,
+      "colors": 5,
+      "rocks": 7,
+      "ice": 9,
+      "title": "世界4 · 第58关"
+    },
+    {
+      "id": 59,
+      "world": 4,
+      "moves": 13,
+      "need": 41,
+      "colors": 5,
+      "rocks": 7,
+      "ice": 9,
+      "title": "世界4 · 第59关"
+    },
+    {
+      "id": 60,
+      "world": 4,
+      "moves": 22,
+      "need": 42,
+      "colors": 5,
+      "rocks": 7,
+      "ice": 10,
+      "title": "世界4 · 第60关"
+    }
+  ]
+}

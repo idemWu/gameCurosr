@@ -1,0 +1,47 @@
+{
+  "days": 7,
+  "zones": [
+    { "id": "pier", "name": "码头", "x": 2, "y": 8, "w": 10, "h": 5 },
+    { "id": "square", "name": "广场", "x": 12, "y": 6, "w": 10, "h": 6 },
+    { "id": "hill", "name": "灯塔坡", "x": 22, "y": 2, "w": 7, "h": 8 }
+  ],
+  "npcs": [
+    { "id": "li", "name": "看守阿黎", "zone": "hill", "x": 26, "y": 4, "color": "#e8b86d" },
+    { "id": "zhen", "name": "渔铺阿珍", "zone": "pier", "x": 5, "y": 10, "color": "#7eb6ff" },
+    { "id": "lu", "name": "店员小鹿", "zone": "square", "x": 16, "y": 9, "color": "#f3a6c8" },
+    { "id": "bo", "name": "船匠波叔", "zone": "pier", "x": 8, "y": 11, "color": "#94a3b8" },
+    { "id": "mei", "name": "花匠阿梅", "zone": "square", "x": 18, "y": 7, "color": "#86efac" },
+    { "id": "yun", "name": "邮差小云", "zone": "square", "x": 14, "y": 8, "color": "#fdba74" },
+    { "id": "hai", "name": "旅人海岸", "zone": "pier", "x": 3, "y": 9, "color": "#c4b5fd" },
+    { "id": "qing", "name": "琴师清清", "zone": "hill", "x": 24, "y": 6, "color": "#f9a8d4" }
+  ],
+  "quests": [
+    { "id": "d1a", "day": 1, "text": "向阿黎报到", "npc": "li", "affinity": 1 },
+    { "id": "d1b", "day": 1, "text": "帮阿珍搬木箱", "npc": "zhen", "affinity": 1 },
+    { "id": "d1c", "day": 1, "text": "在咖啡馆喝杯汤", "npc": "lu", "affinity": 1 },
+    { "id": "d2a", "day": 2, "text": "替波叔找船钉（与波叔交谈）", "npc": "bo", "affinity": 1 },
+    { "id": "d2b", "day": 2, "text": "给阿梅浇路边花（交谈）", "npc": "mei", "affinity": 1 },
+    { "id": "d2c", "day": 2, "text": "收小云的一封信", "npc": "yun", "affinity": 1 },
+    { "id": "d2d", "day": 2, "text": "晚上再去灯塔看海", "npc": "li", "affinity": 1 },
+    { "id": "d3a", "day": 3, "text": "听海岸讲远方故事", "npc": "hai", "affinity": 1 },
+    { "id": "d3b", "day": 3, "text": "请清清弹一曲", "npc": "qing", "affinity": 1 },
+    { "id": "d3c", "day": 3, "text": "送汤给阿珍", "npc": "zhen", "affinity": 1 },
+    { "id": "d3d", "day": 3, "text": "和波叔检修栈桥", "npc": "bo", "affinity": 1 },
+    { "id": "d4a", "day": 4, "text": "广场帮忙挂彩旗", "npc": "mei", "affinity": 1 },
+    { "id": "d4b", "day": 4, "text": "送信到灯塔", "npc": "yun", "affinity": 1 },
+    { "id": "d4c", "day": 4, "text": "与阿黎核对灯油", "npc": "li", "affinity": 1 },
+    { "id": "d4d", "day": 4, "text": "咖啡馆试新品", "npc": "lu", "affinity": 1 },
+    { "id": "d5a", "day": 5, "text": "海边拾贝给清清", "npc": "qing", "affinity": 1 },
+    { "id": "d5b", "day": 5, "text": "帮海岸修旅行包", "npc": "hai", "affinity": 1 },
+    { "id": "d5c", "day": 5, "text": "渔网晾晒协助", "npc": "zhen", "affinity": 1 },
+    { "id": "d5d", "day": 5, "text": "波叔的油漆活", "npc": "bo", "affinity": 1 },
+    { "id": "d6a", "day": 6, "text": "筹备庆典座位", "npc": "mei", "affinity": 1 },
+    { "id": "d6b", "day": 6, "text": "通知每位朋友（小云）", "npc": "yun", "affinity": 1 },
+    { "id": "d6c", "day": 6, "text": "灯塔试灯", "npc": "li", "affinity": 1 },
+    { "id": "d6d", "day": 6, "text": "准备暖汤大锅", "npc": "lu", "affinity": 1 },
+    { "id": "d7a", "day": 7, "text": "参加码头开场", "npc": "hai", "affinity": 1 },
+    { "id": "d7b", "day": 7, "text": "听清清庆典曲", "npc": "qing", "affinity": 1 },
+    { "id": "d7c", "day": 7, "text": "与阿黎点燃灯火", "npc": "li", "affinity": 2 },
+    { "id": "d7d", "day": 7, "text": "在广场举杯致意", "npc": "lu", "affinity": 1 }
+  ]
+}
