@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>晶石三消</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>晶石三消</h1><p>限定步数三消过关</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>关卡：<span id="level">1</span>/8</div>
+        <div>步数：<span id="moves">12</span></div>
+        <div>目标消除：<span id="goal">0</span>/<span id="need">10</span></div>
+        <button id="reset" type="button">重置本关</button>
+        <p class="hint">点击一颗宝石再点相邻宝石交换，连成 3 个消除。8 关。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">晶石三消</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

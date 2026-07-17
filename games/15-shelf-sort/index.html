@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>书架整理</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>书架整理</h1><p>颜色分类收纳解谜</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>关卡：<span id="level">1</span>/8</div>
+        <div>步数：<span id="moves">0</span></div>
+        <button id="reset" type="button">打乱重来</button>
+        <p class="hint">点击一本书，再点目标空位或同色列。整理满 8 关。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">书架整理</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

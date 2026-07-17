@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>星尘挂机</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>星尘挂机</h1><p>点击与自动产出，升级解锁图鉴</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>星尘：<span id="dust">0</span></div>
+        <div>每秒：<span id="rate">0</span></div>
+        <div>图鉴：<span id="dex">0</span>/3</div>
+        <button id="click" type="button">采集星尘</button>
+        <button id="u1" type="button">升级点击 (10)</button>
+        <button id="u2" type="button">自动星尘 (25)</button>
+        <button id="u3" type="button">解锁外观 (50)</button>
+        <p class="hint">点击产星尘，买升级。解锁 3 个外观图鉴即胜利。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">星尘挂机</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

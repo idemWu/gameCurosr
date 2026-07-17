@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>桥上防线</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>桥上防线</h1><p>路径塔防，波次升级</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>波次：<span id="wave">0</span>/5</div>
+        <div>金币：<span id="gold">40</span></div>
+        <div>生命：<span id="hp">10</span></div>
+        <div class="row"><button id="t1" type="button">箭塔 15</button><button id="t2" type="button">冰塔 25</button></div>
+        <div id="sel">选择：箭塔</div>
+        <p class="hint">点桥边空地建塔。挡住 5 波敌人。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">桥上防线</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

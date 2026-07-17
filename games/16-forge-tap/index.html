@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>铁匠一点通</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>铁匠一点通</h1><p>点击锻造升级锤子与配方</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>金属：<span id="metal">0</span></div>
+        <div>锤子等级：<span id="hammer">1</span></div>
+        <div>配方：<span id="recipes">0</span>/3</div>
+        <button id="tap" type="button">捶打！</button>
+        <button id="up" type="button">升级锤子</button>
+        <button id="rec" type="button">研究新配方</button>
+        <p class="hint">点击锻造条，升级锤子解锁配方。解锁 3 个配方胜利。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">铁匠一点通</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

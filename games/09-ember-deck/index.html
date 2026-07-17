@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>余烬牌阵</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top"><h1>余烬牌阵</h1><p>短 rogue-lite 卡牌：选牌成长，连战通关</p></header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div>场次：<span id="wave">1</span>/6</div>
+        <div>生命：<span id="hp">20</span></div>
+        <div>敌人：<span id="ehp">0</span></div>
+        <div id="hand" class="row"></div>
+        <div id="pick" class="row"></div>
+        <p class="hint">点手牌攻击敌人。击倒后三选一强化，打完 6 场胜利。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">余烬牌阵</h2><p id="overlay-msg"></p><button id="btn-start">开始</button></div></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
