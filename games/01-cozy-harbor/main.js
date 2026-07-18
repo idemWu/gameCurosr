@@ -318,31 +318,35 @@ function drawScene() {
   const py = state.player.fy * TILE + 2;
   drawActor(ART.player, px, py, Math.sin(t * 3.5) * 1.2, 40, 52);
 
-  // HUD plate
-  A.panel(ctx, 10, 10, 210, 32, {
-    bg: "rgba(18, 28, 42, 0.72)",
-    border: "rgba(246, 196, 83, 0.55)",
-    r: 12,
+  // Soft paper caption chip (matches journal UI)
+  A.panel(ctx, 12, 12, 188, 28, {
+    bg: "rgba(247, 239, 227, 0.88)",
+    border: "rgba(90, 155, 176, 0.45)",
+    r: 14,
+    bw: 1.5,
   });
-  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 22, 31, {
-    color: "#fff8e8",
-    font: "bold 13px 'PingFang SC', sans-serif",
+  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 24, 31, {
+    color: "#2c241c",
+    font: "bold 12px 'PingFang SC', sans-serif",
+    shadow: false,
   });
 
   if (state.bubble) {
-    A.panel(ctx, 18, 218, 444, 42, {
-      bg: "rgba(16, 24, 38, 0.88)",
-      border: "rgba(246, 196, 83, 0.6)",
-      r: 14,
+    A.panel(ctx, 20, 220, 440, 40, {
+      bg: "rgba(247, 239, 227, 0.92)",
+      border: "rgba(216, 137, 108, 0.5)",
+      r: 16,
+      bw: 1.5,
     });
-    A.text(ctx, state.bubble.text, 240, 244, {
+    A.text(ctx, state.bubble.text, 240, 245, {
       align: "center",
-      color: "#fff8e7",
+      color: "#2c241c",
       font: "13px 'PingFang SC', sans-serif",
+      shadow: false,
     });
   }
 
-  A.vignette(ctx, 480, 270, state.period === 3 ? 0.42 : 0.22);
+  A.vignette(ctx, 480, 270, state.period === 3 ? 0.35 : 0.14);
 }
 
 function loop(now) {
