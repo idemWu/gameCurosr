@@ -1,0 +1,105 @@
+{
+  "id": "z03",
+  "name": "灯塔崖",
+  "width": 2200,
+  "bonfires": [
+    {
+      "id": "z03-steps",
+      "name": "崖阶",
+      "x": 140
+    }
+  ],
+  "exits": [
+    {
+      "to": "z02",
+      "x": 40
+    },
+    {
+      "to": "z04",
+      "x": 2160,
+      "requiresBoss": "b04_twin_lampkeepers"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2200
+    },
+    {
+      "x": 300,
+      "y": 175,
+      "w": 110
+    },
+    {
+      "x": 650,
+      "y": 150,
+      "w": 120
+    },
+    {
+      "x": 990,
+      "y": 180,
+      "w": 130
+    },
+    {
+      "x": 1400,
+      "y": 160,
+      "w": 140
+    },
+    {
+      "x": 1800,
+      "y": 180,
+      "w": 120
+    }
+  ],
+  "enemies": [
+    {
+      "type": "lamp_wraith",
+      "x": 360
+    },
+    {
+      "type": "cliff_archer",
+      "x": 700
+    },
+    {
+      "type": "lamp_wraith",
+      "x": 830
+    },
+    {
+      "type": "hook_fisher",
+      "x": 960
+    },
+    {
+      "type": "cliff_archer",
+      "x": 1240
+    },
+    {
+      "type": "lamp_wraith",
+      "x": 1380
+    },
+    {
+      "type": "barnacle_brute",
+      "x": 1550
+    },
+    {
+      "type": "salt_elite",
+      "x": 1750,
+      "elite": true
+    },
+    {
+      "type": "lamp_wraith",
+      "x": 1900
+    }
+  ],
+  "boss": {
+    "id": "b04_twin_lampkeepers",
+    "x": 2040,
+    "gate": 1980
+  },
+  "midBoss": {
+    "id": "b03_shade_walker",
+    "x": 1200,
+    "gate": 1150,
+    "optional": true
+  }
+}

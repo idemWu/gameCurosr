@@ -34,5 +34,66 @@
     "attackRecovery": 22,
     "souls": 120,
     "color": "#f59e0b"
+  },
+  "wreck_ghoul": {
+    "name": "沉船食尸鬼",
+    "hp": 48,
+    "damage": 34,
+    "speed": 1.6,
+    "aggroRange": 200,
+    "attackRange": 28,
+    "attackStartup": 14,
+    "attackRecovery": 24,
+    "souls": 36,
+    "color": "#6ee7b7"
+  },
+  "barnacle_brute": {
+    "name": "藤壶蛮兵",
+    "hp": 110,
+    "damage": 48,
+    "speed": 0.9,
+    "aggroRange": 170,
+    "attackRange": 42,
+    "attackStartup": 26,
+    "attackRecovery": 34,
+    "souls": 74,
+    "color": "#34d399"
+  },
+  "lamp_wraith": {
+    "name": "灯影怨灵",
+    "hp": 60,
+    "damage": 40,
+    "speed": 2.0,
+    "aggroRange": 240,
+    "attackRange": 30,
+    "attackStartup": 12,
+    "attackRecovery": 20,
+    "souls": 52,
+    "color": "#fbbf24"
+  },
+  "cliff_archer": {
+    "name": "崖上射手",
+    "hp": 44,
+    "damage": 36,
+    "speed": 1.0,
+    "aggroRange": 260,
+    "attackRange": 180,
+    "attackStartup": 30,
+    "attackRecovery": 40,
+    "souls": 47,
+    "color": "#f472b6",
+    "ranged": true
+  },
+  "salt_elite": {
+    "name": "盐晶巨像",
+    "hp": 220,
+    "damage": 58,
+    "speed": 0.8,
+    "aggroRange": 200,
+    "attackRange": 48,
+    "attackStartup": 24,
+    "attackRecovery": 28,
+    "souls": 210,
+    "color": "#e2e8f0"
   }
 }

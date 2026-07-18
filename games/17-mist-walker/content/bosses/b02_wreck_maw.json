@@ -1,0 +1,70 @@
+{
+  "id": "b02_wreck_maw",
+  "name": "沉船之喉",
+  "hp": 640,
+  "souls": 1800,
+  "phases": [
+    {
+      "hpAbove": 0.55,
+      "moves": [
+        {
+          "id": "bite",
+          "name": "噬咬",
+          "damage": 42,
+          "startup": 24,
+          "active": 7,
+          "recovery": 30,
+          "range": 66,
+          "parryable": true
+        },
+        {
+          "id": "anchor",
+          "name": "锚坠",
+          "damage": 56,
+          "startup": 40,
+          "active": 8,
+          "recovery": 46,
+          "range": 110,
+          "parryable": false
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.3,
+      "moves": [
+        {
+          "id": "bite",
+          "name": "噬咬",
+          "damage": 48,
+          "startup": 18,
+          "active": 7,
+          "recovery": 24,
+          "range": 66,
+          "parryable": true
+        },
+        {
+          "id": "frenzy",
+          "name": "狂噬",
+          "damage": 30,
+          "startup": 14,
+          "active": 5,
+          "recovery": 10,
+          "range": 58,
+          "hits": 4,
+          "parryable": true
+        },
+        {
+          "id": "anchor",
+          "name": "锚坠",
+          "damage": 64,
+          "startup": 34,
+          "active": 8,
+          "recovery": 40,
+          "range": 110,
+          "parryable": false
+        }
+      ]
+    }
+  ]
+}

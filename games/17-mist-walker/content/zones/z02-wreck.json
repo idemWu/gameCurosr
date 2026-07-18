@@ -1,0 +1,90 @@
+{
+  "id": "z02",
+  "name": "沉船腹地",
+  "width": 2000,
+  "bonfires": [
+    {
+      "id": "z02-hold",
+      "name": "船骸残舱",
+      "x": 160
+    }
+  ],
+  "exits": [
+    {
+      "to": "z01",
+      "x": 40
+    },
+    {
+      "to": "z03",
+      "x": 1960,
+      "requiresBoss": "b02_wreck_maw"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2000
+    },
+    {
+      "x": 420,
+      "y": 180,
+      "w": 140
+    },
+    {
+      "x": 760,
+      "y": 160,
+      "w": 120
+    },
+    {
+      "x": 1100,
+      "y": 185,
+      "w": 160
+    },
+    {
+      "x": 1450,
+      "y": 170,
+      "w": 120
+    }
+  ],
+  "enemies": [
+    {
+      "type": "wreck_ghoul",
+      "x": 380
+    },
+    {
+      "type": "wreck_ghoul",
+      "x": 520
+    },
+    {
+      "type": "dock_thrall",
+      "x": 660
+    },
+    {
+      "type": "barnacle_brute",
+      "x": 840
+    },
+    {
+      "type": "wreck_ghoul",
+      "x": 1000
+    },
+    {
+      "type": "hook_fisher",
+      "x": 1180
+    },
+    {
+      "type": "barnacle_brute",
+      "x": 1350
+    },
+    {
+      "type": "salt_elite",
+      "x": 1560,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b02_wreck_maw",
+    "x": 1840,
+    "gate": 1760
+  }
+}
