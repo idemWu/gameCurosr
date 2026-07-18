@@ -1,8 +1,40 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>云上跳岛 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>云上跳岛</h1><p>40 关跳跃 · 约 30–50 分钟</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>关卡 <span id="level">1</span>/40 · 羽毛 <span id="fe">0</span>/<span id="need">0</span></div><p class="hint">左右移动，空格跳跃。掉落重来。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">云上跳岛</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>云上跳岛</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>云上跳岛</h1>
+      <p>四十关平台跳跃 · 收集羽毛 · 约 14–24 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>关卡</span><strong><span id="level">1</span>/40</strong></div>
+        <div class="stat"><span>羽毛</span><strong><span id="fe">0</span>/<span id="need">0</span></strong></div>
+        <p class="hint">左右移动 · 空格/上键跳跃 · 掉落重来本关</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">云上跳岛</h2>
+        <p id="overlay-msg">四十座浮岛，收集羽毛抵达旗帜。</p>
+        <button id="btn-continue" type="button">继续跳跃</button>
+        <button id="btn-start" type="button">新的航程</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

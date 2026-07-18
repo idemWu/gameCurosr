@@ -1,28 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>矿灯深途 · Longplay</title>
-<link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body>
-<div id="app">
-<header class="top"><h1>矿灯深途</h1><p>25 层矿井 · 任务线 · 约 35–55 分钟</p></header>
-<main>
-<canvas id="game" width="480" height="270"></canvas>
-<aside class="hud">
-<div>层：B<span id="floor">1</span>/25 · 镐Lv<span id="pick">1</span></div>
-<div>生命 <span id="hp">8</span> · 灯油 <span id="oil">100</span></div>
-<div>铜 <span id="copper">0</span> · 秘银 <span id="mythril">0</span> · 金 <span id="gold">0</span></div>
-<div>任务：<span id="quest">-</span></div>
-<div>进度 <span id="qprog">0</span>/<span id="qneed">0</span> · 完成 <span id="qdone">0</span>/15</div>
-<button id="up" type="button">升井 / 上一层</button>
-<button id="shop" type="button">休息站补给（金×5→油+40）</button>
-<p class="hint">方向键移动。蓝=铜 青=秘银 黄=金 红=怪 绿=下一层。完成 15 个任务并到达 B25 结局。</p>
-</aside>
-</main>
-<div id="overlay" class="overlay"><div class="panel">
-<h2 id="overlay-title">矿灯深途</h2><p id="overlay-msg"></p>
-<button id="btn-continue" type="button">继续挖矿</button>
-<button id="btn-start" type="button">新的矿灯</button>
-</div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script>
-</body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>矿灯深途</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>矿灯深途</h1>
+      <p>二十五层矿井 · 十五项任务 · 约 18–28 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>层数</span><strong>B<span id="floor">1</span>/25</strong></div>
+        <div class="stat"><span>镐等级</span><strong id="pick">1</strong></div>
+        <div class="stat"><span>生命</span><strong id="hp">8</strong></div>
+        <div class="stat"><span>灯油</span><strong id="oil">100</strong></div>
+        <div class="stat"><span>矿石</span><strong>铜 <span id="copper">0</span> · 秘银 <span id="mythril">0</span> · 金 <span id="gold">0</span></strong></div>
+        <div class="stat"><span>任务</span><strong id="quest">-</strong></div>
+        <div class="stat"><span>进度</span><strong><span id="qprog">0</span>/<span id="qneed">0</span> · 完成 <span id="qdone">0</span>/15</strong></div>
+        <button id="up" type="button">升井 / 上一层</button>
+        <button id="shop" type="button" class="secondary">休息站补给（金×5→油+40）</button>
+        <p class="hint">方向键移动 · 蓝铜青秘银黄金红怪绿下层 · 灯油耗尽会掉血</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">矿灯深途</h2>
+        <p id="overlay-msg">二十五层矿井与十五项任务，管理灯油与生命。</p>
+        <button id="btn-continue" type="button">继续挖矿</button>
+        <button id="btn-start" type="button">新的矿灯</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
