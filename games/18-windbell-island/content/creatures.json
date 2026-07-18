@@ -1,0 +1,47 @@
+{
+  "leaf_fox": {
+    "name": "叶尾狐",
+    "hp": 42,
+    "damage": 18,
+    "speed": 1.5,
+    "range": 28,
+    "souls": 20,
+    "archetype": 0
+  },
+  "rain_mushroom": {
+    "name": "雨菇",
+    "hp": 55,
+    "damage": 20,
+    "speed": 0.9,
+    "range": 34,
+    "souls": 25,
+    "archetype": 1
+  },
+  "cloud_ram": {
+    "name": "云团羊",
+    "hp": 72,
+    "damage": 24,
+    "speed": 1.2,
+    "range": 38,
+    "souls": 32,
+    "archetype": 2
+  },
+  "tide_crab": {
+    "name": "潮汐蟹",
+    "hp": 88,
+    "damage": 28,
+    "speed": 0.8,
+    "range": 36,
+    "souls": 42,
+    "archetype": 3
+  },
+  "wind_bird": {
+    "name": "发条鸟",
+    "hp": 48,
+    "damage": 22,
+    "speed": 1.8,
+    "range": 45,
+    "souls": 35,
+    "archetype": 4
+  }
+}

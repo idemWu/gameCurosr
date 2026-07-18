@@ -30,6 +30,7 @@ python3 -m http.server 8080
 | 15 | 书架整理 | `games/15-shelf-sort/` | 40 关 |
 | 16 | 铁匠一点通 | `games/16-forge-tap/` | 8 配方章 |
 | **17** | **雾港行者（旗舰）** | [`games/17-mist-walker/`](./games/17-mist-walker/) | **2D 魂类 · 12 区 18 Boss · 主线≈30h** |
+| **18** | **风铃岛纪行（旗舰）** | [`games/18-windbell-island/`](./games/18-windbell-island/) | **治愈动作冒险 · 8 区 12 守护灵 · 主线≈12–18h** |
 
 时长预估：`docs/playtime/`  
 共用存档菜单：`shared/longplay/`

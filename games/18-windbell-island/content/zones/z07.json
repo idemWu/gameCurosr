@@ -1,0 +1,80 @@
+{
+  "id": "z07",
+  "name": "星眠山",
+  "width": 2300,
+  "camp": {
+    "x": 140,
+    "name": "星眠山茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2300
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "wind_bird",
+      "x": 350
+    },
+    {
+      "type": "leaf_fox",
+      "x": 610
+    },
+    {
+      "type": "cloud_ram",
+      "x": 870
+    },
+    {
+      "type": "wind_bird",
+      "x": 1130
+    },
+    {
+      "type": "rain_mushroom",
+      "x": 1390
+    }
+  ],
+  "guardian": {
+    "id": "g09_nightingale",
+    "x": 2150,
+    "gate": 2040
+  },
+  "exits": [
+    {
+      "to": "z06",
+      "x": 40
+    },
+    {
+      "to": "z08",
+      "x": 2260,
+      "requires": "g09_nightingale"
+    }
+  ],
+  "letter": 6,
+  "hiddenGuardian": {
+    "id": "g10_star_deer",
+    "x": 1450,
+    "optional": true
+  }
+}

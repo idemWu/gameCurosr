@@ -1,0 +1,34 @@
+{
+  "id": "g08_windmill_giant",
+  "name": "风车巨人",
+  "hp": 870,
+  "fragments": 1260,
+  "moves": [
+    {
+      "id": "sweep",
+      "name": "风扫",
+      "damage": 36,
+      "startup": 22,
+      "range": 62,
+      "parry": true
+    },
+    {
+      "id": "gust",
+      "name": "季风",
+      "damage": 32,
+      "startup": 30,
+      "range": 130,
+      "parry": false,
+      "projectile": true
+    },
+    {
+      "id": "dance",
+      "name": "守护之舞",
+      "damage": 21,
+      "startup": 16,
+      "range": 54,
+      "parry": true,
+      "hits": 3
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "g06_tide_whale",
+  "name": "潮池鲸灵",
+  "hp": 740,
+  "fragments": 1020,
+  "moves": [
+    {
+      "id": "sweep",
+      "name": "风扫",
+      "damage": 32,
+      "startup": 22,
+      "range": 62,
+      "parry": true
+    },
+    {
+      "id": "gust",
+      "name": "季风",
+      "damage": 28,
+      "startup": 31,
+      "range": 130,
+      "parry": false,
+      "projectile": true
+    },
+    {
+      "id": "dance",
+      "name": "守护之舞",
+      "damage": 19,
+      "startup": 16,
+      "range": 54,
+      "parry": true,
+      "hits": 3
+    }
+  ]
+}

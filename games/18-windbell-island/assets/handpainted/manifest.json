@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "style": "warm-watercolor-colored-pencil",
+  "core": {
+    "player": { "path": "./assets/handpainted/characters/player/sheet.png", "width": 1280, "height": 853, "columns": 4, "rows": 3 },
+    "creatures": { "path": "./assets/handpainted/characters/creatures/roster.png", "width": 1024, "height": 683, "columns": 5, "rows": 2 },
+    "guardians01": { "path": "./assets/handpainted/characters/guardians/01-06.png", "width": 1024, "height": 683, "columns": 3, "rows": 2 },
+    "guardians07": { "path": "./assets/handpainted/characters/guardians/07-12.png", "width": 1024, "height": 683, "columns": 3, "rows": 2 }
+  },
+  "lazy": {
+    "z01": { "path": "./assets/handpainted/backgrounds/z01/background.png", "width": 960, "height": 640 },
+    "z02": { "path": "./assets/handpainted/backgrounds/z02/background.png", "width": 960, "height": 640 },
+    "z03": { "path": "./assets/handpainted/backgrounds/z03/background.png", "width": 960, "height": 640 },
+    "z04": { "path": "./assets/handpainted/backgrounds/z04/background.png", "width": 960, "height": 640 },
+    "z05": { "path": "./assets/handpainted/backgrounds/z05/background.png", "width": 960, "height": 640 },
+    "z06": { "path": "./assets/handpainted/backgrounds/z06/background.png", "width": 960, "height": 640 },
+    "z07": { "path": "./assets/handpainted/backgrounds/z07/background.png", "width": 960, "height": 640 },
+    "z08": { "path": "./assets/handpainted/backgrounds/z08/background.png", "width": 960, "height": 640 },
+    "ending": { "path": "./assets/handpainted/endings/diptych.png", "width": 1280, "height": 853, "columns": 2, "rows": 1 }
+  }
+}

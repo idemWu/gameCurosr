@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>风铃岛纪行</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>风铃岛纪行</h1>
+      <p>治愈系横版动作冒险 · 八座岛区 · 十二守护灵</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="bar heart"><span id="hpfill"></span></div>
+        <div class="bar breeze"><span id="stfill"></span></div>
+        <div>风铃碎片 <b id="fragments">0</b> · 热茶 <b id="tea">4/4</b></div>
+        <div>区域 <b id="zone">蒲公英港</b></div>
+        <div>信件 <b id="letters">0/8</b> · 守护灵 <b id="guardians">0/12</b></div>
+        <div id="guardianbar" class="hidden">
+          <label id="guardianname"></label>
+          <div class="bar guardian"><span id="guardianfill"></span></div>
+        </div>
+        <p class="hint">
+          A/D 移动 · J 风铃轻击 · K 纸伞重击 · Space 风滚 · L 共鸣 · F 喝茶 · E 互动
+        </p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">风铃岛纪行</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue">继续旅程</button>
+        <button id="btn-start">新的邮路</button>
+      </div>
+    </div>
+    <div id="faint" class="faint hidden">风暂时停了<br/><span>碎片会在原地等你</span></div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

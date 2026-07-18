@@ -1,0 +1,80 @@
+{
+  "id": "z08",
+  "name": "晨曦灯塔",
+  "width": 2000,
+  "camp": {
+    "x": 140,
+    "name": "晨曦灯塔茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2000
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "wind_bird",
+      "x": 350
+    },
+    {
+      "type": "cloud_ram",
+      "x": 610
+    },
+    {
+      "type": "tide_crab",
+      "x": 870
+    },
+    {
+      "type": "leaf_fox",
+      "x": 1130
+    },
+    {
+      "type": "wind_bird",
+      "x": 1390
+    }
+  ],
+  "guardian": {
+    "id": "g12_dawn_bird",
+    "x": 1850,
+    "gate": 1740
+  },
+  "exits": [
+    {
+      "to": "z07",
+      "x": 40
+    },
+    {
+      "to": null,
+      "x": 1960,
+      "requires": "g12_dawn_bird"
+    }
+  ],
+  "letter": 7,
+  "hiddenGuardian": {
+    "id": "g11_old_courier",
+    "x": 1050,
+    "optional": true
+  }
+}
