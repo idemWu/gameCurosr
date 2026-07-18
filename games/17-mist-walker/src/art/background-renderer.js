@@ -8,9 +8,9 @@ function drawCover(ctx, image, x, y, width, height, offsetX = 0) {
   ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
 }
 
-export function drawHandPaintedDock(ctx, art, camera, worldWidth, time) {
-  const background = art.assets.z01Background;
-  const foreground = art.assets.z01Foreground;
+export function drawHandPaintedScene(ctx, art, zoneId, camera, worldWidth, time) {
+  const background = art.assets[`${zoneId}Background`];
+  const foreground = zoneId === "z01" ? art.assets.z01Foreground : null;
   if (!background) return false;
 
   const progress = worldWidth > 480 ? camera / (worldWidth - 480) : 0;

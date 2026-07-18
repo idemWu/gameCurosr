@@ -33,6 +33,59 @@
       "width": 1536,
       "height": 1024
     },
+    "z02Background": { "path": "./assets/handpainted/backgrounds/z02/background.png", "width": 960, "height": 640 },
+    "z03Background": { "path": "./assets/handpainted/backgrounds/z03/background.png", "width": 960, "height": 640 },
+    "z04Background": { "path": "./assets/handpainted/backgrounds/z04/background.png", "width": 960, "height": 640 },
+    "z05Background": { "path": "./assets/handpainted/backgrounds/z05/background.png", "width": 960, "height": 640 },
+    "z06Background": { "path": "./assets/handpainted/backgrounds/z06/background.png", "width": 960, "height": 640 },
+    "z07Background": { "path": "./assets/handpainted/backgrounds/z07/background.png", "width": 960, "height": 640 },
+    "z08Background": { "path": "./assets/handpainted/backgrounds/z08/background.png", "width": 960, "height": 640 },
+    "z09Background": { "path": "./assets/handpainted/backgrounds/z09/background.png", "width": 960, "height": 640 },
+    "z10Background": { "path": "./assets/handpainted/backgrounds/z10/background.png", "width": 960, "height": 640 },
+    "z11Background": { "path": "./assets/handpainted/backgrounds/z11/background.png", "width": 960, "height": 640 },
+    "z12Background": { "path": "./assets/handpainted/backgrounds/z12/background.png", "width": 960, "height": 640 },
+    "enemyRosterA": {
+      "path": "./assets/handpainted/characters/enemies/full/roster-a.png",
+      "width": 1024,
+      "height": 683,
+      "columns": 5,
+      "rows": 2
+    },
+    "enemyRosterB": {
+      "path": "./assets/handpainted/characters/enemies/full/roster-b.png",
+      "width": 1024,
+      "height": 683,
+      "columns": 5,
+      "rows": 2
+    },
+    "bossRoster01": {
+      "path": "./assets/handpainted/characters/bosses/rosters/01-06.png",
+      "width": 1024,
+      "height": 683,
+      "columns": 3,
+      "rows": 2
+    },
+    "bossRoster07": {
+      "path": "./assets/handpainted/characters/bosses/rosters/07-12.png",
+      "width": 1024,
+      "height": 683,
+      "columns": 3,
+      "rows": 2
+    },
+    "bossRoster13": {
+      "path": "./assets/handpainted/characters/bosses/rosters/13-18.png",
+      "width": 1024,
+      "height": 683,
+      "columns": 3,
+      "rows": 2
+    },
+    "endingTriptych": {
+      "path": "./assets/handpainted/endings/triptych.png",
+      "width": 1280,
+      "height": 853,
+      "columns": 3,
+      "rows": 1
+    },
     "ui": {
       "path": "./assets/handpainted/ui/sheet.png",
       "width": 1536,

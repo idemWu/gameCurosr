@@ -3,7 +3,7 @@
  */
 import { loadHandPaintedArt } from "./src/art/assets.js";
 import { drawFrame, playerFrame, enemyFrame, bossFrame } from "./src/art/sprite-renderer.js";
-import { drawHandPaintedDock } from "./src/art/background-renderer.js";
+import { drawHandPaintedScene } from "./src/art/background-renderer.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("game");
@@ -166,6 +166,13 @@ function spawnBosses() {
 }
 function enterZone(zoneId, spawnX, souls) {
   S.zoneId = zoneId;
+  if (HAND_ART.ready && HAND_ART.ensure) {
+    const lazyAssets = [`${zoneId}Background`];
+    if (zoneId === "z12") lazyAssets.push("endingTriptych");
+    HAND_ART.ensure(lazyAssets).catch((error) => {
+      console.warn(`Unable to lazy-load hand-painted art for ${zoneId}`, error);
+    });
+  }
   const bf = zone().bonfires[0];
   const keepSouls = souls != null ? souls : (S.player ? S.player.souls : 0);
   S.player = newPlayer(spawnX != null ? spawnX : bf.x);
@@ -749,23 +756,36 @@ function drawBossSprite(b) {
 function handEnemyArchetype(enemy) {
   const style = enemyStyle(enemy.type || "");
   if (style === "knight") return 1;
-  if (style === "caster" || style === "archer") return 2;
+  if (style === "caster") return 2;
+  if (style === "beast") return 3;
+  if (style === "archer") return 4;
   return 0;
 }
 
 function drawHandPaintedActors() {
-  if (!HAND_ART.ready || S.zoneId !== "z01") return false;
+  if (!HAND_ART.ready) return false;
   const p = S.player;
   const playerAsset = HAND_ART.assets.player;
-  const enemyAsset = HAND_ART.assets.z01Enemies;
-  const bossAsset = HAND_ART.assets.b01;
+  const zoneNumber = Number(S.zoneId.slice(1));
+  const specializedDock = S.zoneId === "z01";
+  const enemyAsset = specializedDock
+    ? HAND_ART.assets.z01Enemies
+    : HAND_ART.assets[zoneNumber <= 6 ? "enemyRosterA" : "enemyRosterB"];
 
   for (const enemy of S.enemies) {
     if (enemy.dead) continue;
+    const archetype = handEnemyArchetype(enemy);
+    let frame;
+    if (specializedDock) {
+      frame = enemyFrame(enemy, Math.min(2, archetype));
+    } else {
+      const regionalRow = zoneNumber <= 3 || (zoneNumber >= 7 && zoneNumber <= 9) ? 0 : 1;
+      frame = regionalRow * 5 + archetype;
+    }
     drawFrame(
       ctx,
       enemyAsset,
-      enemyFrame(enemy, handEnemyArchetype(enemy)),
+      frame,
       enemy.x - S.cam,
       enemy.y + 2,
       enemy.elite ? 106 : 88,
@@ -777,14 +797,30 @@ function drawHandPaintedActors() {
 
   for (const boss of S.bosses) {
     if (boss.dead) continue;
+    const bossNumber = Number((boss.slot.id.match(/\d+/) || ["1"])[0]);
+    let bossAsset;
+    let frame;
+    if (bossNumber === 1 && HAND_ART.assets.b01) {
+      bossAsset = HAND_ART.assets.b01;
+      frame = bossFrame(boss);
+    } else if (bossNumber <= 6) {
+      bossAsset = HAND_ART.assets.bossRoster01;
+      frame = bossNumber - 1;
+    } else if (bossNumber <= 12) {
+      bossAsset = HAND_ART.assets.bossRoster07;
+      frame = bossNumber - 7;
+    } else {
+      bossAsset = HAND_ART.assets.bossRoster13;
+      frame = bossNumber - 13;
+    }
     drawFrame(
       ctx,
       bossAsset,
-      bossFrame(boss),
+      frame,
       boss.x - S.cam,
       boss.y + 4,
-      138,
-      164,
+      bossNumber === 18 ? 172 : 142,
+      bossNumber === 18 ? 184 : 164,
       boss.face > 0,
       boss.state === "stagger" ? 0.82 : 1
     );
@@ -821,8 +857,8 @@ function draw() {
   const Z = zone();
   const A = ZONE_ART[S.zoneId] || ZONE_ART.z01;
   S.cam = Math.max(0, Math.min(Z.width - 480, p.x - 220));
-  const paintedScene = HAND_ART.ready && S.zoneId === "z01"
-    ? drawHandPaintedDock(ctx, HAND_ART, S.cam, Z.width, performance.now())
+  const paintedScene = HAND_ART.ready
+    ? drawHandPaintedScene(ctx, HAND_ART, S.zoneId, S.cam, Z.width, performance.now())
     : null;
   if (!paintedScene) {
     drawBackdrop(A, Z);
@@ -885,7 +921,16 @@ function draw() {
     flashMsg.t -= 1; if (flashMsg.t <= 0) flashMsg = null;
   }
   if (S.menu === "ending") {
-    ctx.fillStyle = "rgba(3,7,12,.92)"; ctx.fillRect(70, 40, 340, 130);
+    const endingArt = HAND_ART.assets.endingTriptych;
+    if (endingArt) {
+      const sw = endingArt.width / 3;
+      const sx = Math.max(0, Math.min(2, S.menuIdx)) * sw;
+      ctx.save();
+      ctx.globalAlpha = 0.78;
+      ctx.drawImage(endingArt.image, sx, 0, sw, endingArt.height, 0, 0, 480, 270);
+      ctx.restore();
+    }
+    ctx.fillStyle = "rgba(3,7,12,.82)"; ctx.fillRect(62, 38, 356, 134);
     ctx.fillStyle = "#fbbf24"; ctx.font = "14px sans-serif";
     ctx.fillText("溺神已灭 —— 选择港湾的命运", 90, 66);
     ENDINGS.forEach((o, i) => {
