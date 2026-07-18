@@ -318,30 +318,31 @@ function drawScene() {
   const py = state.player.fy * TILE + 2;
   drawActor(ART.player, px, py, Math.sin(t * 3.5) * 1.2, 40, 52);
 
-  // Soft paper caption chip (matches journal UI)
-  A.panel(ctx, 12, 12, 188, 28, {
-    bg: "rgba(247, 239, 227, 0.88)",
-    border: "rgba(90, 155, 176, 0.45)",
-    r: 14,
-    bw: 1.5,
+  // Stardew-like wood/parchment caption
+  A.panel(ctx, 10, 10, 196, 30, {
+    bg: "#f5e6c8",
+    border: "#3d2214",
+    r: 6,
+    bw: 3,
   });
-  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 24, 31, {
-    color: "#2c241c",
+  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 22, 30, {
+    color: "#3a2718",
     font: "bold 12px 'PingFang SC', sans-serif",
     shadow: false,
   });
 
   if (state.bubble) {
-    A.panel(ctx, 20, 220, 440, 40, {
-      bg: "rgba(247, 239, 227, 0.92)",
-      border: "rgba(216, 137, 108, 0.5)",
-      r: 16,
-      bw: 1.5,
+    // bottom dialogue box
+    A.panel(ctx, 16, 214, 448, 48, {
+      bg: "#f5e6c8",
+      border: "#3d2214",
+      r: 8,
+      bw: 4,
     });
-    A.text(ctx, state.bubble.text, 240, 245, {
+    A.text(ctx, state.bubble.text, 240, 243, {
       align: "center",
-      color: "#2c241c",
-      font: "13px 'PingFang SC', sans-serif",
+      color: "#3a2718",
+      font: "bold 13px 'PingFang SC', sans-serif",
       shadow: false,
     });
   }
