@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>港湾日记 · Longplay</title>
+  <title>港湾日记</title>
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./lib/pause.css" />
 </head>
@@ -11,19 +11,20 @@
   <div id="app">
     <header class="top">
       <h1>港湾日记</h1>
-      <p>七天港湾生活 · 约 30–45 分钟主线 · 无种田</p>
+      <p>七天海边小镇日常 · 认识镇民、完成待办 · 约 12–25 分钟 · 无种田</p>
     </header>
     <main>
       <canvas id="game" width="480" height="270"></canvas>
       <aside class="hud">
-        <div>第 <span id="day">1</span> / 7 天 · <span id="period">清晨</span></div>
-        <div>今日待办：<span id="done">0</span>/<span id="need">0</span></div>
-        <div>好感合计：<span id="aff">0</span></div>
-        <div>区域：<span id="zone">码头</span></div>
-        <ul id="quests"></ul>
-        <p class="hint">WASD 移动 · E 交谈 · 完成当日待办后点「结束今天」</p>
+        <div class="stat"><span>日程</span><strong>第 <span id="day">1</span>/7 天 · <span id="period">清晨</span></strong></div>
+        <div class="stat"><span>今日待办</span><strong><span id="done">0</span>/<span id="need">0</span></strong></div>
+        <div class="stat"><span>区域</span><strong id="zone">码头</strong></div>
+        <div class="stat"><span>好感</span><strong id="aff">0</strong></div>
+        <div class="aff-bar" aria-hidden="true"><i id="affbar"></i></div>
+        <ul id="quests" class="quest-list"></ul>
+        <p class="hint">WASD / 方向键移动 · E 交谈 · 做完当日待办后「结束今天」</p>
         <button id="endday" type="button">结束今天</button>
-        <button id="travel" type="button">前往下一区域</button>
+        <button id="travel" type="button" class="secondary">前往下一区域</button>
       </aside>
     </main>
     <div id="overlay" class="overlay">
@@ -37,6 +38,9 @@
   </div>
   <script src="./lib/save.js"></script>
   <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
   <script src="./main.js"></script>
 </body>
 </html>

@@ -1,18 +1,33 @@
-:root { --bg:#1a2740; --panel:#2c3f5e; --text:#f3efe6; --accent:#6ec6c2; }
-* { box-sizing: border-box; }
-html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
-#app { max-width: 960px; margin: 0 auto; padding: 16px; }
-.top h1 { margin: 0 0 4px; font-size: 1.35rem; }
-.top p { margin: 0 0 12px; opacity: .85; }
-main { display: grid; grid-template-columns: 1fr 240px; gap: 12px; }
-@media (max-width: 720px) { main { grid-template-columns: 1fr; } }
-#game { width: 100%; max-width: 720px; image-rendering: pixelated; background: #0e1a2b; border: 3px solid #3d567a; border-radius: 8px; }
-.hud { background: var(--panel); border-radius: 8px; padding: 12px; line-height: 1.5; }
-#quests { padding-left: 18px; margin: 8px 0; font-size: .88rem; max-height: 160px; overflow: auto; }
-#quests .ok { color: var(--accent); text-decoration: line-through; }
-.hint { font-size: .82rem; opacity: .85; }
-button { border: none; background: var(--accent); color: #102422; font-weight: 700; padding: 8px 12px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 6px; }
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: grid; place-items: center; padding: 16px; z-index: 30; }
-.overlay.hidden { display: none; }
-.panel { background: var(--panel); border: 2px solid var(--accent); border-radius: 12px; padding: 20px; max-width: 440px; text-align: center; }
-.panel button { margin-top: 8px; }
+@import url("./theme.css");
+
+:root {
+  --bg: #0c2436;
+  --panel: #163247;
+  --accent: #7dd3fc;
+  --accent-2: #fbbf24;
+  --border: #2f5f7a;
+  --text: #f0f9ff;
+  --muted: #9ec1d6;
+}
+
+#quests.quest-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  max-height: 160px;
+  overflow: auto;
+}
+
+.aff-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #0b1c28;
+  margin: 8px 0 4px;
+  overflow: hidden;
+}
+
+.aff-bar > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #fbbf24);
+}
