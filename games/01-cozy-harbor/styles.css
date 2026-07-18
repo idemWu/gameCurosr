@@ -1,33 +1,27 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #0c2436;
-  --panel: #163247;
+  --bg: #071c2c;
+  --bg2: #0d2740;
   --accent: #7dd3fc;
-  --accent-2: #fbbf24;
-  --border: #2f5f7a;
-  --text: #f0f9ff;
-  --muted: #9ec1d6;
-}
-
-#quests.quest-list {
-  margin: 8px 0 0;
-  padding-left: 18px;
-  max-height: 160px;
-  overflow: auto;
+  --accent-2: #f6c453;
+  --border: rgba(125, 211, 252, 0.45);
+  --panel: rgba(12, 32, 48, 0.92);
 }
 
 .aff-bar {
-  height: 8px;
+  height: 10px;
   border-radius: 999px;
-  background: #0b1c28;
-  margin: 8px 0 4px;
+  background: rgba(0, 0, 0, 0.35);
+  margin: 8px 0 2px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
 }
 
 .aff-bar > i {
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #38bdf8, #fbbf24);
+  background: linear-gradient(90deg, #38bdf8, #f6c453);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
 }
