@@ -1,6 +1,6 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-ctx.imageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = true;
 
 const A = GameArt;
 const juice = PolishJuice.create();
@@ -10,17 +10,22 @@ sfx.mountMuteButton();
 const el = (id) => document.getElementById(id);
 const TILE = 16;
 const PERIODS = ["清晨", "正午", "黄昏", "夜晚"];
-const CHAR_IDX = { player: 0, li: 1, zhen: 2, lu: 3, bo: 4, mei: 5, yun: 6, hai: 7, qing: 8 };
-const CHAR_W = 64;
-const CHAR_H = 96;
-const DRAW_W = 22;
-const DRAW_H = 33;
+const NPC_ART = {
+  li: "li",
+  zhen: "zhen",
+  lu: "lu",
+  bo: "bo",
+  mei: "mei",
+  yun: "yun",
+  hai: "hai",
+  qing: "qing",
+};
 
-const save = LongplaySave.create("01-cozy-harbor", 4);
+const save = LongplaySave.create("01-cozy-harbor", 5);
 const keys = new Set();
 
 let WORLD = null;
-let SPR = null;
+let ART = null;
 let last = performance.now();
 let t = 0;
 
@@ -38,18 +43,25 @@ const state = {
 };
 
 async function boot() {
-  const [world, sprites] = await Promise.all([
+  const [world, art] = await Promise.all([
     fetch("./content/world.json").then((r) => r.json()),
     A.loadAll({
-      chars: "./art/sprites/harbor_chars.png",
-      tree: "./art/sprites/tree.png",
-      house: "./art/sprites/house.png",
-      light: "./art/sprites/lighthouse.png",
-      pier: "./art/sprites/pier.png",
+      bgPier: "./art/painted/bg_pier_morning.png",
+      bgSquare: "./art/painted/bg_square_day.png",
+      bgHill: "./art/painted/bg_hill_dusk.png",
+      player: "./art/painted/char_player.png",
+      li: "./art/painted/char_li.png",
+      zhen: "./art/painted/char_zhen.png",
+      lu: "./art/painted/char_lu.png",
+      bo: "./art/painted/char_bo.png",
+      mei: "./art/painted/char_mei.png",
+      yun: "./art/painted/char_yun.png",
+      hai: "./art/painted/char_hai.png",
+      qing: "./art/painted/char_qing.png",
     }),
   ]);
   WORLD = world;
-  SPR = sprites;
+  ART = art;
   WORLD.npcs.forEach((n) => {
     if (state.affinity[n.id] == null) state.affinity[n.id] = 0;
   });
@@ -58,7 +70,7 @@ async function boot() {
   const canContinue = data && !data.ended;
   showOverlay(
     "港湾日记",
-    "七天、三区域、八位镇民。完成每日待办，约 12–25 分钟迎来灯火庆典。",
+    "商业手绘样板 · 七天三区域认识镇民。约 12–25 分钟迎来灯火庆典。",
     canContinue
   );
   if (data) applySave(data);
@@ -146,7 +158,7 @@ function tryTalk() {
         state.bubble = { text: `${n.name}：谢谢你，港湾更热闹了。`, t: 2.2 };
         state.period = Math.min(3, state.period + 1);
         juice.float(`好感+${q.affinity || 1}`, px, py, "#fde68a");
-        juice.burst(px, py + 8, n.color || "#7dd3fc", 10);
+        juice.burst(px, py + 8, "#f6c453", 10);
         sfx.ok();
       } else {
         const lines = [
@@ -226,147 +238,111 @@ function update(dt) {
     if (nx !== p.x || ny !== p.y) {
       p.x = nx;
       p.y = ny;
-      state.moveCd = 0.11;
+      state.moveCd = 0.12;
       sfx.tap();
     }
   }
-  p.fx += (p.x - p.fx) * Math.min(1, dt * 14);
-  p.fy += (p.y - p.fy) * Math.min(1, dt * 14);
+  p.fx += (p.x - p.fx) * Math.min(1, dt * 12);
+  p.fy += (p.y - p.fy) * Math.min(1, dt * 12);
   if (state.bubble) {
     state.bubble.t -= dt;
     if (state.bubble.t <= 0) state.bubble = null;
   }
 }
 
-function drawChar(idx, x, y, bob) {
-  if (!SPR?.chars) return;
-  A.shadowEllipse(ctx, x, y + DRAW_H * 0.42, 8, 3);
-  A.drawSprite(
-    ctx,
-    SPR.chars,
-    idx * CHAR_W,
-    0,
-    CHAR_W,
-    CHAR_H,
-    x - DRAW_W / 2,
-    y - DRAW_H / 2 + bob,
-    DRAW_W,
-    DRAW_H
-  );
+function bgForZone(z) {
+  if (z.id === "square") return ART.bgSquare;
+  if (z.id === "hill") return ART.bgHill;
+  return ART.bgPier;
+}
+
+function periodWash() {
+  // soft color grade by time of day over painted BG
+  const washes = [
+    "rgba(255,240,200,.08)",
+    "rgba(255,255,255,.04)",
+    "rgba(255,140,60,.16)",
+    "rgba(20,30,70,.38)",
+  ];
+  ctx.fillStyle = washes[state.period];
+  ctx.fillRect(0, 0, 480, 270);
+}
+
+function drawActor(img, x, y, bob, w, h) {
+  if (!img) return;
+  A.shadowEllipse(ctx, x, y + h * 0.42, w * 0.35, 4);
+  ctx.drawImage(img, x - w / 2, y - h / 2 + bob, w, h);
 }
 
 function drawScene() {
   const z = WORLD.zones[state.zoneIdx];
-  const skies = [
-    ["#9ad8ff", "#d9f0ff", "#b7e3c0"],
-    ["#4aa3e0", "#87c8f2", "#6fbf8a"],
-    ["#f0a05a", "#f7c98a", "#6a8f5a"],
-    ["#0b1830", "#1a2744", "#163528"],
-  ];
-  const [top, mid, bot] = skies[state.period];
-  A.sky(ctx, 480, 270, top, mid, bot);
+  const bg = bgForZone(z);
+  // painted background covers full canvas
+  ctx.drawImage(bg, 0, 0, 480, 270);
+  periodWash();
 
-  if (state.period < 3) {
-    A.sun(ctx, state.period === 2 ? 400 : 70, state.period === 2 ? 70 : 48, state.period === 2 ? 16 : 14);
-  } else {
-    A.moon(ctx, 400, 46, 14);
-    // stars
-    ctx.fillStyle = "rgba(255,255,255,.75)";
-    for (let i = 0; i < 18; i++) {
-      const sx = (i * 53) % 470;
-      const sy = 12 + (i * 29) % 90;
-      ctx.fillRect(sx, sy, i % 3 === 0 ? 2 : 1, i % 3 === 0 ? 2 : 1);
-    }
-  }
-
-  // far hills
-  A.hills(ctx, 130, 8, state.period === 3 ? "#1a3a2a" : "#3f8f5d", 0.2, 480);
-  A.hills(ctx, 145, 6, state.period === 3 ? "#145032" : "#2f6f4e", 1.1, 480);
-
-  // water
-  A.water(
-    ctx,
-    188,
-    480,
-    82,
-    t,
-    state.period === 3 ? "#164e6b" : "#3aa0c8",
-    state.period === 3 ? "#0b2f45" : "#1a5f86"
-  );
-
-  // sand strip
-  const sand = ctx.createLinearGradient(0, 168, 0, 198);
-  sand.addColorStop(0, state.period === 3 ? "#5c4a32" : "#e6d3a1");
-  sand.addColorStop(1, state.period === 3 ? "#3b2f20" : "#cbb27a");
-  ctx.fillStyle = sand;
-  ctx.fillRect(0, 168, 480, 28);
-
-  // zone ground plate
-  A.panel(ctx, z.x * TILE - 4, z.y * TILE - 4, z.w * TILE + 8, z.h * TILE + 8, {
-    bg: "rgba(255,255,255,.06)",
-    border: "rgba(255,255,255,.12)",
-    r: 10,
+  // subtle walkable zone hint
+  A.panel(ctx, z.x * TILE - 2, z.y * TILE - 2, z.w * TILE + 4, z.h * TILE + 4, {
+    bg: "rgba(255,255,255,.04)",
+    border: "rgba(255,255,255,.14)",
+    r: 12,
     bw: 1,
   });
-
-  // props by zone
-  if (z.id === "pier" && SPR.pier) {
-    A.drawImage(ctx, SPR.pier, 24, 186, 180, 48);
-    if (SPR.tree) A.drawImage(ctx, SPR.tree, 200, 120, 48, 64);
-  }
-  if (z.id === "square") {
-    if (SPR.house) A.drawImage(ctx, SPR.house, 230, 95, 96, 84);
-    if (SPR.tree) {
-      A.drawImage(ctx, SPR.tree, 180, 118, 44, 60);
-      A.drawImage(ctx, SPR.tree, 340, 125, 40, 56);
-    }
-  }
-  if (z.id === "hill" && SPR.light) {
-    A.drawImage(ctx, SPR.light, 390, 48, 50, 100);
-    if (state.period >= 2) {
-      const g = ctx.createRadialGradient(415, 58, 0, 415, 58, 70);
-      g.addColorStop(0, "rgba(255,220,120,.45)");
-      g.addColorStop(1, "rgba(255,220,120,0)");
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(415, 58, 70, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
 
   // NPCs
   for (const n of npcsHere()) {
     const nx = n.x * TILE + TILE / 2;
-    const ny = n.y * TILE + 4;
-    const bob = Math.sin(t * 3 + n.x) * 1.4;
-    const idx = CHAR_IDX[n.id] ?? 1;
-    drawChar(idx, nx, ny, bob);
+    const ny = n.y * TILE + 2;
+    const bob = Math.sin(t * 2.8 + n.x) * 1.5;
+    const key = NPC_ART[n.id];
+    const img = key ? ART[key] : null;
+    drawActor(img, nx, ny, bob, 36, 48);
     const needs = dayQuests().some((q) => q.npc === n.id && !state.done[q.id]);
     if (needs) {
-      ctx.fillStyle = "#fbbf24";
+      const gy = ny - 30 + bob;
+      ctx.fillStyle = "#f6c453";
       ctx.beginPath();
-      ctx.arc(nx, ny - 22 + bob, 4, 0, Math.PI * 2);
+      ctx.arc(nx, gy, 5, 0, Math.PI * 2);
       ctx.fill();
-      A.text(ctx, "!", nx, ny - 28 + bob, { align: "center", color: "#1a1205", font: "bold 12px sans-serif", shadow: false });
+      A.text(ctx, "!", nx, gy + 4, {
+        align: "center",
+        color: "#3b2a05",
+        font: "bold 12px sans-serif",
+        shadow: false,
+      });
     }
   }
 
   // player
   const px = state.player.fx * TILE + TILE / 2;
-  const py = state.player.fy * TILE + 4;
-  drawChar(0, px, py, Math.sin(t * 4) * 0.8);
+  const py = state.player.fy * TILE + 2;
+  drawActor(ART.player, px, py, Math.sin(t * 3.5) * 1.2, 40, 52);
 
-  // title plate
-  A.panel(ctx, 8, 8, 200, 28, { bg: "rgba(10,20,32,.72)", border: "rgba(125,211,252,.35)", r: 10, bw: 1 });
-  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 18, 27, { color: "#e8f6ff", font: "bold 13px sans-serif" });
+  // HUD plate
+  A.panel(ctx, 10, 10, 210, 32, {
+    bg: "rgba(18, 28, 42, 0.72)",
+    border: "rgba(246, 196, 83, 0.55)",
+    r: 12,
+  });
+  A.text(ctx, `${z.name} · ${PERIODS[state.period]}`, 22, 31, {
+    color: "#fff8e8",
+    font: "bold 13px 'PingFang SC', sans-serif",
+  });
 
   if (state.bubble) {
-    A.panel(ctx, 16, 220, 448, 40, { bg: "rgba(10,18,30,.88)", border: "rgba(246,196,83,.5)", r: 12 });
-    A.text(ctx, state.bubble.text, 240, 245, { align: "center", color: "#fff8e7", font: "13px sans-serif" });
+    A.panel(ctx, 18, 218, 444, 42, {
+      bg: "rgba(16, 24, 38, 0.88)",
+      border: "rgba(246, 196, 83, 0.6)",
+      r: 14,
+    });
+    A.text(ctx, state.bubble.text, 240, 244, {
+      align: "center",
+      color: "#fff8e7",
+      font: "13px 'PingFang SC', sans-serif",
+    });
   }
 
-  A.vignette(ctx, 480, 270, state.period === 3 ? 0.5 : 0.28);
-  A.filmGrain(ctx, 480, 270, t, 0.035);
+  A.vignette(ctx, 480, 270, state.period === 3 ? 0.42 : 0.22);
 }
 
 function loop(now) {
@@ -377,10 +353,10 @@ function loop(now) {
   juice.update(dt);
   ctx.save();
   juice.applyShake(ctx);
-  if (WORLD && SPR) drawScene();
+  if (WORLD && ART) drawScene();
   else {
     A.sky(ctx, 480, 270, "#0b1830", "#1a2744", "#163528");
-    A.text(ctx, "加载港湾美术资源…", 240, 135, { align: "center" });
+    A.text(ctx, "加载手绘资源…", 240, 135, { align: "center" });
   }
   juice.draw(ctx);
   juice.drawFlash(ctx, 480, 270);
