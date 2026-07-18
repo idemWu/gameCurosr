@@ -1,0 +1,84 @@
+{
+  "id": "b14_star_carrion",
+  "name": "星骸腐灵",
+  "hp": 1850,
+  "souls": 12000,
+  "phases": [
+    {
+      "hpAbove": 0.55,
+      "moves": [
+        {
+          "id": "meteor",
+          "name": "坠星",
+          "damage": 52,
+          "startup": 32,
+          "active": 8,
+          "recovery": 38,
+          "range": 170,
+          "parryable": false,
+          "projectile": true
+        },
+        {
+          "id": "lash",
+          "name": "星尘鞭",
+          "damage": 58,
+          "startup": 19,
+          "active": 7,
+          "recovery": 24,
+          "range": 80,
+          "parryable": true
+        },
+        {
+          "id": "call",
+          "name": "唤壳",
+          "damage": 0,
+          "startup": 36,
+          "active": 1,
+          "recovery": 44,
+          "range": 0,
+          "parryable": false,
+          "summon": "star_husk"
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.35,
+      "moves": [
+        {
+          "id": "lash",
+          "name": "星尘鞭",
+          "damage": 66,
+          "startup": 14,
+          "active": 7,
+          "recovery": 20,
+          "range": 80,
+          "parryable": true
+        },
+        {
+          "id": "shower",
+          "name": "星屑雨",
+          "damage": 42,
+          "startup": 20,
+          "active": 5,
+          "recovery": 8,
+          "range": 170,
+          "parryable": false,
+          "hits": 3,
+          "projectile": true
+        },
+        {
+          "id": "call",
+          "name": "唤壳",
+          "damage": 0,
+          "startup": 30,
+          "active": 1,
+          "recovery": 38,
+          "range": 0,
+          "parryable": false,
+          "summon": "abyss_zealot"
+        }
+      ]
+    }
+  ]
+}

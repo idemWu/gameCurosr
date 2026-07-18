@@ -1,0 +1,95 @@
+{
+  "id": "z10",
+  "name": "星骸观台",
+  "width": 2600,
+  "bonfires": [
+    {
+      "id": "z10-bf",
+      "name": "坠星台",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z09",
+      "x": 40
+    },
+    {
+      "to": "z11",
+      "x": 2560,
+      "requiresBoss": "b14_star_carrion"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2600
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    }
+  ],
+  "enemies": [
+    {
+      "type": "star_husk",
+      "x": 400
+    },
+    {
+      "type": "star_husk",
+      "x": 680
+    },
+    {
+      "type": "star_husk",
+      "x": 960
+    },
+    {
+      "type": "star_husk",
+      "x": 1240
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 1450
+    },
+    {
+      "type": "star_husk",
+      "x": 1700
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 1950
+    },
+    {
+      "type": "throne_guard",
+      "x": 2150,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b14_star_carrion",
+    "x": 2430,
+    "gate": 2360
+  }
+}

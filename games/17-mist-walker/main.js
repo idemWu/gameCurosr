@@ -13,6 +13,12 @@ const ZONE_FILES = {
   z04: "./content/zones/z04.json",
   z05: "./content/zones/z05.json",
   z06: "./content/zones/z06.json",
+  z07: "./content/zones/z07.json",
+  z08: "./content/zones/z08.json",
+  z09: "./content/zones/z09.json",
+  z10: "./content/zones/z10.json",
+  z11: "./content/zones/z11.json",
+  z12: "./content/zones/z12.json",
 };
 const BOSS_FILES = {
   b01_dock_warden: "./content/bosses/b01_dock_warden.json",
@@ -23,8 +29,18 @@ const BOSS_FILES = {
   b06_salt_matriarch: "./content/bosses/b06_salt_matriarch.json",
   b07_nameless_knight: "./content/bosses/b07_nameless_knight.json",
   b08_bell_bishop: "./content/bosses/b08_bell_bishop.json",
+  b09_drowned_choir: "./content/bosses/b09_drowned_choir.json",
+  b10_penitent_giant: "./content/bosses/b10_penitent_giant.json",
+  b11_mist_hag: "./content/bosses/b11_mist_hag.json",
+  b12_tide_general: "./content/bosses/b12_tide_general.json",
+  b13_black_banner: "./content/bosses/b13_black_banner.json",
+  b14_star_carrion: "./content/bosses/b14_star_carrion.json",
+  b15_abyss_priest: "./content/bosses/b15_abyss_priest.json",
+  b16_forgotten_walker: "./content/bosses/b16_forgotten_walker.json",
+  b17_throne_herald: "./content/bosses/b17_throne_herald.json",
+  b18_drowned_god: "./content/bosses/b18_drowned_god.json",
 };
-const STAGE_FINAL_BOSS = "b08_bell_bishop";
+const FINAL_BOSS = "b18_drowned_god";
 
 const K = new Set();
 window.addEventListener("keydown", (e) => {
@@ -53,6 +69,9 @@ const S = {
   knives: 0,
   menu: null, // 'bonfire' | null
   menuIdx: 0,
+  ngPlus: 0,
+  ending: null,
+  towerBest: 0,
   ended: false,
 };
 
@@ -96,6 +115,7 @@ function persist() {
     zoneId: S.zoneId, souls: p.souls, stats: S.stats, charms: S.charms, skills: S.skills,
     estusMax: S.estusMax, knives: S.knives,
     dropped: S.droppedSouls, bossesDead: S.bossesDead, ended: S.ended,
+    ngPlus: S.ngPlus, ending: S.ending, towerBest: S.towerBest,
   });
 }
 function restore(d) {
@@ -108,13 +128,17 @@ function restore(d) {
   S.droppedSouls = d.dropped || null;
   S.bossesDead = d.bossesDead || {};
   S.ended = !!d.ended;
+  S.ngPlus = d.ngPlus || 0;
+  S.ending = d.ending || null;
+  S.towerBest = d.towerBest || 0;
   enterZone(S.zoneId, null, d.souls || 0);
 }
 
 /* ---------- zone lifecycle ---------- */
+function ngMul() { return 1 + S.ngPlus * 0.35; }
 function spawnEnemies() {
   S.enemies = zone().enemies.map((e) => ({
-    ...e, def: ENEMY_DEFS[e.type], hp: ENEMY_DEFS[e.type].hp,
+    ...e, def: ENEMY_DEFS[e.type], hp: ENEMY_DEFS[e.type].hp * ngMul(),
     x: e.x, y: 230, face: -1, state: "idle", t: 0, dead: false, shotCd: 0,
   }));
   S.projectiles = [];
@@ -129,7 +153,7 @@ function spawnBosses() {
     const def = BOSSES[slot.id];
     S.bosses.push({
       slot, def, x: slot.x, y: 230, face: -1,
-      hp: def.hp * CFG.difficulty.bossHpMul, maxHp: def.hp * CFG.difficulty.bossHpMul,
+      hp: def.hp * CFG.difficulty.bossHpMul * ngMul(), maxHp: def.hp * CFG.difficulty.bossHpMul * ngMul(),
       state: "idle", t: 0, move: null, hits: 0, active: false, dead: false,
     });
   }
@@ -158,7 +182,7 @@ function damagePlayer(dmg, srcX) {
   const p = S.player;
   if (p.iframes > 0 || p.state === "dead") return;
   if (p.parryOpen > 0) { p.parryOpen = 0; p.riposte = 40; flash("弹反成功！"); return; }
-  p.hp -= dmg * derived().defMul;
+  p.hp -= dmg * derived().defMul * (1 + S.ngPlus * 0.2);
   p.state = "hurt"; p.t = 0; p.iframes = 20;
   p.x += (p.x < srcX ? -14 : 14);
   if (p.hp <= 0) die();
@@ -273,10 +297,7 @@ function interact() {
   for (const ex of zone().exits) {
     if (Math.abs(p.x - ex.x) < 30) {
       if (ex.requiresBoss && !S.bossesDead[ex.requiresBoss]) { flash("浓雾封路——先击败本区首领"); return; }
-      if (!ex.to || !ZONES[ex.to]) {
-        if (S.bossesDead[STAGE_FINAL_BOSS]) { S.ended = true; persist(); showOverlay("S2 完成", "钟楼之后的溺水教区将在 S3 开放。", false); }
-        return;
-      }
+      if (!ex.to || !ZONES[ex.to]) { flash("王座之后再无道路——结局已在Boss房揭晓"); return; }
       const target = ZONES[ex.to];
       const spawnX = ex.x < 100 ? target.width - 80 : 80;
       enterZone(ex.to, spawnX);
@@ -298,6 +319,9 @@ function bonfireOptions() {
       if (it.max && owned >= it.max) continue;
       opts.push({ id: `buy:${it.id}`, label: `购买 ${it.name}（${it.cost} 魂）` });
     }
+  }
+  if (S.ending && S.zoneId === "z01") {
+    opts.push({ id: "tower", label: `挑战塔（当前最佳 ${S.towerBest} 层）` });
   }
   for (const sk of CFG.skills || []) {
     if (S.skills.includes(sk.id)) continue;
@@ -343,9 +367,18 @@ function bonfireAct(optId) {
     const sk = CFG.skills.find((x) => `skill:${x.id}` === optId);
     if (p.souls >= sk.cost) { p.souls -= sk.cost; S.skills.push(sk.id); flash(`习得 ${sk.name}`); persist(); }
     else flash("魂不足");
+  } else if (optId === "tower") {
+    S.menu = null;
+    startTower();
   } else if (optId === "close") S.menu = null;
 }
 function upMenu() {
+  if (S.menu === "ending") {
+    if (K.has("w") || K.has("arrowup")) { K.delete("w"); K.delete("arrowup"); S.menuIdx = (S.menuIdx + ENDINGS.length - 1) % ENDINGS.length; }
+    if (K.has("s") || K.has("arrowdown")) { K.delete("s"); K.delete("arrowdown"); S.menuIdx = (S.menuIdx + 1) % ENDINGS.length; }
+    if (K.has("e") || K.has("enter")) { K.delete("e"); K.delete("enter"); endingAct(S.menuIdx); }
+    return;
+  }
   const opts = bonfireOptions();
   if (K.has("w") || K.has("arrowup")) { K.delete("w"); K.delete("arrowup"); S.menuIdx = (S.menuIdx + opts.length - 1) % opts.length; }
   if (K.has("s") || K.has("arrowdown")) { K.delete("s"); K.delete("arrowdown"); S.menuIdx = (S.menuIdx + 1) % opts.length; }
@@ -370,7 +403,7 @@ function upEnemy(e) {
     return;
   }
   if (e.state === "attack") {
-    if (e.t === e.def.attackStartup && Math.abs(p.x - e.x) < e.def.attackRange + 8 && p.state !== "dead") damagePlayer(e.def.damage, e.x);
+    if (e.t === e.def.attackStartup && Math.abs(p.x - e.x) < e.def.attackRange + 8 && p.state !== "dead") damagePlayer(e.def.damage * (e.towerMul || 1), e.x);
     if (e.t >= e.def.attackStartup + e.def.attackRecovery) { e.state = "idle"; e.t = 0; }
     return;
   }
@@ -399,6 +432,26 @@ function bossDown(b) {
   if (!S.bosses.some((x) => x.active && !x.dead)) $("bossbar").classList.add("hidden");
   flash(`击破 ${b.def.name}！+${b.def.souls} 魂`);
   persist();
+  if (b.slot.id === FINAL_BOSS) endingChoice();
+}
+function endingChoice() {
+  S.menu = "ending";
+  S.menuIdx = 0;
+}
+const ENDINGS = [
+  { id: "light", name: "点燃灯塔", desc: "雾散，港湾迎来晨光。" },
+  { id: "dark", name: "熄灭灯火", desc: "你把港湾交还给雾与海。" },
+  { id: "leave", name: "扬帆离港", desc: "行者不属于任何港口。" },
+];
+function endingAct(idx) {
+  const e = ENDINGS[idx];
+  S.ending = e.id;
+  S.ngPlus += 1;
+  S.bossesDead = {};
+  S.droppedSouls = null;
+  S.menu = null;
+  enterZone("z01", null, S.player.souls);
+  showOverlay(`结局：${e.name}`, `${e.desc} 已解锁 NG+${S.ngPlus}（敌人强化35%/周目）。继续将从雾码头再次出发。`, true);
 }
 function upBoss(b) {
   if (b.dead || !b.active) return;
@@ -438,6 +491,39 @@ function upBoss(b) {
     }
   } else if (b.state === "stagger") {
     if (b.t > 55) { b.state = "idle"; b.t = 0; }
+  }
+}
+
+/* ---------- challenge tower ---------- */
+let tower = null;
+function startTower() {
+  tower = { floor: 0, alive: 0 };
+  nextTowerFloor();
+  flash("挑战塔开始！每层敌人更强");
+}
+function nextTowerFloor() {
+  tower.floor += 1;
+  const pool = Object.keys(ENEMY_DEFS);
+  const count = Math.min(6, 2 + Math.floor(tower.floor / 2));
+  S.enemies = [];
+  for (let i = 0; i < count; i++) {
+    const type = pool[Math.floor(Math.random() * pool.length)];
+    const def = ENEMY_DEFS[type];
+    S.enemies.push({ type, def, hp: def.hp * (1 + tower.floor * 0.18), x: 300 + i * 120, y: 230, face: -1, state: "idle", t: 0, dead: false, shotCd: 0, towerMul: 1 + tower.floor * 0.12 });
+  }
+  tower.alive = count;
+}
+function upTower() {
+  if (!tower) return;
+  if (S.enemies.every((e) => e.dead)) {
+    S.player.souls += tower.floor * 120;
+    if (tower.floor > S.towerBest) { S.towerBest = tower.floor; persist(); }
+    flash(`第 ${tower.floor} 层清除！+${tower.floor * 120} 魂`);
+    nextTowerFloor();
+  }
+  if (S.player.state === "dead") {
+    flash(`挑战塔结束 · 最佳 ${S.towerBest} 层`);
+    tower = null;
   }
 }
 
@@ -496,6 +582,15 @@ function draw() {
     ctx.fillText(flashMsg.text, 42, 35);
     flashMsg.t -= 1; if (flashMsg.t <= 0) flashMsg = null;
   }
+  if (S.menu === "ending") {
+    ctx.fillStyle = "rgba(3,7,12,.92)"; ctx.fillRect(70, 40, 340, 130);
+    ctx.fillStyle = "#fbbf24"; ctx.font = "14px sans-serif";
+    ctx.fillText("溺神已灭 —— 选择港湾的命运", 90, 66);
+    ENDINGS.forEach((o, i) => {
+      ctx.fillStyle = i === S.menuIdx ? "#f8fafc" : "#7c8ea0";
+      ctx.fillText(`${i === S.menuIdx ? "▶ " : "   "}${o.name} — ${o.desc}`, 90, 94 + i * 24);
+    });
+  }
   if (S.menu === "bonfire") {
     const opts = bonfireOptions();
     ctx.fillStyle = "rgba(3,7,12,.88)"; ctx.fillRect(90, 50, 300, 40 + opts.length * 22);
@@ -539,8 +634,10 @@ function newGame() {
 }
 function continueGame() {
   const d = save.load();
-  if (!d || d.ended) { $("overlay-msg").textContent = "没有可继续的存档。"; return; }
+  if (!d) { $("overlay-msg").textContent = "没有可继续的存档。"; return; }
   restore(d);
+  if (S.ending && S.bossesDead[FINAL_BOSS]) { S.bossesDead = {}; }
+  if (d.ended) { S.ended = false; enterZone("z01", null, d.souls || 0); }
   hideOverlay();
 }
 $("btn-start").addEventListener("click", newGame);
@@ -554,6 +651,7 @@ function loop() {
       for (const e of S.enemies) upEnemy(e);
       for (const b of S.bosses) upBoss(b);
       upProjectiles();
+      upTower();
     }
     hud();
   }
@@ -576,8 +674,8 @@ async function boot() {
   spawnEnemies();
   spawnBosses();
   showOverlay(
-    "雾港行者 · S2",
-    "六区互联：雾码头→…→钟楼回廊。新增毒潭、召唤系Boss、技能树与护符。隐藏Boss：影子行者、失名骑士。",
+    "雾港行者",
+    "12 区互联 · 18 Boss · 3 结局 · NG+ · 挑战塔。高难度：管理体力，善用弹反。",
     !!(d && !d.ended)
   );
   loop();

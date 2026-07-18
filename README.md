@@ -29,6 +29,7 @@ python3 -m http.server 8080
 | 14 | 遗物合成 | `games/14-merge-relics/` | 8 级订单链 |
 | 15 | 书架整理 | `games/15-shelf-sort/` | 40 关 |
 | 16 | 铁匠一点通 | `games/16-forge-tap/` | 8 配方章 |
+| **17** | **雾港行者（旗舰）** | [`games/17-mist-walker/`](./games/17-mist-walker/) | **2D 魂类 · 12 区 18 Boss · 主线≈30h** |
 
 时长预估：`docs/playtime/`  
 共用存档菜单：`shared/longplay/`

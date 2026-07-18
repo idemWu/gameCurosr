@@ -1,0 +1,93 @@
+{
+  "id": "z12",
+  "name": "溺神王座",
+  "width": 2400,
+  "bonfires": [
+    {
+      "id": "z12-bf",
+      "name": "王座前厅",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z11",
+      "x": 40
+    },
+    {
+      "to": null,
+      "x": 2360,
+      "requiresBoss": "b18_drowned_god"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2400
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    }
+  ],
+  "enemies": [
+    {
+      "type": "throne_guard",
+      "x": 450
+    },
+    {
+      "type": "throne_guard",
+      "x": 750
+    },
+    {
+      "type": "throne_guard",
+      "x": 1050
+    },
+    {
+      "type": "throne_guard",
+      "x": 1350
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 1550
+    },
+    {
+      "type": "throne_guard",
+      "x": 1750,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b18_drowned_god",
+    "x": 2230,
+    "gate": 2140
+  },
+  "midBoss": {
+    "id": "b17_throne_herald",
+    "x": 1900,
+    "gate": 1850,
+    "optional": false
+  }
+}

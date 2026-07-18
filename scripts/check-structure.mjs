@@ -38,10 +38,10 @@ for (const rel of requiredHub) {
 }
 
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
-if (!Array.isArray(registry.games) || registry.games.length !== 16) {
-  bad(`registry.games must have 16 entries, got ${registry.games?.length}`);
+if (!Array.isArray(registry.games) || registry.games.length < 16) {
+  bad(`registry.games must have at least 16 entries, got ${registry.games?.length}`);
 } else {
-  ok("registry has 16 games");
+  ok(`registry has ${registry.games.length} games`);
 }
 
 for (const g of registry.games) {
