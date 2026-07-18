@@ -1,25 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>余烬牌阵 · Longplay</title>
-<link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body>
-<div id="app">
-<header class="top"><h1>余烬牌阵</h1><p>三章战役节点 · 约 35–55 分钟</p></header>
-<main>
-<canvas id="game" width="480" height="270"></canvas>
-<aside class="hud">
-<div>节点 <span id="node">1</span>/24 · 章 <span id="act">1</span></div>
-<div>生命 <span id="hp">30</span> · 能量 <span id="energy">3</span> · 金 <span id="gold">0</span></div>
-<div>敌人 <span id="ehp">0</span> · 类型 <span id="ntype">-</span></div>
-<div id="hand" class="row"></div>
-<div id="pick" class="row"></div>
-<button id="actbtn" type="button">进入节点</button>
-<p class="hint">战斗点手牌；商店买牌；营火回血；击败三章首领通关。</p>
-</aside></main>
-<div id="overlay" class="overlay"><div class="panel">
-<h2 id="overlay-title">余烬牌阵</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续战役</button><button id="btn-start">新战役</button>
-</div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script>
-</body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>余烬牌阵</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>余烬牌阵</h1>
+      <p>三章战役节点 · 组牌闯关 · 约 15–25 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>节点</span><strong><span id="node">1</span>/24 · 第 <span id="act">1</span> 章</strong></div>
+        <div class="stat"><span>金币</span><strong id="gold">0</strong></div>
+        <div class="stat"><span>生命</span><strong><span id="hp">30</span>/<span id="maxhp">30</span></strong></div>
+        <div class="bar-wrap" aria-hidden="true"><i id="hpbar"></i></div>
+        <div class="stat"><span>能量</span><strong><span id="energy">3</span>/<span id="maxenergy">3</span></strong></div>
+        <div class="bar-wrap energy" aria-hidden="true"><i id="energybar"></i></div>
+        <div class="stat fight-only"><span>敌人</span><strong id="ehp">0</strong> · <span id="ntype">-</span></div>
+        <div class="bar-wrap fight-only enemy" aria-hidden="true"><i id="ehpbar"></i></div>
+        <div id="hand" class="row cards"></div>
+        <div id="pick" class="row"></div>
+        <button id="actbtn" type="button">进入节点</button>
+        <button id="endturn" type="button" class="secondary fight-only" disabled>结束回合</button>
+        <p class="hint">战斗：出牌至能量耗尽或点「结束回合」，敌方再行动一次并补牌。右下角可静音。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">余烬牌阵</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续战役</button>
+        <button id="btn-start" type="button">新战役</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

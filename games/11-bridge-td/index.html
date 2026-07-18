@@ -1,11 +1,48 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>桥上防线 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>桥上防线</h1><p>15 张地图战役 · 约 30–50 分钟</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>地图 <span id="st">1</span>/15 · 波 <span id="wave">0</span>/<span id="waves">0</span></div>
-<div>金 <span id="gold">50</span> · 生命 <span id="hp">12</span></div>
-<div class="row"><button id="t1">箭塔15</button><button id="t2">冰塔25</button></div>
-<button id="startwave">开始下一波</button><p class="hint">在灰点建塔。通关15张地图。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">桥上防线</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>桥上防线</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>桥上防线</h1>
+      <p>15 张地图塔防战役 · 约 20–30 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>地图</span><strong><span id="st">1</span>/15</strong></div>
+        <div class="stat"><span>波次</span><strong><span id="wave">0</span>/<span id="waves">0</span></strong></div>
+        <div class="stat"><span>金币</span><strong id="gold">50</strong></div>
+        <div class="stat"><span>生命</span><strong id="hp">12</strong></div>
+        <div class="row tower-btns">
+          <button id="t1" type="button" class="sel">箭塔 15</button>
+          <button id="t2" type="button">冰塔 25</button>
+        </div>
+        <p id="tower-hint" class="hint">箭塔射程 75 · 冰塔减速</p>
+        <button id="startwave" type="button">开始下一波</button>
+        <p class="hint">在灰点建塔，悬停预览射程。右下角可静音。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">桥上防线</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续</button>
+        <button id="btn-start" type="button">新游戏</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

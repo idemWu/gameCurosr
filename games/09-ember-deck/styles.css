@@ -1,11 +1,58 @@
-:root{--bg:#1c1210;--panel:#3a221c;--text:#ffe8dc;--accent:#fb923c}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-#app{max-width:960px;margin:0 auto;padding:16px}main{display:grid;grid-template-columns:1fr 260px;gap:12px}
-@media(max-width:720px){main{grid-template-columns:1fr}}
-#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #7c3a1e;border-radius:8px}
-.hud{background:var(--panel);border-radius:8px;padding:12px}.row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.row button,button{border:none;border-radius:8px;padding:8px;font-weight:700;cursor:pointer;background:var(--accent);color:#1c1008}
-.row button{width:auto}.hint{font-size:.8rem;opacity:.85}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:30}
-.overlay.hidden{display:none}.panel{background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:20px;max-width:440px;text-align:center}
-.panel button{display:block;width:100%;margin-top:8px}.top h1{margin:0 0 4px}.top p{margin:0 0 12px;opacity:.85}
+@import url("./theme.css");
+
+:root {
+  --bg: #1c1210;
+  --panel: #3a221c;
+  --accent: #fb923c;
+  --accent-2: #fbbf24;
+  --border: #7c3a1e;
+  --text: #ffe8dc;
+  --muted: #d4a574;
+  --danger: #f87171;
+  --ok: #86efac;
+}
+
+.fight-only { display: none; }
+body.in-fight .stat.fight-only { display: flex; }
+body.in-fight .fight-only:not(.stat) { display: block; }
+
+.bar-wrap {
+  height: 8px;
+  border-radius: 999px;
+  background: #1c1008;
+  margin: 4px 0 8px;
+  overflow: hidden;
+}
+
+.bar-wrap > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform 0.2s ease;
+}
+
+.bar-wrap.energy > i {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.bar-wrap.enemy > i {
+  background: linear-gradient(90deg, #7f1d1d, #ef4444);
+}
+
+.row.cards button {
+  min-width: 72px;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+}
+
+.row.cards button:disabled {
+  opacity: 0.4;
+}
+
+.row.cards button.heal-card {
+  background: linear-gradient(180deg, #86efac, #34d399);
+  color: #052e16;
+}

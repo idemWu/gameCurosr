@@ -1,12 +1,48 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>星尘挂机 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>星尘挂机</h1><p>里程碑任务线 · 约 30–45 分钟活跃目标</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>星尘 <span id="dust">0</span> · 每秒 <span id="rate">0</span></div>
-<div>点击力 <span id="click">1</span> · 外观 <span id="dex">0</span>/3</div>
-<div>里程碑 <span id="mi">1</span>/12 · <span id="mt">-</span></div>
-<button id="tap">采集星尘</button>
-<button id="u1">升级点击</button><button id="u2">自动星尘</button><button id="u3">解锁外观</button><p class="hint">完成12个里程碑（非纯空等）。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">星尘挂机</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>星尘挂机</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>星尘挂机</h1>
+      <p>里程碑任务线 · 轻量挂机 · 约 15–25 分钟活跃目标</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>星尘</span><strong id="dust">0</strong></div>
+        <div class="stat"><span>每秒</span><strong id="rate">0</strong></div>
+        <div class="stat"><span>点击力</span><strong id="click">1</strong></div>
+        <div class="stat"><span>外观</span><strong><span id="dex">0</span>/3</strong></div>
+        <div class="stat"><span>里程碑</span><strong><span id="mi">1</span>/12</strong></div>
+        <p id="mt" class="hint">-</p>
+        <button id="tap" type="button">采集星尘</button>
+        <button id="u1" type="button">升级点击</button>
+        <button id="u2" type="button">自动星尘</button>
+        <button id="u3" type="button">解锁外观</button>
+        <p class="hint">里程碑需点击与升级推进，非纯空等。右下角可静音。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">星尘挂机</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续</button>
+        <button id="btn-start" type="button">新游戏</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

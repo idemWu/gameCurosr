@@ -1,9 +1,42 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>爪爪战棋 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>爪爪战棋</h1><p>20 关战役 · 约 30–50 分钟</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>战役 <span id="st">1</span>/20 · 回合 <span id="turn">我方</span></div>
-<div id="info">点选单位</div><button id="end">结束回合</button><p class="hint">邻格移动/攻击。赢下20场战役。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">爪爪战棋</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>爪爪战棋</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>爪爪战棋</h1>
+      <p>20 关战役 · 邻格移动与攻击 · 约 18–28 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>战役</span><strong><span id="st">1</span>/20</strong></div>
+        <div class="stat"><span>回合</span><strong id="turn" class="turn-p">我方回合</strong></div>
+        <div id="info" class="hint">点选我方单位</div>
+        <button id="end" type="button">结束回合</button>
+        <p class="hint">邻格移动或攻击。赢下 20 场战役。右下角可静音。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">爪爪战棋</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续</button>
+        <button id="btn-start" type="button">新游戏</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
