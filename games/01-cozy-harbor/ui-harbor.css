@@ -1,17 +1,19 @@
-/* Stardew Valley–inspired UI: wood frame + parchment + chunky controls */
+/* Stardew-inspired cozy UI (original assets; wood + parchment language) */
 :root {
-  --wood: #6b3e26;
-  --wood-dark: #3d2214;
-  --wood-light: #a36a3d;
-  --parchment: #f5e6c8;
-  --parchment-2: #e7d3a8;
-  --ink: #3a2718;
-  --ink-soft: #6a4b32;
-  --green: #2f9e4b;
-  --green-dark: #1f6e33;
-  --gold: #e2b14a;
-  --sky: #9fd3f0;
-  --shadow: 0 8px 0 rgba(61, 34, 20, 0.35), 0 18px 28px rgba(40, 22, 12, 0.25);
+  --wood-dark: #4a2c14;
+  --wood: #7a4a22;
+  --wood-light: #a36a34;
+  --parchment: #f8e7c3;
+  --parchment-2: #edd7a8;
+  --ink: #3b2412;
+  --ink-soft: #6a4a2e;
+  --green: #3f8f3a;
+  --green-2: #2f6e2c;
+  --green-hi: #6bbb4f;
+  --red: #c45c4a;
+  --slot: #e6d0a0;
+  --line: #5b3418;
+  --shadow: 0 10px 0 rgba(50, 28, 10, 0.28), 0 18px 30px rgba(50, 28, 10, 0.2);
   --font: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
 }
 
@@ -23,22 +25,24 @@ html, body {
   color: var(--ink);
   font-family: var(--font);
   background:
-    linear-gradient(180deg, #87c3e8 0%, #b7ddf2 35%, #7cb86a 35%, #5f9a4e 100%);
+    radial-gradient(circle at 20% 0%, rgba(255, 220, 140, 0.35), transparent 40%),
+    linear-gradient(180deg, #7fb0d0 0%, #b7d08a 42%, #6f9e4a 100%);
   image-rendering: auto;
 }
 
 #app {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 18px 14px 40px;
+  padding: 18px 16px 40px;
 }
 
+/* Title like in-game day banner */
 .top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 14px;
 }
 
@@ -46,35 +50,49 @@ html, body {
   margin: 0;
   font-size: 1.9rem;
   letter-spacing: 0.08em;
-  color: #fff8e8;
+  color: #fff8e6;
   text-shadow:
-    2px 2px 0 var(--wood-dark),
-    -1px 0 0 var(--wood-dark),
-    0 -1px 0 var(--wood-dark);
+    2px 0 0 var(--wood-dark),
+    -2px 0 0 var(--wood-dark),
+    0 2px 0 var(--wood-dark),
+    0 -2px 0 var(--wood-dark),
+    3px 3px 0 rgba(0,0,0,.25);
 }
 
-.brand .subtitle {
-  margin: 4px 0 0;
-  color: #21401f;
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #214018;
+  background: rgba(248, 231, 195, 0.85);
+  display: inline-block;
+  padding: 3px 8px;
+  border: 3px solid var(--wood-dark);
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: #214018;
   font-weight: 700;
-  font-size: 0.9rem;
   text-shadow: 0 1px 0 rgba(255,255,255,.35);
 }
 
 .chip {
   background: var(--parchment);
-  border: 4px solid var(--wood);
+  border: 4px solid var(--wood-dark);
   border-radius: 8px;
   padding: 8px 12px;
   font-weight: 800;
   color: var(--ink);
-  box-shadow: 0 4px 0 var(--wood-dark);
+  box-shadow: 0 4px 0 var(--wood);
 }
 
 main.stage {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.95fr);
-  gap: 14px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(270px, 0.95fr);
+  gap: 16px;
   align-items: start;
 }
 
@@ -82,15 +100,15 @@ main.stage {
   main.stage { grid-template-columns: 1fr; }
 }
 
-/* Wooden frame around game like Stardew window */
+/* Wood window frame around canvas */
 .stage-frame {
   background:
-    linear-gradient(180deg, rgba(255,255,255,.12), transparent 30%),
-    url("./art/painted/ui_wood_panel.png") center/cover no-repeat,
-    linear-gradient(180deg, #8a5533, #5a321c);
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 30%),
+    url("./art/ui/ui_wood_panel.png") center/cover no-repeat,
+    linear-gradient(180deg, var(--wood-light), var(--wood-dark));
   border: 5px solid var(--wood-dark);
   border-radius: 10px;
-  padding: 12px;
+  padding: 14px;
   box-shadow: var(--shadow);
 }
 
@@ -98,40 +116,42 @@ main.stage {
   display: block;
   width: 100%;
   height: auto;
-  border: 4px solid #2b170e;
+  border: 4px solid #2b180c;
   border-radius: 4px;
-  background: #7ec8e3;
-  box-shadow: inset 0 0 0 2px #c48955;
+  background: #8ec4e0;
+  box-shadow: inset 0 0 0 2px #c9995a;
   image-rendering: auto;
 }
 
-/* Inventory-style side panel */
+/* Inventory-like side panel */
 .hud {
   background:
-    linear-gradient(180deg, rgba(255,255,255,.25), transparent 24%),
-    url("./art/painted/ui_wood_panel.png") center/cover no-repeat,
-    var(--parchment);
+    linear-gradient(180deg, rgba(255,255,255,.18), transparent 24%),
+    url("./art/ui/ui_wood_panel.png") center/cover no-repeat,
+    var(--wood);
   border: 5px solid var(--wood-dark);
-  outline: 3px solid var(--wood-light);
-  outline-offset: -8px;
   border-radius: 10px;
-  padding: 16px 14px;
+  padding: 12px;
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+}
+
+.hud-inner {
+  background: linear-gradient(180deg, var(--parchment), var(--parchment-2));
+  border: 4px solid #2b180c;
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: inset 0 0 0 2px #d8b56a;
 }
 
 .hud-title {
-  margin: 0;
+  margin: 0 0 10px;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   color: var(--ink);
-  text-shadow: 0 1px 0 rgba(255,255,255,.55);
-  border-bottom: 3px solid rgba(107, 62, 38, 0.35);
-  padding-bottom: 8px;
+  border-bottom: 3px solid rgba(75, 42, 18, 0.25);
+  padding-bottom: 6px;
 }
 
 .stat-grid {
@@ -141,34 +161,34 @@ main.stage {
 }
 
 .stat-card {
-  background: var(--parchment-2);
-  border: 3px solid var(--wood);
-  border-radius: 6px;
+  background: var(--slot);
+  border: 3px solid var(--wood-dark);
+  border-radius: 4px;
   padding: 8px;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
 }
 
 .stat-card .label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--ink-soft);
   margin-bottom: 2px;
 }
 
 .stat-card .value {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 900;
   color: var(--ink);
 }
 
-.aff-wrap { margin-top: 2px; }
+.aff-wrap { margin: 10px 0; }
 .aff-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--ink-soft);
   margin-bottom: 4px;
 }
 
@@ -176,53 +196,56 @@ main.stage {
   height: 14px;
   border: 3px solid var(--wood-dark);
   border-radius: 4px;
-  background: #cbb48a;
+  background: #cbb07a;
   overflow: hidden;
-  box-shadow: inset 0 2px 0 rgba(0,0,0,.15);
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,.15);
 }
 
 .aff-bar > i {
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(180deg, #6fde7a, var(--green) 45%, var(--green-dark));
+  background: repeating-linear-gradient(
+    90deg,
+    var(--green-hi) 0 8px,
+    var(--green) 8px 16px
+  );
 }
 
 .quest-box {
-  background: rgba(245, 230, 200, 0.92);
-  border: 3px solid var(--wood);
-  border-radius: 6px;
-  padding: 10px;
-  min-height: 128px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+  background: #f3dfb0;
+  border: 3px solid var(--wood-dark);
+  border-radius: 4px;
+  padding: 8px 10px;
+  min-height: 122px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
 }
 
 .quest-box h3 {
   margin: 0 0 6px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 900;
-  color: var(--ink);
 }
 
 .quest-list {
   margin: 0;
   padding-left: 18px;
-  max-height: 140px;
+  max-height: 130px;
   overflow: auto;
   color: var(--ink-soft);
   font-size: 0.86rem;
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .quest-list li.ok {
-  color: var(--green-dark);
+  color: var(--green-2);
   text-decoration: line-through;
 }
 
 .hint {
-  margin: 0;
-  font-size: 0.75rem;
+  margin: 8px 0 0;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--ink-soft);
   line-height: 1.4;
@@ -231,7 +254,7 @@ main.stage {
 .actions {
   display: grid;
   gap: 8px;
-  margin-top: auto;
+  margin-top: 12px;
 }
 
 button, .btn {
@@ -239,94 +262,91 @@ button, .btn {
   cursor: pointer;
   font-family: inherit;
   font-weight: 900;
-  font-size: 0.95rem;
   border-radius: 6px;
   padding: 11px 12px;
-  border: 4px solid var(--wood-dark);
-  box-shadow: 0 4px 0 var(--wood-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  border: 3px solid #1f140b;
   transition: transform .06s ease, filter .1s ease;
-  image-rendering: pixelated;
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
 }
 
-button:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 var(--wood-dark);
-}
-
+button:active { transform: translateY(2px); }
 button:disabled { opacity: .45; cursor: not-allowed; }
 
 button.primary {
   color: #f4ffe8;
   background:
     linear-gradient(180deg, rgba(255,255,255,.18), transparent 40%),
-    linear-gradient(180deg, #57c46a, var(--green-dark));
-  text-shadow: 0 1px 0 rgba(0,0,0,.35);
+    linear-gradient(180deg, var(--green-hi), var(--green-2));
+  box-shadow: 0 4px 0 #1f4a1c;
 }
 
 button.secondary {
   color: var(--ink);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.35), transparent 45%),
-    linear-gradient(180deg, #f0d7a8, #d2b27a);
+  background: linear-gradient(180deg, #f7e7c2, #d8b56a);
+  box-shadow: 0 4px 0 #5b3418;
 }
 
 button.warm {
-  color: #3d220f;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.3), transparent 40%),
-    linear-gradient(180deg, #f0c35a, #d39a2c);
+  color: #3b2412;
+  background: linear-gradient(180deg, #f0c27a, #d0893c);
+  box-shadow: 0 4px 0 #6a3b10;
 }
 
 button:hover { filter: brightness(1.05); }
 
-/* Stardew-like dialogue/menu overlay */
+/* Stardew-like dialogue / menu overlay */
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 50;
   display: grid;
   place-items: center;
   padding: 16px;
-  background: rgba(20, 12, 8, 0.45);
+  background: rgba(20, 12, 6, 0.45);
 }
 .overlay.hidden { display: none; }
 
 .panel {
-  width: min(430px, 100%);
+  width: min(440px, 100%);
   text-align: center;
-  padding: 22px 18px 16px;
+  padding: 14px;
   border-radius: 10px;
-  color: var(--ink);
+  border: 5px solid var(--wood-dark);
   background:
-    linear-gradient(180deg, rgba(255,255,255,.22), transparent 28%),
-    url("./art/painted/ui_wood_panel.png") center/cover no-repeat,
-    var(--parchment);
-  border: 6px solid var(--wood-dark);
-  outline: 3px solid var(--wood-light);
-  outline-offset: -10px;
+    url("./art/ui/ui_wood_panel.png") center/cover no-repeat,
+    var(--wood);
   box-shadow: var(--shadow);
 }
 
+.panel-inner {
+  background: linear-gradient(180deg, var(--parchment), var(--parchment-2));
+  border: 4px solid #2b180c;
+  border-radius: 6px;
+  padding: 18px 16px 14px;
+  box-shadow: inset 0 0 0 2px #d8b56a;
+}
+
 .panel .seal {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   margin: 0 auto 8px;
   border-radius: 8px;
   display: grid;
   place-items: center;
   font-weight: 900;
-  letter-spacing: 0.08em;
-  color: #fff8e0;
-  background: linear-gradient(180deg, #6fbf7a, var(--green-dark));
-  border: 4px solid var(--wood-dark);
-  box-shadow: 0 4px 0 var(--wood-dark);
+  color: #f4ffe8;
+  background: linear-gradient(180deg, var(--green-hi), var(--green-2));
+  border: 3px solid #1f140b;
+  box-shadow: 0 3px 0 #1f4a1c;
 }
 
 .panel h2 {
   margin: 0 0 8px;
-  font-size: 1.7rem;
-  letter-spacing: 0.1em;
-  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  font-size: 1.55rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
 }
 
 .panel p {
@@ -338,56 +358,58 @@ button:hover { filter: brightness(1.05); }
 
 .panel button { width: 100%; margin-top: 8px; }
 
-/* Pause / mute to match */
+/* Pause / mute — same language */
 .lp-pause-btn {
   position: fixed !important;
   right: 14px !important;
   top: 14px !important;
-  z-index: 45 !important;
-  border: 4px solid var(--wood-dark) !important;
+  z-index: 60 !important;
+  border: 3px solid #1f140b !important;
   border-radius: 6px !important;
   padding: 8px 12px !important;
   font-weight: 900 !important;
-  background: linear-gradient(180deg, #f0d7a8, #d2b27a) !important;
+  background: linear-gradient(180deg, #f7e7c2, #d8b56a) !important;
   color: var(--ink) !important;
-  box-shadow: 0 4px 0 var(--wood-dark) !important;
+  box-shadow: 0 4px 0 #5b3418 !important;
 }
 
 .lp-pause .panel {
   background:
-    linear-gradient(180deg, rgba(255,255,255,.2), transparent 30%),
-    var(--parchment) !important;
+    url("./art/ui/ui_wood_panel.png") center/cover no-repeat,
+    var(--wood) !important;
   color: var(--ink) !important;
-  border: 6px solid var(--wood-dark) !important;
+  border: 5px solid var(--wood-dark) !important;
   border-radius: 10px !important;
+  padding: 12px !important;
 }
 
+.lp-pause .panel h2,
+.lp-pause .panel p { color: var(--ink) !important; }
+
 .lp-pause .panel button {
-  border: 4px solid var(--wood-dark) !important;
-  border-radius: 6px !important;
-  font-weight: 900 !important;
-  background: linear-gradient(180deg, #57c46a, var(--green-dark)) !important;
+  background: linear-gradient(180deg, var(--green-hi), var(--green-2)) !important;
   color: #f4ffe8 !important;
-  box-shadow: 0 4px 0 var(--wood-dark) !important;
+  border: 3px solid #1f140b !important;
+  border-radius: 6px !important;
+  box-shadow: 0 3px 0 #1f4a1c !important;
 }
 
 .lp-pause .panel button.danger {
-  background: linear-gradient(180deg, #e07a5f, #b94a35) !important;
-  color: #fff5f0 !important;
+  background: linear-gradient(180deg, #e08a78, var(--red)) !important;
+  box-shadow: 0 3px 0 #6a261c !important;
 }
 
 .lp-mute-btn {
   position: fixed !important;
   right: 14px !important;
   bottom: 14px !important;
-  z-index: 45 !important;
-  width: 48px !important;
-  height: 48px !important;
+  z-index: 60 !important;
+  width: 46px !important;
+  height: 46px !important;
   border-radius: 8px !important;
   padding: 0 !important;
-  font-size: 1.15rem !important;
-  border: 4px solid var(--wood-dark) !important;
-  background: linear-gradient(180deg, #f0d7a8, #d2b27a) !important;
+  border: 3px solid #1f140b !important;
+  background: linear-gradient(180deg, #f7e7c2, #d8b56a) !important;
   color: var(--ink) !important;
-  box-shadow: 0 4px 0 var(--wood-dark) !important;
+  box-shadow: 0 4px 0 #5b3418 !important;
 }
