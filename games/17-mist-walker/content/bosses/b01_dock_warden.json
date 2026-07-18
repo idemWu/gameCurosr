@@ -1,0 +1,24 @@
+{
+  "id": "b01_dock_warden",
+  "name": "码头巡守",
+  "hp": 420,
+  "souls": 800,
+  "phases": [
+    {
+      "hpAbove": 0.5,
+      "moves": [
+        { "id": "slash", "name": "横扫", "damage": 34, "startup": 26, "active": 8, "recovery": 34, "range": 60, "parryable": true },
+        { "id": "stomp", "name": "踏浪", "damage": 26, "startup": 34, "active": 6, "recovery": 40, "range": 90, "parryable": false }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.35,
+      "moves": [
+        { "id": "slash", "name": "横扫", "damage": 40, "startup": 20, "active": 8, "recovery": 28, "range": 60, "parryable": true },
+        { "id": "combo", "name": "连击", "damage": 24, "startup": 16, "active": 5, "recovery": 12, "range": 52, "hits": 3, "parryable": true },
+        { "id": "stomp", "name": "踏浪", "damage": 32, "startup": 28, "active": 6, "recovery": 36, "range": 90, "parryable": false }
+      ]
+    }
+  ]
+}

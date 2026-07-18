@@ -1,0 +1,22 @@
+{
+  "id": "z01",
+  "name": "雾码头",
+  "width": 1600,
+  "bonfires": [ { "id": "z01-gate", "name": "码头闸门", "x": 120 } ],
+  "exits": [ { "to": "z02", "x": 1560, "requires": null } ],
+  "platforms": [
+    { "x": 0, "y": 230, "w": 1600 },
+    { "x": 340, "y": 180, "w": 120 },
+    { "x": 620, "y": 165, "w": 100 },
+    { "x": 900, "y": 185, "w": 140 }
+  ],
+  "enemies": [
+    { "type": "dock_thrall", "x": 420 },
+    { "type": "dock_thrall", "x": 560 },
+    { "type": "hook_fisher", "x": 760 },
+    { "type": "dock_thrall", "x": 980 },
+    { "type": "hook_fisher", "x": 1120 },
+    { "type": "brine_elite", "x": 1300, "elite": true }
+  ],
+  "boss": { "id": "b01_dock_warden", "x": 1480, "gate": 1420 }
+}

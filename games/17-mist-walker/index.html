@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雾港行者 · 2D 魂类</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>雾港行者</h1>
+      <p>2D 动作魂类 · 高难度 · 主线目标约 30 小时</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="bars">
+          <div class="bar hp"><span id="hpfill"></span></div>
+          <div class="bar st"><span id="stfill"></span></div>
+        </div>
+        <div>魂 <span id="souls">0</span> · 回复瓶 <span id="estus">3</span></div>
+        <div>区域 <span id="zone">雾码头</span></div>
+        <div id="bossbar" class="bossbar hidden"><label id="bossname"></label><div class="bar boss"><span id="bossfill"></span></div></div>
+        <p class="hint">
+          A/D 移动 · J 轻击 · K 重击 · Space 翻滚 · L 弹反 · F 喝瓶 · E 互动（篝火/拾魂/过门）
+        </p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">雾港行者</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续（读档）</button>
+        <button id="btn-start" type="button">新的行者</button>
+      </div>
+    </div>
+    <div id="deathflash" class="deathflash hidden">YOU DIED<br/><span>魂落在了原地</span></div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./main.js" type="module"></script>
+</body>
+</html>

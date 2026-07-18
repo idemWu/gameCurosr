@@ -1,0 +1,22 @@
+{
+  "title": "雾港行者",
+  "version": 1,
+  "difficulty": {
+    "playerBaseHp": 100,
+    "playerBaseStamina": 100,
+    "estusStart": 3,
+    "enemyDamageMul": 1.6,
+    "bossHpMul": 1.5,
+    "parryWindowFrames": 8,
+    "dodgeIframes": 10,
+    "soulLossOnSecondDeath": true
+  },
+  "combat": {
+    "lightAttack": { "damage": 12, "stamina": 18, "startup": 6, "active": 5, "recovery": 12 },
+    "heavyAttack": { "damage": 26, "stamina": 34, "startup": 14, "active": 6, "recovery": 20 },
+    "dodge": { "stamina": 25, "duration": 22, "speed": 4.2 },
+    "parry": { "stamina": 15, "recovery": 24 },
+    "staminaRegenPerFrame": 0.55,
+    "staminaRegenDelay": 18
+  }
+}

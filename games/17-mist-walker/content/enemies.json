@@ -1,0 +1,38 @@
+{
+  "dock_thrall": {
+    "name": "码头缚灵",
+    "hp": 34,
+    "damage": 22,
+    "speed": 1.1,
+    "aggroRange": 150,
+    "attackRange": 26,
+    "attackStartup": 22,
+    "attackRecovery": 30,
+    "souls": 18,
+    "color": "#9ca3af"
+  },
+  "hook_fisher": {
+    "name": "钩镰渔夫",
+    "hp": 52,
+    "damage": 30,
+    "speed": 1.4,
+    "aggroRange": 190,
+    "attackRange": 40,
+    "attackStartup": 16,
+    "attackRecovery": 26,
+    "souls": 31,
+    "color": "#60a5fa"
+  },
+  "brine_elite": {
+    "name": "盐渍卫士",
+    "hp": 140,
+    "damage": 44,
+    "speed": 1.2,
+    "aggroRange": 220,
+    "attackRange": 34,
+    "attackStartup": 18,
+    "attackRecovery": 22,
+    "souls": 120,
+    "color": "#f59e0b"
+  }
+}
