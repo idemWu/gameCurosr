@@ -1,6 +1,9 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
+let SPR = null;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("05-grove-raid");
 sfx.mountMuteButton();
@@ -221,7 +224,7 @@ function drawEnemy(e) {
 function draw() {
   if (!DATA) return;
   const z = zone();
-  D.softBg(ctx, 480, 270, "#1a3d2a", "#0f2418");
+  A.sky(ctx, 480, 270, "#1a3d2a", "#1a3d2a", "#0f2418");
   ctx.fillStyle = "#14532d";
   ctx.fillRect(0, 200, 480, 70);
   for (let i = 0; i < 8; i++) drawTree(30 + i * 58, 175 + (i % 2) * 8, 0.9 + (i % 3) * 0.15);
@@ -233,15 +236,28 @@ function draw() {
   ctx.font = "bold 11px sans-serif";
   ctx.fillText(z.name, 16, 23);
 
+  if (SPR?.tree) {
+    A.drawImage(ctx, SPR.tree, 30, 70, 48, 64);
+    A.drawImage(ctx, SPR.tree, 390, 90, 42, 56);
+    A.drawImage(ctx, SPR.tree, 220, 40, 36, 48);
+  }
   for (const c of S.chests) {
-    if (!c.got) D.chest(ctx, c.x, c.y, false);
+    if (!c.got) {
+      if (SPR?.chest) A.drawImage(ctx, SPR.chest, c.x - 14, c.y - 12, 28, 24);
+      else D.chest(ctx, c.x, c.y, false);
+    }
   }
   for (const e of S.enemies) {
     if (e.hp > 0) drawEnemy(e);
   }
 
   const p = S.player;
-  D.person(ctx, p.x, p.y, "#fef3c7", "#4ade80");
+  if (SPR?.chars) {
+    A.shadowEllipse(ctx, p.x, p.y + 12, 9, 3);
+    A.drawSprite(ctx, SPR.chars, 0, 0, 64, 96, p.x - 12, p.y - 18, 24, 36);
+  } else {
+    D.person(ctx, p.x, p.y, "#fef3c7", "#4ade80");
+  }
 
   if (S.atkCd > 0) {
     const ratio = 1 - S.atkCd / S.atkMax;
@@ -263,7 +279,8 @@ function draw() {
     D.bubble(ctx, S.bubble.text, 240, 250, { bg: "rgba(15,23,42,.92)", fg: "#fde68a" });
   }
 
-  D.vignette(ctx, 480, 270, 0.28);
+  A.vignette(ctx, 480, 270, 0.28);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {
@@ -348,9 +365,11 @@ LongplayPause.mount({
   onClearSave: () => save.reset(),
 });
 
-fetch("./content/zones.json")
-  .then((r) => r.json())
-  .then((d) => {
+Promise.all([
+  fetch("./content/zones.json").then((r) => r.json()),
+  A.loadAll({ tree: "./art/sprites/tree.png", chest: "./art/sprites/chest.png", chars: "./art/sprites/harbor_chars.png" }),
+]).then(([d, sprites]) => {
+  SPR = sprites;
     DATA = d;
     const sv = save.load();
     show(

@@ -1,37 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
   --bg: #0f2418;
-  --panel: #1a3324;
-  --accent: #4ade80;
-  --accent-2: #fbbf24;
-  --border: #2d5a3d;
-  --text: #ecfdf5;
-  --muted: #86efac;
-}
-
-.hp-bar {
-  height: 8px;
-  border-radius: 999px;
-  background: #0f172a;
-  margin: 8px 0 4px;
-  overflow: hidden;
-}
-
-.hp-bar > i {
-  display: block;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #f87171, #4ade80);
-  transition: width 0.15s ease;
-}
-
-.quest-text {
-  margin: 8px 0;
-  padding: 8px;
-  background: rgba(15, 23, 42, 0.35);
-  border-radius: 8px;
-  font-size: 0.88rem;
-  line-height: 1.4;
-  min-height: 2.8em;
+  --bg2: #1d3b28;
+  --accent: #86efac;
+  --accent-2: #f59e0b;
+  --border: color-mix(in srgb, #86efac 45%, transparent);
+  --panel: color-mix(in srgb, #1d3b28 92%, transparent);
 }

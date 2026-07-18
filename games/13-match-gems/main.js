@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("13-match-gems");
 sfx.mountMuteButton();
@@ -15,6 +17,7 @@ const OX = 50;
 const OY = 24;
 
 let LEVELS = [];
+let SPR = null;
 let last = performance.now();
 
 const S = {
@@ -307,12 +310,36 @@ el("btn-continue").onclick = () => {
   sfx.ui();
 };
 
+function drawGemSprite(v, px, py, scale) {
+  const s = scale == null ? 1 : scale;
+  if (SPR?.gems) {
+    const gi = Math.max(0, Math.min(4, v | 0));
+    const size = (T - 6) * s;
+    A.drawSprite(ctx, SPR.gems, gi * 48, 0, 48, 48, px - size / 2, py - size / 2, size, size);
+  } else {
+    D.gem(ctx, px, py, (T / 2 - 4) * s, GEM_COLORS[v] || "#fff");
+  }
+}
+
 function drawBoard() {
-  D.softBg(ctx, 480, 270, "#2e1065", "#1e1030");
-  D.fillRoundRect(ctx, OX - 8, OY - 8, N * T + 4, N * T + 4, 10, "rgba(0,0,0,.35)");
-  ctx.strokeStyle = "rgba(232,121,249,.35)";
-  ctx.lineWidth = 2;
-  D.strokeRoundRect(ctx, OX - 8, OY - 8, N * T + 4, N * T + 4, 10, "rgba(232,121,249,.35)", 2);
+  A.sky(ctx, 480, 270, "#1e1048", "#2e1065", "#12081f");
+  // decorative orbs
+  for (let i = 0; i < 8; i++) {
+    const ox = 40 + i * 55;
+    const oy = 20 + (i % 3) * 12;
+    const g = ctx.createRadialGradient(ox, oy, 0, ox, oy, 18);
+    g.addColorStop(0, "rgba(232,121,249,.18)");
+    g.addColorStop(1, "rgba(232,121,249,0)");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(ox, oy, 18, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  A.panel(ctx, OX - 12, OY - 12, N * T + 12, N * T + 12, {
+    bg: "rgba(12,8,28,.72)",
+    border: "rgba(232,121,249,.45)",
+    r: 14,
+  });
 
   const clearing = S.clearing ? new Set(S.clearing.keys) : null;
 
@@ -323,18 +350,18 @@ function drawBoard() {
       let py = OY + y * T + T / 2;
       const key = `${x},${y}`;
       if (S.fall && S.fall.fromY[key] != null) {
-        const t = 1 - S.fall.t / 0.22;
-        py = S.fall.fromY[key] + (py - S.fall.fromY[key]) * Math.min(1, t);
+        const tt = 1 - S.fall.t / 0.22;
+        py = S.fall.fromY[key] + (py - S.fall.fromY[key]) * Math.min(1, tt);
       }
       const px = OX + x * T + T / 2;
-      D.fillRoundRect(ctx, OX + x * T + 1, OY + y * T + 1, T - 2, T - 2, 6, "rgba(0,0,0,.25)");
+      D.fillRoundRect(ctx, OX + x * T + 1, OY + y * T + 1, T - 2, T - 2, 6, "rgba(0,0,0,.28)");
       if (clearing && clearing.has(key)) {
         const pulse = 1 + Math.sin(S.selPulse * 12) * 0.15;
-        ctx.globalAlpha = 0.5 + Math.sin(S.selPulse * 18) * 0.3;
-        D.gem(ctx, px, py, (T / 2 - 4) * pulse, GEM_COLORS[v] || "#fff");
+        ctx.globalAlpha = 0.55 + Math.sin(S.selPulse * 18) * 0.3;
+        drawGemSprite(v, px, py, pulse);
         ctx.globalAlpha = 1;
       } else {
-        D.gem(ctx, px, py, T / 2 - 4, GEM_COLORS[v] || "#fff");
+        drawGemSprite(v, px, py, 1);
       }
       if (S.sel && S.sel.x === x && S.sel.y === y) {
         const wob = Math.sin(S.selPulse * 6) * 2;
@@ -352,11 +379,11 @@ function drawBoard() {
     }
   }
 
-  ctx.fillStyle = "#f5e9ff";
-  ctx.font = "bold 12px sans-serif";
   const L = LEVELS[S.li];
-  ctx.fillText(L.title || `世界${L.world} · 第${L.id}关`, 12, 16);
-  D.vignette(ctx, 480, 270, 0.3);
+  A.panel(ctx, 8, 6, 220, 26, { bg: "rgba(20,10,40,.75)", border: "rgba(232,121,249,.35)", r: 10, bw: 1 });
+  A.text(ctx, L.title || `世界${L.world} · 第${L.id}关`, 18, 24, { color: "#f5e9ff", font: "bold 12px sans-serif" });
+  A.vignette(ctx, 480, 270, 0.34);
+  A.filmGrain(ctx, 480, 270, S.selPulse, 0.025);
 }
 
 function loop(now) {
@@ -398,18 +425,20 @@ LongplayPause.mount({
   onClearSave: () => save.reset(),
 });
 
-fetch("./content/levels.json")
-  .then((r) => r.json())
-  .then((data) => {
-    LEVELS = data.levels;
-    const d = save.load();
-    show(
-      "晶石三消",
-      "60 关分四世界，交换相邻宝石消除目标。约 35–55 分钟通关。",
-      !!(d && !d.ended)
-    );
-    if (d) Object.assign(S, d);
-    loadLevel(Math.min(S.li || 0, 59));
-    if (!d) S.running = false;
-    requestAnimationFrame(loop);
-  });
+Promise.all([
+  fetch("./content/levels.json").then((r) => r.json()),
+  A.loadAll({ gems: "./art/sprites/gems.png" }),
+]).then(([data, sprites]) => {
+  LEVELS = data.levels;
+  SPR = sprites;
+  const d = save.load();
+  show(
+    "晶石三消",
+    "60 关分四世界，交换相邻宝石消除目标。约 15–30 分钟通关。",
+    !!(d && !d.ended)
+  );
+  if (d) Object.assign(S, d);
+  loadLevel(Math.min(S.li || 0, 59));
+  if (!d) S.running = false;
+  requestAnimationFrame(loop);
+});

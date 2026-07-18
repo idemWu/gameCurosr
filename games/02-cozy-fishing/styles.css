@@ -1,19 +1,18 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #071926;
-  --panel: #0f2a3d;
+  --bg: #04151f;
+  --bg2: #0a2433;
   --accent: #5eead4;
   --accent-2: #67e8f9;
-  --border: #1f4a63;
-  --text: #ecfeff;
-  --muted: #7dd3c7;
+  --border: rgba(94, 234, 212, 0.4);
+  --panel: rgba(8, 28, 40, 0.92);
 }
 
 select {
   background: #123248;
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(94, 234, 212, 0.35);
   border-radius: 8px;
   padding: 4px 6px;
 }

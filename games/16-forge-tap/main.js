@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("16-forge-tap");
 sfx.mountMuteButton();
@@ -133,7 +135,7 @@ el("up").onclick = () => {
 };
 
 function drawForge() {
-  D.softBg(ctx, 480, 270, "#21140e", "#0f0a06");
+  A.sky(ctx, 480, 270, "#21140e", "#21140e", "#0f0a06");
 
   // anvil
   D.fillRoundRect(ctx, 160, 168, 160, 36, 6, "#57534e");
@@ -193,7 +195,8 @@ function drawForge() {
     ctx.fillRect(0, 0, 480, 270);
   }
 
-  D.vignette(ctx, 480, 270, 0.35);
+  A.vignette(ctx, 480, 270, 0.35);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function update(dt) {

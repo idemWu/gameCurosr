@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("15-shelf-sort");
 sfx.mountMuteButton();
@@ -174,7 +176,7 @@ canvas.addEventListener("click", (ev) => {
 });
 
 function draw() {
-  D.softBg(ctx, 480, 270, "#14231a", "#0a1510");
+  A.sky(ctx, 480, 270, "#14231a", "#14231a", "#0a1510");
   ctx.fillStyle = "#ecfdf5";
   ctx.font = "bold 12px sans-serif";
   ctx.fillText(`第 ${S.li + 1} 关 · 步数 ${S.moves}`, 12, 18);
@@ -207,7 +209,8 @@ function draw() {
     }
   }
 
-  D.vignette(ctx, 480, 270, 0.28);
+  A.vignette(ctx, 480, 270, 0.28);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {

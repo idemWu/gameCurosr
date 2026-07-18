@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("07-mine-delve");
 sfx.mountMuteButton();
@@ -389,7 +391,7 @@ function drawLamp() {
 }
 
 function draw() {
-  D.softBg(ctx, 480, 270, "#1a1510", "#0c0a09");
+  A.sky(ctx, 480, 270, "#1a1510", "#1a1510", "#0c0a09");
   const dim = Math.max(0.3, Math.min(1, S.oil / S.maxOil));
 
   for (let y = 0; y < H; y++) {
@@ -424,7 +426,8 @@ function draw() {
     D.bubble(ctx, S.bubble.text, 240, 258, { bg: "rgba(28,25,23,.92)", fg: "#fde68a" });
   }
 
-  D.vignette(ctx, 480, 270, 0.45);
+  A.vignette(ctx, 480, 270, 0.45);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {

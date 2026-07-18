@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("14-merge-relics");
 sfx.mountMuteButton();
@@ -206,7 +208,7 @@ canvas.addEventListener("click", (ev) => {
 });
 
 function draw() {
-  D.softBg(ctx, 480, 270, "#1a1410", "#0c0a09");
+  A.sky(ctx, 480, 270, "#1a1410", "#1a1410", "#0c0a09");
   D.fillRoundRect(ctx, 12, 8, 200, 36, 8, "rgba(0,0,0,.35)");
   ctx.fillStyle = "#fff7ed";
   ctx.font = "bold 12px sans-serif";
@@ -241,7 +243,8 @@ function draw() {
     ctx.fillRect(0, 0, 480, 270);
   }
 
-  D.vignette(ctx, 480, 270, 0.32);
+  A.vignette(ctx, 480, 270, 0.32);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {

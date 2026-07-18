@@ -1,21 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #0a0618;
-  --panel: #1a1030;
-  --accent: #c084fc;
+  --bg: #020617;
+  --bg2: #0b1026;
+  --accent: #a5b4fc;
   --accent-2: #fde68a;
-  --border: #4c1d95;
-  --text: #f5d0fe;
-  --muted: #c4b5fd;
-}
-
-#mt {
-  min-height: 2.2em;
-  color: var(--accent-2);
-}
-
-button:disabled {
-  opacity: 0.42;
-  cursor: not-allowed;
+  --border: color-mix(in srgb, #a5b4fc 45%, transparent);
+  --panel: color-mix(in srgb, #0b1026 92%, transparent);
 }

@@ -1,11 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #0b1c33;
-  --panel: #132a4a;
-  --accent: #7dd3fc;
-  --accent-2: #fef08a;
-  --border: #1e4976;
-  --text: #f0f9ff;
-  --muted: #93c5fd;
+  --bg: #0c4a6e;
+  --bg2: #0284c7;
+  --accent: #fef08a;
+  --accent-2: #e0f2fe;
+  --border: color-mix(in srgb, #fef08a 45%, transparent);
+  --panel: color-mix(in srgb, #0284c7 92%, transparent);
 }

@@ -1,12 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #1e1030;
-  --panel: #32184d;
-  --panel-2: #4a2268;
+  --bg: #12081f;
+  --bg2: #1e1048;
   --accent: #e879f9;
-  --accent-2: #c084fc;
-  --border: #6b21a8;
-  --text: #f5e9ff;
-  --muted: #d8b4fe;
+  --accent-2: #fde68a;
+  --border: rgba(232, 121, 249, 0.45);
+  --panel: rgba(24, 14, 48, 0.94);
 }

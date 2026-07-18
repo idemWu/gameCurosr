@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("06-ruin-puzzle");
 sfx.mountMuteButton();
@@ -242,7 +244,7 @@ function drawTile(c, x, y) {
 
 function draw() {
   if (!S.grid.length) return;
-  D.softBg(ctx, 480, 270, "#1c1a24", "#0f0d14");
+  A.sky(ctx, 480, 270, "#1c1a24", "#1c1a24", "#0f0d14");
   const rows = S.grid.length;
   const cols = S.grid[0].length;
   const gw = cols * T;
@@ -264,7 +266,8 @@ function draw() {
     ctx.fillRect(0, 0, 480, 270);
   }
 
-  D.vignette(ctx, 480, 270, 0.32);
+  A.vignette(ctx, 480, 270, 0.32);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {

@@ -1,58 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #1c1210;
-  --panel: #3a221c;
-  --accent: #fb923c;
-  --accent-2: #fbbf24;
-  --border: #7c3a1e;
-  --text: #ffe8dc;
-  --muted: #d4a574;
-  --danger: #f87171;
-  --ok: #86efac;
-}
-
-.fight-only { display: none; }
-body.in-fight .stat.fight-only { display: flex; }
-body.in-fight .fight-only:not(.stat) { display: block; }
-
-.bar-wrap {
-  height: 8px;
-  border-radius: 999px;
-  background: #1c1008;
-  margin: 4px 0 8px;
-  overflow: hidden;
-}
-
-.bar-wrap > i {
-  display: block;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #ef4444, #f87171);
-  transform-origin: left center;
-  transform: scaleX(1);
-  transition: transform 0.2s ease;
-}
-
-.bar-wrap.energy > i {
-  background: linear-gradient(90deg, #f59e0b, #fbbf24);
-}
-
-.bar-wrap.enemy > i {
-  background: linear-gradient(90deg, #7f1d1d, #ef4444);
-}
-
-.row.cards button {
-  min-width: 72px;
-  font-size: 0.82rem;
-  padding: 8px 10px;
-}
-
-.row.cards button:disabled {
-  opacity: 0.4;
-}
-
-.row.cards button.heal-card {
-  background: linear-gradient(180deg, #86efac, #34d399);
-  color: #052e16;
+  --bg: #1c0f0a;
+  --bg2: #29160f;
+  --accent: #f97316;
+  --accent-2: #fde68a;
+  --border: color-mix(in srgb, #f97316 45%, transparent);
+  --panel: color-mix(in srgb, #29160f 92%, transparent);
 }

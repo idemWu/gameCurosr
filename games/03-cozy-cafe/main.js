@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("03-cozy-cafe");
 sfx.mountMuteButton();
@@ -9,6 +11,7 @@ const save = LongplaySave.create("03-cozy-cafe", 3);
 const el = (id) => document.getElementById(id);
 
 let DATA = null;
+let SPR = null;
 let last = performance.now();
 let steamT = 0;
 
@@ -161,53 +164,60 @@ function upgrade() {
 
 function draw() {
   steamT += 0.016;
-  D.softBg(ctx, 480, 270, "#3b261f", "#1c100c");
-  // wall decor by level
-  D.fillRoundRect(ctx, 0, 170, 480, 100, 0, "#5b3a2e");
-  D.fillRoundRect(ctx, 20, 70, 140, 90, 10, S.lv >= 2 ? "#7c2d12" : "#6b3e2e");
-  D.fillRoundRect(ctx, 40, 90, 100, 50, 8, "#451a03");
-  // steam
-  for (let i = 0; i < 3; i++) {
-    D.disk(
-      ctx,
-      70 + i * 18,
-      80 - ((steamT * 20 + i * 10) % 30),
-      4,
-      "rgba(255,255,255,.15)"
-    );
+  A.sky(ctx, 480, 270, "#4a2a1f", "#2a1610", "#1a0e0a");
+  // wallpaper stripes
+  for (let x = 0; x < 480; x += 28) {
+    ctx.fillStyle = x % 56 === 0 ? "rgba(255,200,140,.04)" : "rgba(0,0,0,.04)";
+    ctx.fillRect(x, 0, 14, 170);
   }
-  // counter
-  D.fillRoundRect(ctx, 180, 160, 280, 40, 8, "#9a3412");
-  D.fillRoundRect(ctx, 190, 140, 80, 24, 6, "#fbbf24");
-  if (S.lv >= 3) {
-    D.star(ctx, 420, 50, 8, "#fde68a");
-    D.star(ctx, 440, 70, 5, "#fcd34d");
-  }
-  // hanging lights
+  // window night/day
+  A.panel(ctx, 340, 36, 110, 70, { bg: "rgba(120,180,220,.25)", border: "rgba(255,220,160,.35)", r: 8, bw: 2 });
+  // stove
+  A.panel(ctx, 20, 70, 150, 100, { bg: S.lv >= 2 ? "#7c2d12" : "#5c2a18", border: "#fbbf24", r: 12 });
+  A.panel(ctx, 40, 95, 110, 50, { bg: "#2a1208", border: "rgba(0,0,0,.3)", r: 8, bw: 1 });
   for (let i = 0; i < 3; i++) {
-    ctx.strokeStyle = "#78716c";
+    D.disk(ctx, 70 + i * 20, 88 - ((steamT * 22 + i * 12) % 28), 5, "rgba(255,255,255,.18)");
+  }
+  if (SPR?.cup) A.drawImage(ctx, SPR.cup, 55, 108, 28, 32);
+  // floor + counter
+  ctx.fillStyle = "#4a2f24";
+  ctx.fillRect(0, 170, 480, 100);
+  A.panel(ctx, 170, 155, 290, 48, { bg: "#9a3412", border: "#fbbf24", r: 10 });
+  A.panel(ctx, 190, 132, 90, 28, { bg: "#fbbf24", border: "#78350f", r: 8, bw: 1 });
+  A.text(ctx, "MENU", 210, 151, { color: "#3b1805", font: "bold 12px sans-serif", shadow: false });
+  for (let i = 0; i < 3; i++) {
+    ctx.strokeStyle = "#a8a29e";
     ctx.beginPath();
     ctx.moveTo(220 + i * 70, 0);
     ctx.lineTo(220 + i * 70, 36);
     ctx.stroke();
-    D.disk(ctx, 220 + i * 70, 40, 7, "#fde68a");
+    const g = ctx.createRadialGradient(220 + i * 70, 42, 0, 220 + i * 70, 42, 18);
+    g.addColorStop(0, "rgba(253,230,138,.55)");
+    g.addColorStop(1, "rgba(253,230,138,0)");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(220 + i * 70, 42, 18, 0, Math.PI * 2);
+    ctx.fill();
+    D.disk(ctx, 220 + i * 70, 40, 6, "#fde68a");
   }
-
-  ctx.fillStyle = "#ffedd5";
-  ctx.font = "bold 13px sans-serif";
-  ctx.fillText(`Day ${S.day} · 已服务 ${S.served}`, 16, 24);
-
+  if (S.lv >= 3) {
+    D.star(ctx, 420, 50, 8, "#fde68a");
+    D.star(ctx, 440, 70, 5, "#fcd34d");
+  }
+  A.panel(ctx, 10, 8, 200, 28, { bg: "rgba(20,10,6,.75)", border: "rgba(251,191,36,.4)", r: 10, bw: 1 });
+  A.text(ctx, `Day ${S.day} · 已服务 ${S.served}`, 20, 27, { color: "#ffedd5", font: "bold 13px sans-serif" });
   if (S.guest) {
     S.guest.x += (300 - S.guest.x) * 0.06;
-    D.person(ctx, S.guest.x, 150, "#fda4af", "#fff7ed");
-    D.bubble(ctx, S.guest.name, S.guest.x, 118, { bg: "rgba(69,26,3,.92)", fg: "#ffedd5" });
+    if (SPR?.chars) {
+      A.shadowEllipse(ctx, S.guest.x, 168, 10, 3);
+      A.drawSprite(ctx, SPR.chars, 3 * 64, 0, 64, 96, S.guest.x - 12, 132, 24, 36);
+    } else D.person(ctx, S.guest.x, 150, "#fda4af", "#fff7ed");
+    A.panel(ctx, S.guest.x - 48, 108, 96, 24, { bg: "rgba(69,26,3,.92)", border: "#fbbf24", r: 8, bw: 1 });
+    A.text(ctx, S.guest.name, S.guest.x, 124, { align: "center", color: "#ffedd5", font: "12px sans-serif", shadow: false });
   }
-  if (S.feedback) {
-    ctx.fillStyle = "#86efac";
-    ctx.font = "12px sans-serif";
-    ctx.fillText(S.feedback.text, 300, 50);
-  }
-  D.vignette(ctx, 480, 270, 0.28);
+  if (S.feedback) A.text(ctx, S.feedback.text, 300, 50, { color: "#86efac", font: "bold 12px sans-serif" });
+  A.vignette(ctx, 480, 270, 0.32);
+  A.filmGrain(ctx, 480, 270, steamT, 0.025);
 }
 
 function loop(now) {
@@ -267,13 +277,18 @@ LongplayPause.mount({
   onClearSave: () => save.reset(),
 });
 
-fetch("./content/menu.json")
-  .then((r) => r.json())
-  .then((d) => {
-    DATA = d;
-    const sv = save.load();
-    show("暖汤咖啡馆", "按订单上饮料，经营店铺升级。约 12–25 分钟。", !!(sv && !sv.ended));
-    if (sv) Object.assign(S, sv);
-    hud();
-    requestAnimationFrame(loop);
-  });
+Promise.all([
+  fetch("./content/menu.json").then((r) => r.json()),
+  A.loadAll({
+    cup: "./art/sprites/cup.png",
+    chars: "./art/sprites/harbor_chars.png",
+  }),
+]).then(([d, sprites]) => {
+  DATA = d;
+  SPR = sprites;
+  const sv = save.load();
+  show("暖汤咖啡馆", "按订单上饮料，经营店铺升级。约 12–25 分钟。", !!(sv && !sv.ended));
+  if (sv) Object.assign(S, sv);
+  hud();
+  requestAnimationFrame(loop);
+});

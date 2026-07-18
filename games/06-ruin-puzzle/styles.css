@@ -1,14 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #14121c;
-  --panel: #1f1b2e;
-  --accent: #c4b5fd;
+  --bg: #111827;
+  --bg2: #1f2937;
+  --accent: #60a5fa;
   --accent-2: #fbbf24;
-  --border: #3f3658;
-  --text: #f5f3ff;
-  --muted: #a8a3c4;
+  --border: color-mix(in srgb, #60a5fa 45%, transparent);
+  --panel: color-mix(in srgb, #1f2937 92%, transparent);
 }
-
-.door-open { color: #34d399; }
-.door-closed { color: #22d3ee; }

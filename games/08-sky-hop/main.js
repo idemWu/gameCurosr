@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("08-sky-hop");
 sfx.mountMuteButton();
@@ -214,7 +216,7 @@ function drawPlat(pl) {
 function draw() {
   if (!LEVELS.length) return;
   const L = LEVELS[S.li];
-  D.softBg(ctx, 480, 270, "#7dd3fc", "#0ea5e9");
+  A.sky(ctx, 480, 270, "#7dd3fc", "#7dd3fc", "#0ea5e9");
 
   for (const c of clouds) drawCloud(c.x, c.y, c.s);
 
@@ -236,7 +238,8 @@ function draw() {
     ctx.fillRect(0, 0, 480, 270);
   }
 
-  D.vignette(ctx, 480, 270, 0.18);
+  A.vignette(ctx, 480, 270, 0.18);
+  A.filmGrain(ctx, 480, 270, performance.now()/1000, 0.025);
 }
 
 function loop(now) {

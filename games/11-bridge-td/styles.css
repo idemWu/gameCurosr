@@ -1,18 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #0c1220;
-  --panel: #152238;
-  --accent: #38bdf8;
-  --accent-2: #fbbf24;
-  --border: #2d4a6a;
-  --text: #e2e8f0;
-  --muted: #94a3b8;
+  --bg: #0f172a;
+  --bg2: #1e293b;
+  --accent: #fbbf24;
+  --accent-2: #67e8f9;
+  --border: color-mix(in srgb, #fbbf24 45%, transparent);
+  --panel: color-mix(in srgb, #1e293b 92%, transparent);
 }
-
-.tower-btns button.sel {
-  outline: 2px solid var(--accent-2);
-  outline-offset: 2px;
-}
-
-.tower-btns button { width: auto; flex: 1; }

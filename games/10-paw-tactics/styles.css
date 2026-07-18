@@ -1,21 +1,10 @@
-@import url("./theme.css");
+@import url("./art.css");
 
 :root {
-  --bg: #0f172a;
-  --panel: #1e293b;
-  --accent: #38bdf8;
-  --accent-2: #fbbf24;
-  --border: #334155;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --enemy: #fca5a5;
-  --player: #93c5fd;
-}
-
-.turn-p { color: var(--accent); }
-.turn-e { color: var(--enemy); }
-
-#info {
-  min-height: 2.4em;
-  margin: 6px 0;
+  --bg: #1a1025;
+  --bg2: #2e1065;
+  --accent: #c084fc;
+  --accent-2: #f9a8d4;
+  --border: color-mix(in srgb, #c084fc 45%, transparent);
+  --panel: color-mix(in srgb, #2e1065 92%, transparent);
 }

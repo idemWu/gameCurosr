@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
+const A = GameArt;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("02-cozy-fishing");
 sfx.mountMuteButton();
@@ -9,6 +11,7 @@ const save = LongplaySave.create("02-cozy-fishing", 3);
 const el = (id) => document.getElementById(id);
 
 let DATA = null;
+let SPR = null;
 let last = performance.now();
 let waveT = 0;
 
@@ -161,69 +164,49 @@ function update(dt) {
   }
 }
 
-function drawFishIcon(x, y, caught, rare) {
+function drawFishIcon(x, y, i, caught, rare) {
   if (!caught) {
-    D.fillRoundRect(ctx, x, y, 16, 12, 4, "#1e293b");
+    A.panel(ctx, x, y, 18, 14, { bg: "rgba(15,23,42,.75)", border: "rgba(255,255,255,.08)", r: 4, bw: 1 });
     return;
   }
-  D.fillRoundRect(ctx, x, y, 16, 12, 6, rare ? "#fbbf24" : "#67e8f9");
-  ctx.fillStyle = rare ? "#78350f" : "#0f766e";
-  ctx.fillRect(x + 12, y + 3, 5, 6);
+  if (SPR?.fish) {
+    const fi = i % 5;
+    A.drawSprite(ctx, SPR.fish, fi * 64, 0, 64, 40, x - 2, y - 2, 22, 14);
+  } else {
+    D.fillRoundRect(ctx, x, y, 16, 12, 6, rare ? "#fbbf24" : "#67e8f9");
+  }
+  if (rare) {
+    ctx.fillStyle = "#fde68a";
+    ctx.fillRect(x + 14, y - 1, 2, 2);
+  }
 }
 
 function draw() {
-  D.softBg(ctx, 480, 270, "#082f49", "#020617");
-  // moon
-  D.disk(ctx, 400, 48, 18, "#e2e8f0");
-  D.disk(ctx, 408, 44, 18, "#082f49");
-  // waves
-  for (let i = 0; i < 5; i++) {
-    const y = 170 + i * 16;
-    ctx.strokeStyle = `rgba(94,234,212,${0.15 + i * 0.05})`;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    for (let x = 0; x <= 480; x += 8) {
-      const yy = y + Math.sin(waveT * 2 + x * 0.04 + i) * 3;
-      if (x === 0) ctx.moveTo(x, yy);
-      else ctx.lineTo(x, yy);
-    }
-    ctx.stroke();
+  A.sky(ctx, 480, 270, "#071929", "#0b2a44", "#123a3a");
+  A.moon(ctx, 400, 46, 14);
+  A.hills(ctx, 150, 7, "#1a3d36", 0.4, 480);
+  A.water(ctx, 168, 480, 70, waveT, "#2a8fb5", "#124e6b");
+  if (SPR?.pier) A.drawImage(ctx, SPR.pier, 16, 188, 200, 56);
+  if (SPR?.chars) {
+    A.shadowEllipse(ctx, 56, 178, 10, 3);
+    A.drawSprite(ctx, SPR.chars, 0, 0, 64, 96, 44, 145, 24, 36);
   }
-  D.fillRoundRect(ctx, 0, 230, 480, 40, 0, "#134e4a");
-
-  // dex grid
+  A.panel(ctx, 8, 8, 464, 52, { bg: "rgba(8,20,32,.72)", border: "rgba(94,234,212,.28)", r: 10, bw: 1 });
   for (let i = 0; i < 40; i++) {
     const f = DATA.fish[i];
-    drawFishIcon(12 + (i % 20) * 23, 12 + Math.floor(i / 20) * 18, !!S.caught[f.id], f.rare);
+    drawFishIcon(16 + (i % 20) * 22, 14 + Math.floor(i / 20) * 20, i, !!S.caught[f.id], f.rare);
   }
-
-  // tension bar
   const x = 50;
-  const y = 200;
+  const y = 208;
   const w = 380;
-  const h = 18;
-  D.fillRoundRect(ctx, x, y, w, h, 9, "#0b1220");
-  D.fillRoundRect(
-    ctx,
-    x + S.zone[0] * w,
-    y,
-    (S.zone[1] - S.zone[0]) * w,
-    h,
-    9,
-    "rgba(94,234,212,.75)"
-  );
+  const h = 16;
+  A.panel(ctx, x - 4, y - 6, w + 8, h + 12, { bg: "rgba(0,0,0,.45)", border: "rgba(255,255,255,.1)", r: 10, bw: 1 });
+  A.bar(ctx, x + S.zone[0] * w, y, (S.zone[1] - S.zone[0]) * w, h, 1, "rgba(94,234,212,.9)", "rgba(94,234,212,.9)");
   const cx = x + S.bar * w;
   D.fillRoundRect(ctx, cx - 3, y - 4, 6, h + 8, 3, "#fff");
-  if (S.phase === "cast") {
-    ctx.fillStyle = "#ecfeff";
-    ctx.font = "12px sans-serif";
-    ctx.fillText("甜蜜区收杆！", x, y - 10);
-  }
-
-  // pier silhouette
-  D.fillRoundRect(ctx, 20, 150, 80, 10, 3, "#5b4636");
-  D.person(ctx, 50, 145, "#fde68a", "#0ea5e9");
-  D.vignette(ctx, 480, 270, 0.3);
+  if (S.phase === "cast") A.text(ctx, "甜蜜区收杆！", x, y - 12, { color: "#ecfeff", font: "bold 12px sans-serif" });
+  A.vignette(ctx, 480, 270, 0.35);
+  A.filmGrain(ctx, 480, 270, waveT, 0.03);
 }
 
 function loop(now) {
@@ -279,13 +262,19 @@ LongplayPause.mount({
   onClearSave: () => save.reset(),
 });
 
-fetch("./content/fish.json")
-  .then((r) => r.json())
-  .then((d) => {
-    DATA = d;
-    const sv = save.load();
-    show("晚潮钓手", "在甜蜜区收杆收集图鉴，完成任务线。约 15–30 分钟。", !!(sv && !sv.ended));
-    if (sv) Object.assign(S, sv);
-    hud();
-    requestAnimationFrame(loop);
-  });
+Promise.all([
+  fetch("./content/fish.json").then((r) => r.json()),
+  A.loadAll({
+    fish: "./art/sprites/fish.png",
+    pier: "./art/sprites/pier.png",
+    chars: "./art/sprites/harbor_chars.png",
+  }),
+]).then(([d, sprites]) => {
+  DATA = d;
+  SPR = sprites;
+  const sv = save.load();
+  show("晚潮钓手", "在甜蜜区收杆收集图鉴，完成任务线。约 15–30 分钟。", !!(sv && !sv.ended));
+  if (sv) Object.assign(S, sv);
+  hud();
+  requestAnimationFrame(loop);
+});
