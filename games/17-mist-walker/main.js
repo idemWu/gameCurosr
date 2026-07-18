@@ -55,6 +55,7 @@ const ZONES = {}, BOSSES = {};
 const S = {
   running: false,
   cam: 0,
+  particles: [],
   zoneId: "z01",
   player: null,
   enemies: [],
@@ -183,6 +184,7 @@ function damagePlayer(dmg, srcX) {
   if (p.iframes > 0 || p.state === "dead") return;
   if (p.parryOpen > 0) { p.parryOpen = 0; p.riposte = 40; flash("弹反成功！"); return; }
   p.hp -= dmg * derived().defMul * (1 + S.ngPlus * 0.2);
+  burst(p.x, p.y - 22, "#b91c1c", 10, 2.2);
   p.state = "hurt"; p.t = 0; p.iframes = 20;
   p.x += (p.x < srcX ? -14 : 14);
   if (p.hp <= 0) die();
@@ -215,6 +217,7 @@ function playerAttackHits(atk) {
   for (const e of S.enemies) {
     if (!e.dead && hit(box, bodyBox(e))) {
       e.hp -= dmg; e.state = "hurt"; e.t = 0; p.hitLanded = true;
+      burst(e.x, e.y - 22, "#991b1b", 7, 1.8);
       if (e.hp <= 0) { e.dead = true; p.souls += Math.floor(e.def.souls * derived().soulMul); if (S.charms.includes("charm_leech")) p.hp = Math.min(p.maxHp, p.hp + 4); }
     }
   }
@@ -222,6 +225,7 @@ function playerAttackHits(atk) {
     if (!b.dead && b.active && hit(box, bodyBox(b, true))) {
       const mult = p.riposte > 0 ? 2.4 : 1;
       b.hp -= dmg * mult; p.hitLanded = true;
+      burst(b.x, b.y - 32, p.riposte > 0 ? "#fde68a" : "#7f1d1d", p.riposte > 0 ? 18 : 9, 2.4);
       if (atk === CFG.combat.heavyAttack && hasSkill("sk_heavy_stagger") && Math.random() < 0.25 && b.state !== "stagger") { b.state = "stagger"; b.t = 30; }
       if (b.hp <= 0) bossDown(b);
     }
@@ -281,6 +285,18 @@ function upPlayer() {
 /* ---------- interactions ---------- */
 let flashMsg = null;
 function flash(text) { flashMsg = { text, t: 100 }; }
+
+function burst(x, y, color, count = 8, speed = 1.8) {
+  for (let i = 0; i < count; i += 1) {
+    S.particles.push({
+      x, y, color,
+      vx: (Math.random() - 0.5) * speed * 2,
+      vy: -Math.random() * speed - 0.25,
+      life: 25 + Math.random() * 25,
+      size: 1 + Math.floor(Math.random() * 2),
+    });
+  }
+}
 
 function interact() {
   K.delete("e");
@@ -431,6 +447,7 @@ function bossDown(b) {
   S.player.souls += Math.floor(b.def.souls * derived().soulMul);
   if (!S.bosses.some((x) => x.active && !x.dead)) $("bossbar").classList.add("hidden");
   flash(`击破 ${b.def.name}！+${b.def.souls} 魂`);
+  burst(b.x, b.y - 30, "#fbbf24", 42, 3.2);
   persist();
   if (b.slot.id === FINAL_BOSS) endingChoice();
 }
@@ -528,54 +545,255 @@ function upTower() {
 }
 
 /* ---------- render ---------- */
+const ZONE_ART = {
+  z01: { sky: "#091421", haze: "#27465c", far: "#112b3b", near: "#162b37", ground: "#172532", accent: "#e07a32", moon: "#b9d6df", kind: "dock" },
+  z02: { sky: "#07181a", haze: "#1d4c46", far: "#0f302f", near: "#153a34", ground: "#1a302c", accent: "#52b7a6", moon: "#b5e8dd", kind: "wreck" },
+  z03: { sky: "#111425", haze: "#55566f", far: "#22243b", near: "#2e3045", ground: "#242638", accent: "#f0b948", moon: "#f1e3b4", kind: "tower" },
+  z04: { sky: "#10170d", haze: "#3d552a", far: "#1d2b17", near: "#26351d", ground: "#20291d", accent: "#93b83f", moon: "#bfd292", kind: "cellar" },
+  z05: { sky: "#12171d", haze: "#5a6972", far: "#28343c", near: "#35434a", ground: "#303a3f", accent: "#d2dde0", moon: "#d8e4e6", kind: "mine" },
+  z06: { sky: "#16100c", haze: "#69472d", far: "#332318", near: "#46301f", ground: "#37291e", accent: "#d7a33e", moon: "#f0d28a", kind: "bell" },
+  z07: { sky: "#071721", haze: "#23556b", far: "#0e3344", near: "#15485a", ground: "#173847", accent: "#68c9e8", moon: "#b7eaff", kind: "church" },
+  z08: { sky: "#171922", haze: "#555866", far: "#292c37", near: "#343743", ground: "#2c2f39", accent: "#cad0db", moon: "#d9dce2", kind: "waste" },
+  z09: { sky: "#090e16", haze: "#29374a", far: "#111d2b", near: "#19283a", ground: "#182433", accent: "#4b78a5", moon: "#9bbbd6", kind: "fort" },
+  z10: { sky: "#100c20", haze: "#533d72", far: "#241b3b", near: "#342653", ground: "#2a2142", accent: "#c4a2ee", moon: "#e6d7ff", kind: "stars" },
+  z11: { sky: "#080512", haze: "#432d65", far: "#1c1030", near: "#291643", ground: "#24133a", accent: "#9d65dd", moon: "#d6bbff", kind: "abyss" },
+  z12: { sky: "#030a12", haze: "#17456a", far: "#071e31", near: "#0d304b", ground: "#10283a", accent: "#26a7df", moon: "#90dcff", kind: "throne" },
+};
+
+function px(x, y, w, h, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+}
+
+function drawBackdrop(A, Z) {
+  const grad = ctx.createLinearGradient(0, 0, 0, 230);
+  grad.addColorStop(0, A.sky);
+  grad.addColorStop(0.65, A.haze);
+  grad.addColorStop(1, A.near);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 480, 270);
+
+  const moonX = 390 - S.cam * 0.015;
+  ctx.fillStyle = A.moon;
+  ctx.globalAlpha = 0.7;
+  ctx.beginPath(); ctx.arc(moonX, 44, A.kind === "stars" ? 17 : 12, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Very distant skyline: cliffs, masts, towers and fortress teeth.
+  ctx.fillStyle = A.far;
+  for (let i = 0; i < 10; i += 1) {
+    const x = ((i * 97 - S.cam * 0.12) % 1050 + 1050) % 1050 - 100;
+    const h = 35 + ((i * 31 + S.zoneId.charCodeAt(2)) % 70);
+    ctx.fillRect(x, 154 - h, 48 + (i % 3) * 20, h + 80);
+    if (A.kind === "dock" || A.kind === "wreck") {
+      ctx.fillRect(x + 8, 70 - h * 0.25, 3, 75);
+      ctx.beginPath(); ctx.moveTo(x + 11, 75); ctx.lineTo(x + 44, 104); ctx.lineTo(x + 11, 104); ctx.fill();
+    }
+    if (["tower", "bell", "church", "fort", "throne"].includes(A.kind)) {
+      ctx.fillRect(x + 17, 78 - h, 10, h + 15);
+      ctx.beginPath(); ctx.moveTo(x + 12, 80 - h); ctx.lineTo(x + 22, 65 - h); ctx.lineTo(x + 32, 80 - h); ctx.fill();
+    }
+  }
+
+  // Near parallax architecture and chains.
+  ctx.fillStyle = A.near;
+  for (let i = 0; i < 7; i += 1) {
+    const x = ((i * 225 - S.cam * 0.34) % 1800 + 1800) % 1800 - 180;
+    const h = 55 + (i % 3) * 28;
+    ctx.fillRect(x, 210 - h, 110 + (i % 2) * 50, h + 40);
+    ctx.fillStyle = A.accent;
+    ctx.globalAlpha = 0.12;
+    ctx.fillRect(x + 12, 170 - h * 0.45, 4, 4);
+    ctx.fillRect(x + 34, 180 - h * 0.45, 4, 4);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = A.near;
+  }
+
+  // Ground silhouette + pixel texture.
+  for (const pl of Z.platforms) {
+    px(pl.x - S.cam, pl.y, pl.w, 270 - pl.y, A.ground);
+    px(pl.x - S.cam, pl.y, pl.w, 3, A.accent);
+    ctx.globalAlpha = 0.28;
+    for (let x = Math.max(0, pl.x - S.cam); x < Math.min(480, pl.x - S.cam + pl.w); x += 19) {
+      px(x, pl.y + 8 + ((x + S.cam) % 3) * 5, 5, 2, A.haze);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Moving fog bands.
+  const fogShift = (performance.now() * 0.008) % 240;
+  ctx.fillStyle = A.moon;
+  ctx.globalAlpha = 0.055;
+  for (let i = -1; i < 4; i += 1) {
+    ctx.beginPath();
+    ctx.ellipse(i * 180 + fogShift, 128 + (i % 2) * 34, 130, 17, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawBonfire(x, A) {
+  const t = performance.now() * 0.012;
+  px(x - 7, 220, 14, 4, "#31251f");
+  px(x - 5, 216, 10, 4, "#6b3c22");
+  px(x - 3, 207 + Math.sin(t) * 2, 6, 11, "#f97316");
+  px(x - 1, 201 + Math.cos(t * 1.3) * 2, 3, 12, "#fde047");
+  ctx.globalAlpha = 0.13;
+  ctx.fillStyle = A.accent;
+  ctx.beginPath(); ctx.arc(x, 211, 22 + Math.sin(t) * 3, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
+function drawPlayerSprite(p) {
+  const x = p.x - S.cam;
+  const bob = p.state === "run" ? Math.floor(Math.sin(p.t * 0.55) * 2) : 0;
+  const roll = p.state === "dodge";
+  const alpha = p.iframes > 0 && Math.floor(p.t / 2) % 2 ? 0.45 : 1;
+  ctx.globalAlpha = alpha;
+  if (roll) {
+    px(x - 10, 216, 20, 10, "#182b36");
+    px(x - 5, 211, 11, 9, "#b7cad2");
+    px(x + p.face * 7 - 3, 214, 9, 3, "#7fb3c8");
+  } else {
+    // cloak, hood and face mask
+    px(x - 7, 197 + bob, 14, 25, "#152936");
+    px(x - 9, 210 + bob, 18, 15, "#1c3745");
+    px(x - 6, 190 + bob, 12, 10, "#9eb5bd");
+    px(x - 8, 192 + bob, 16, 7, "#233e4a");
+    px(x + p.face * 3 - 1, 194 + bob, 3, 2, "#d7eef5");
+    px(x - 7, 224, 5, 5, "#0b151c");
+    px(x + 2, 224, 5, 5, "#0b151c");
+    // arm and weapon
+    const attack = p.state === "light" || p.state === "heavy";
+    const swing = attack ? Math.min(1, p.t / 12) : 0;
+    const wx = x + p.face * (8 + swing * 11);
+    const wy = 205 - swing * 8 + bob;
+    px(x + p.face * 5 - 2, 204 + bob, 7, 4, "#738b94");
+    px(wx, wy, p.face * 24, 3, p.riposte > 0 ? "#fde68a" : "#92bfd0");
+    px(wx + p.face * 18, wy - 1, p.face * 6, 5, "#d8edf3");
+  }
+  ctx.globalAlpha = 1;
+}
+
+function enemyStyle(type) {
+  if (type.includes("knight") || type.includes("guard") || type.includes("elite")) return "knight";
+  if (type.includes("acolyte") || type.includes("monk") || type.includes("choir") || type.includes("zealot")) return "caster";
+  if (type.includes("rat") || type.includes("spawn") || type.includes("ghoul")) return "beast";
+  if (type.includes("archer")) return "archer";
+  return "soldier";
+}
+
+function drawEnemySprite(e) {
+  const x = e.x - S.cam;
+  const y = e.y;
+  const style = enemyStyle(e.type || "");
+  const telegraph = e.state === "attack" && e.t >= e.def.attackStartup - 6;
+  const base = telegraph ? "#fda4af" : e.def.color;
+  if (style === "beast") {
+    px(x - 11, y - 21, 22, 14, base);
+    px(x + e.face * 10 - 5, y - 26, 10, 11, "#6b7280");
+    px(x + e.face * 13 - 1, y - 23, 2, 2, "#f87171");
+    px(x - 9, y - 7, 4, 7, "#111827"); px(x + 5, y - 7, 4, 7, "#111827");
+  } else {
+    const wide = style === "knight";
+    px(x - (wide ? 10 : 8), y - 28, wide ? 20 : 16, 26, base);
+    px(x - 7, y - 38, 14, 12, style === "caster" ? "#23213c" : "#374151");
+    px(x + e.face * 4 - 1, y - 34, 3, 2, "#fbbf24");
+    if (style === "knight") { px(x - 12, y - 24, 5, 18, "#64748b"); px(x + e.face * 10, y - 31, 4, 33, "#cbd5e1"); }
+    if (style === "caster") { px(x + e.face * 9, y - 38, 3, 38, "#a78bfa"); px(x + e.face * 7, y - 42, 8, 5, "#e9d5ff"); }
+    if (style === "archer") { px(x + e.face * 8, y - 27, 2, 23, "#c4a26e"); px(x + e.face * 11, y - 28, 2, 25, "#f9a8d4"); }
+    if (style === "soldier") { px(x + e.face * 8, y - 25, e.face * 16, 3, "#94a3b8"); }
+  }
+  if (e.elite) {
+    ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 1;
+    ctx.strokeRect(Math.round(x - 13), Math.round(y - 43), 26, 43);
+  }
+}
+
+function drawBossSprite(b) {
+  const x = b.x - S.cam, y = b.y;
+  const id = b.slot.id;
+  const final = id === FINAL_BOSS;
+  const stagger = b.state === "stagger";
+  const telegraph = b.state === "attack" && b.move && b.t >= b.move.startup - 8;
+  const body = stagger ? "#fde68a" : telegraph ? "#e05252" : (final ? "#174a69" : "#652c3d");
+  const scale = final ? 1.25 : 1;
+  px(x - 15 * scale, y - 51 * scale, 30 * scale, 48 * scale, body);
+  px(x - 12 * scale, y - 65 * scale, 24 * scale, 17 * scale, "#1b2533");
+  // horns/crown are keyed by boss identity for recognizable silhouettes.
+  const variant = Number((id.match(/\d+/) || ["1"])[0]) % 4;
+  if (variant === 0 || final) {
+    px(x - 15, y - 72 * scale, 4, 12, "#8fb3c7"); px(x + 11, y - 72 * scale, 4, 12, "#8fb3c7");
+    px(x - 11, y - 76 * scale, 4, 8, "#8fb3c7"); px(x + 7, y - 76 * scale, 4, 8, "#8fb3c7");
+  } else if (variant === 1) {
+    px(x - 17, y - 66, 34, 4, "#94a3b8"); px(x - 2, y - 77, 4, 13, "#94a3b8");
+  } else if (variant === 2) {
+    px(x - 16, y - 70, 7, 13, "#d6b95f"); px(x + 9, y - 70, 7, 13, "#d6b95f");
+  } else {
+    px(x - 8, y - 78, 4, 15, "#a78bfa"); px(x + 4, y - 78, 4, 15, "#a78bfa");
+  }
+  px(x - 7, y - 59 * scale, 4, 3, final ? "#38bdf8" : "#f87171");
+  px(x + 3, y - 59 * scale, 4, 3, final ? "#38bdf8" : "#f87171");
+  // cape and oversized weapon
+  px(x - b.face * 13, y - 45, b.face * -12, 40, final ? "#0c2c43" : "#3b1726");
+  const wx = x + b.face * 17;
+  px(wx, y - 43, b.face * 34, 5, final ? "#53c8ef" : "#b8a6a9");
+  px(wx + b.face * 28, y - 48, b.face * 8, 14, final ? "#9ae6ff" : "#d6c7ca");
+}
+
+function updateAndDrawParticles() {
+  for (const p of S.particles) {
+    p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.life -= 1;
+    ctx.globalAlpha = Math.max(0, p.life / 45);
+    px(p.x - S.cam, p.y, p.size, p.size, p.color);
+  }
+  ctx.globalAlpha = 1;
+  S.particles = S.particles.filter((p) => p.life > 0);
+}
+
 function draw() {
   const p = S.player;
   const Z = zone();
+  const A = ZONE_ART[S.zoneId] || ZONE_ART.z01;
   S.cam = Math.max(0, Math.min(Z.width - 480, p.x - 220));
-  ctx.fillStyle = "#05070a"; ctx.fillRect(0, 0, 480, 270);
-  ctx.fillStyle = "#0d141d";
-  for (let i = 0; i < 8; i++) ctx.fillRect(((i * 260 - S.cam * 0.4) % 2400 + 2400) % 2400 - 200, 40 + (i % 3) * 30, 120, 160);
-  ctx.fillStyle = "rgba(143,179,199,.06)"; ctx.fillRect(0, 100, 480, 80);
-  for (const pl of Z.platforms) { ctx.fillStyle = "#1c2836"; ctx.fillRect(pl.x - S.cam, pl.y, pl.w, 270 - pl.y); }
+  drawBackdrop(A, Z);
 
   if (Z.poisonPools) {
-    for (const pool of Z.poisonPools) { ctx.fillStyle = "rgba(101,163,13,.45)"; ctx.fillRect(pool.x - S.cam, 222, pool.w, 8); }
+    for (const pool of Z.poisonPools) {
+      const ripple = Math.sin(performance.now() * 0.008 + pool.x) * 2;
+      px(pool.x - S.cam, 222 + ripple, pool.w, 8, "#5f7d22");
+      ctx.globalAlpha = 0.6;
+      for (let x = pool.x; x < pool.x + pool.w; x += 18) px(x - S.cam, 219 + Math.sin(x + performance.now() * 0.01) * 2, 5, 3, "#a3c94b");
+      ctx.globalAlpha = 1;
+    }
   }
   const bf = Z.bonfires[0];
-  ctx.fillStyle = "#f97316"; ctx.fillRect(bf.x - S.cam - 3, 214, 6, 12);
-  ctx.fillStyle = "#fbbf24"; ctx.fillRect(bf.x - S.cam - 1, 208, 3, 7);
+  drawBonfire(bf.x - S.cam, A);
 
   for (const ex of Z.exits) {
     const locked = ex.requiresBoss && !S.bossesDead[ex.requiresBoss];
-    ctx.fillStyle = locked ? "#475569" : "#eab308";
-    ctx.fillRect(ex.x - S.cam - 6, 190, 12, 40);
+    const x = ex.x - S.cam;
+    px(x - 10, 190, 20, 40, locked ? "#263849" : A.accent);
+    px(x - 6, 194, 12, 36, "#07101a");
+    px(x - 2, 207, 4, 4, locked ? "#64748b" : "#fde68a");
   }
 
   if (S.droppedSouls && S.droppedSouls.zone === S.zoneId) {
-    ctx.fillStyle = "#a3e635";
-    ctx.beginPath(); ctx.arc(S.droppedSouls.x - S.cam, 220, 6, 0, Math.PI * 2); ctx.fill();
+    const sx = S.droppedSouls.x - S.cam;
+    const pulse = 5 + Math.sin(performance.now() * 0.01) * 2;
+    ctx.globalAlpha = 0.22; ctx.fillStyle = "#a3e635"; ctx.beginPath(); ctx.arc(sx, 216, pulse * 2.5, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 1; ctx.fillStyle = "#d9f99d"; ctx.beginPath(); ctx.arc(sx, 216, pulse, 0, Math.PI * 2); ctx.fill();
   }
 
-  for (const e of S.enemies) {
-    if (e.dead) continue;
-    ctx.fillStyle = e.state === "attack" && e.t >= e.def.attackStartup - 6 ? "#fecaca" : e.def.color;
-    ctx.fillRect(e.x - S.cam - 9, e.y - 36, 18, 36);
+  for (const e of S.enemies) if (!e.dead) drawEnemySprite(e);
+  for (const pr of S.projectiles) {
+    const x = pr.x - S.cam, c = pr.from === "enemy" ? "#fb7185" : "#93c5fd";
+    ctx.globalAlpha = 0.25; px(x - 9, pr.y - 5, 18, 10, c); ctx.globalAlpha = 1;
+    px(x - 4, pr.y - 2, 8, 4, c);
   }
-  for (const pr of S.projectiles) { ctx.fillStyle = pr.from === "enemy" ? "#f87171" : "#93c5fd"; ctx.fillRect(pr.x - S.cam - 4, pr.y - 3, 8, 6); }
-  for (const b of S.bosses) {
-    if (b.dead) continue;
-    ctx.fillStyle = b.state === "stagger" ? "#fde68a" : (b.state === "attack" && b.move && b.t >= b.move.startup - 8 ? "#f87171" : "#7f1d1d");
-    ctx.fillRect(b.x - S.cam - 16, b.y - 56, 32, 56);
-  }
-  if (p.state !== "dead") {
-    ctx.fillStyle = p.iframes > 0 ? "rgba(229,236,242,.5)" : (p.riposte > 0 ? "#fde68a" : "#e5ecf2");
-    ctx.fillRect(p.x - S.cam - 9, p.y - 36, 18, 36);
-    if (p.state === "light" || p.state === "heavy") {
-      ctx.fillStyle = "#8fb3c7";
-      const box = attackBox(p, 34);
-      ctx.fillRect(box.x - S.cam, box.y, box.w, 4);
-    }
-  }
+  for (const b of S.bosses) if (!b.dead) drawBossSprite(b);
+  if (p.state !== "dead") drawPlayerSprite(p);
+  updateAndDrawParticles();
   if (flashMsg) {
     ctx.fillStyle = "rgba(0,0,0,.65)"; ctx.fillRect(30, 18, 420, 26);
     ctx.fillStyle = "#f8fafc"; ctx.font = "12px sans-serif";
