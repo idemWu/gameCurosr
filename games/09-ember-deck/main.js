@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("09-ember-deck");
 sfx.mountMuteButton();
@@ -314,6 +315,7 @@ function nodePos(i) {
 }
 
 function draw() {
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
   if (!CAM) return;
   D.softBg(ctx, canvas.width, canvas.height, "#29160f", "#1c0f0a");
   bob += 0.016;
@@ -473,3 +475,9 @@ fetch("./content/campaign.json")
     hud();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

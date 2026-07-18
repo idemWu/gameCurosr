@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("02-cozy-fishing");
 sfx.mountMuteButton();
@@ -182,7 +183,8 @@ function drawFishIcon(x, y, i, caught, rare) {
 }
 
 function draw() {
-  A.sky(ctx, 480, 270, "#071929", "#0b2a44", "#123a3a");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else A.sky(ctx, 480, 270, "#071929", "#0b2a44", "#123a3a");
   A.moon(ctx, 400, 46, 14);
   A.hills(ctx, 150, 7, "#1a3d36", 0.4, 480);
   A.water(ctx, 168, 480, 70, waveT, "#2a8fb5", "#124e6b");
@@ -278,3 +280,9 @@ Promise.all([
   hud();
   requestAnimationFrame(loop);
 });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

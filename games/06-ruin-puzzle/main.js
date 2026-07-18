@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("06-ruin-puzzle");
 sfx.mountMuteButton();
@@ -243,6 +244,7 @@ function drawTile(c, x, y) {
 }
 
 function draw() {
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
   if (!S.grid.length) return;
   A.sky(ctx, 480, 270, "#1c1a24", "#1c1a24", "#0f0d14");
   const rows = S.grid.length;
@@ -311,3 +313,9 @@ fetch("./content/levels.json")
     load(sv ? sv.li : 0);
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("11-bridge-td");
 sfx.mountMuteButton();
@@ -297,7 +298,8 @@ function drawRangePreview(x, y, range, color) {
 }
 
 function draw() {
-  D.softBg(ctx, canvas.width, canvas.height, "#0f172a", "#0c1220");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else D.softBg(ctx, canvas.width, canvas.height, "#0f172a", "#0c1220");
   bob += 0.015;
   drawPath();
 
@@ -428,3 +430,9 @@ fetch("./content/stages.json")
     hud();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

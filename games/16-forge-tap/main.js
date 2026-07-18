@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("16-forge-tap");
 sfx.mountMuteButton();
@@ -135,7 +136,8 @@ el("up").onclick = () => {
 };
 
 function drawForge() {
-  A.sky(ctx, 480, 270, "#21140e", "#21140e", "#0f0a06");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else A.sky(ctx, 480, 270, "#21140e", "#21140e", "#0f0a06");
 
   // anvil
   D.fillRoundRect(ctx, 160, 168, 160, 36, 6, "#57534e");
@@ -292,3 +294,9 @@ fetch("./content/recipes.json")
     hud();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

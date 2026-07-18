@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("14-merge-relics");
 sfx.mountMuteButton();
@@ -208,7 +209,8 @@ canvas.addEventListener("click", (ev) => {
 });
 
 function draw() {
-  A.sky(ctx, 480, 270, "#1a1410", "#1a1410", "#0c0a09");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else A.sky(ctx, 480, 270, "#1a1410", "#1a1410", "#0c0a09");
   D.fillRoundRect(ctx, 12, 8, 200, 36, 8, "rgba(0,0,0,.35)");
   ctx.fillStyle = "#fff7ed";
   ctx.font = "bold 12px sans-serif";
@@ -322,3 +324,9 @@ fetch("./content/orders.json")
     hud();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

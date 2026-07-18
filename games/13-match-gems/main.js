@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("13-match-gems");
 sfx.mountMuteButton();
@@ -322,7 +323,8 @@ function drawGemSprite(v, px, py, scale) {
 }
 
 function drawBoard() {
-  A.sky(ctx, 480, 270, "#1e1048", "#2e1065", "#12081f");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); ctx.fillStyle="rgba(20,10,30,.35)"; ctx.fillRect(0,0,480,270); /* PAINTED_BG_VEIL */ }
+  else A.sky(ctx, 480, 270, "#1e1048", "#2e1065", "#12081f");
   // decorative orbs
   for (let i = 0; i < 8; i++) {
     const ox = 40 + i * 55;
@@ -442,3 +444,9 @@ Promise.all([
   if (!d) S.running = false;
   requestAnimationFrame(loop);
 });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

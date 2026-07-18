@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("15-shelf-sort");
 sfx.mountMuteButton();
@@ -176,7 +177,8 @@ canvas.addEventListener("click", (ev) => {
 });
 
 function draw() {
-  A.sky(ctx, 480, 270, "#14231a", "#14231a", "#0a1510");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else A.sky(ctx, 480, 270, "#14231a", "#14231a", "#0a1510");
   ctx.fillStyle = "#ecfdf5";
   ctx.font = "bold 12px sans-serif";
   ctx.fillText(`第 ${S.li + 1} 关 · 步数 ${S.moves}`, 12, 18);
@@ -276,3 +278,9 @@ S.li = sv ? sv.li : 0;
 gen();
 if (!sv) S.running = false;
 requestAnimationFrame(loop);
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

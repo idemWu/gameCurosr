@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("08-sky-hop");
 sfx.mountMuteButton();
@@ -214,6 +215,7 @@ function drawPlat(pl) {
 }
 
 function draw() {
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
   if (!LEVELS.length) return;
   const L = LEVELS[S.li];
   A.sky(ctx, 480, 270, "#7dd3fc", "#7dd3fc", "#0ea5e9");
@@ -309,3 +311,9 @@ fetch("./content/levels.json")
     load(sv ? sv.li : 0);
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

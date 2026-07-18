@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("07-mine-delve");
 sfx.mountMuteButton();
@@ -391,7 +392,8 @@ function drawLamp() {
 }
 
 function draw() {
-  A.sky(ctx, 480, 270, "#1a1510", "#1a1510", "#0c0a09");
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
+  else A.sky(ctx, 480, 270, "#1a1510", "#1a1510", "#0c0a09");
   const dim = Math.max(0.3, Math.min(1, S.oil / S.maxOil));
 
   for (let y = 0; y < H; y++) {
@@ -473,3 +475,9 @@ fetch("./content/campaign.json")
     hud();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}

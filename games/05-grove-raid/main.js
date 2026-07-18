@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 const D = PolishDraw;
 const A = GameArt;
+let PAINTED_BG = null; /* ART_V3_PAINTED_BG */
 let SPR = null;
 const juice = PolishJuice.create();
 const sfx = PolishAudio.create("05-grove-raid");
@@ -222,6 +223,7 @@ function drawEnemy(e) {
 }
 
 function draw() {
+  if (PAINTED_BG) { ctx.drawImage(PAINTED_BG, 0, 0, 480, 270); }
   if (!DATA) return;
   const z = zone();
   A.sky(ctx, 480, 270, "#1a3d2a", "#1a3d2a", "#0f2418");
@@ -381,3 +383,9 @@ Promise.all([
     spawn();
     requestAnimationFrame(loop);
   });
+
+
+/* ART_V3_PAINTED_BG_LOAD */
+if (typeof A !== 'undefined' && A.loadImage) {
+  A.loadImage('./art/painted/bg_main.png').then((img) => { PAINTED_BG = img; }).catch(() => {});
+}
