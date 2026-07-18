@@ -4,34 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>晚潮钓手</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./ui-stardew.css" />
   <link rel="stylesheet" href="./lib/pause.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
-      <h1>晚潮钓手</h1>
-      <p>40 种海灵图鉴 · 多钓点任务线 · 约 15–30 分钟 · 无种田</p>
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>晚潮钓手</h1>
+        <p class="subtitle">图鉴钓鱼 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
     </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
       <aside class="hud">
-        <div class="stat"><span>图鉴</span><strong><span id="dex">0</span>/40</strong></div>
+        <div class="hud-inner">
+<div class="stat"><span>图鉴</span><strong><span id="dex">0</span>/40</strong></div>
         <div class="stat"><span>稀有</span><strong id="rare">0</strong></div>
         <div class="stat"><span>任务</span><strong><span id="qi">1</span>/8</strong></div>
         <div class="stat"><span>钓点</span><select id="spot"></select></div>
         <div id="qtext" class="hint">-</div>
         <div id="last" class="hint">尚未上钩</div>
-        <button id="cast" type="button">抛竿</button>
+        <button id="cast" class="primary" type="button">抛竿</button>
         <p class="hint">指针进入绿色甜蜜区时再点一次收杆。右下角可静音。</p>
+        </div>
       </aside>
     </main>
     <div id="overlay" class="overlay">
       <div class="panel">
-        <h2 id="overlay-title">晚潮钓手</h2>
-        <p id="overlay-msg"></p>
-        <button id="btn-continue" type="button">继续</button>
-        <button id="btn-start" type="button">新游戏</button>
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">晚潮钓手</h2>
+          <p id="overlay-msg"></p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
       </div>
     </div>
   </div>
@@ -41,6 +52,6 @@
   <script src="./lib/juice.js"></script>
   <script src="./lib/audio.js"></script>
   <script src="./lib/art.js"></script>
-<script src="./main.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>

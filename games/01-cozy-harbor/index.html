@@ -4,28 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>港湾日记</title>
-  <link rel="stylesheet" href="./ui-harbor.css" />
+  <link rel="stylesheet" href="./ui-stardew.css" />
   <link rel="stylesheet" href="./lib/pause.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
       <div class="brand">
-        <div class="eyebrow">港湾小镇</div>
+        <div class="eyebrow">gameCurosr</div>
         <h1>港湾日记</h1>
-        <p class="subtitle">参考星露谷 UI 气质 · 七天日常 · 约 12–25 分钟</p>
+        <p class="subtitle">七天海边日常 · 星露谷风 UI · 可存档</p>
       </div>
-      <div class="chip">手绘样板 · 无种田</div>
+      <div class="chip">手绘风格 · 无种田</div>
     </header>
-
     <main class="stage">
       <section class="stage-frame" aria-label="游戏画面">
         <canvas id="game" width="480" height="270"></canvas>
       </section>
-
       <aside class="hud">
         <div class="hud-inner">
-          <p class="hud-title">今日清单</p>
+<p class="hud-title">今日清单</p>
           <div class="stat-grid">
             <div class="stat-card">
               <span class="label">日程</span>
@@ -61,26 +59,25 @@
           <p class="hint">WASD 移动 · E 交谈 · 做完待办后点「睡觉/结束今天」</p>
 
           <div class="actions">
-            <button id="endday" type="button" class="primary">结束今天</button>
-            <button id="travel" type="button" class="secondary">前往下一区域</button>
+            <button id="endday" class="primary" type="button">结束今天</button>
+            <button id="travel" class="secondary" type="button">前往下一区域</button>
           </div>
+        </div>
         </div>
       </aside>
     </main>
-
     <div id="overlay" class="overlay">
       <div class="panel">
         <div class="panel-inner">
-          <div class="seal">港</div>
+          <div class="seal">玩</div>
           <h2 id="overlay-title">港湾日记</h2>
           <p id="overlay-msg">新的一周开始了。去码头、广场和灯塔坡见见大家吧！</p>
           <button id="btn-continue" type="button" class="warm">继续游戏</button>
-          <button id="btn-start" type="button" class="primary">新的一周</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
         </div>
       </div>
     </div>
   </div>
-
   <script src="./lib/save.js"></script>
   <script src="./lib/pause.js"></script>
   <script src="./lib/draw.js"></script>

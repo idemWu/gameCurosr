@@ -1,18 +1,1 @@
-@import url("./art.css");
-
-:root {
-  --bg: #04151f;
-  --bg2: #0a2433;
-  --accent: #5eead4;
-  --accent-2: #67e8f9;
-  --border: rgba(94, 234, 212, 0.4);
-  --panel: rgba(8, 28, 40, 0.92);
-}
-
-select {
-  background: #123248;
-  color: var(--text);
-  border: 1px solid rgba(94, 234, 212, 0.35);
-  border-radius: 8px;
-  padding: 4px 6px;
-}
+@import url("./ui-stardew.css");

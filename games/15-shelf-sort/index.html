@@ -4,30 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>书架整理</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./ui-stardew.css" />
   <link rel="stylesheet" href="./lib/pause.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
-      <h1>书架整理</h1>
-      <p>40 关收纳谜题 · 约 30–50 分钟</p>
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>书架整理</h1>
+        <p class="subtitle">收纳关卡 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
     </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
       <aside class="hud">
-        <div class="stat"><span>关卡</span><strong><span id="level">1</span>/40</strong></div>
+        <div class="hud-inner">
+<div class="stat"><span>关卡</span><strong><span id="level">1</span>/40</strong></div>
         <div class="stat"><span>步数</span><strong id="moves">0</strong></div>
-        <button id="reset" type="button" class="secondary">重排本关</button>
+        <button id="reset" class="primary" type="button">重排本关</button>
         <p class="hint">同色书籍归列。点选列顶书籍再点目标列移动。</p>
+        </div>
       </aside>
     </main>
     <div id="overlay" class="overlay">
       <div class="panel">
-        <h2 id="overlay-title">书架整理</h2>
-        <p id="overlay-msg"></p>
-        <button id="btn-continue" type="button">继续</button>
-        <button id="btn-start" type="button">新游戏</button>
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">书架整理</h2>
+          <p id="overlay-msg"></p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +48,6 @@
   <script src="./lib/juice.js"></script>
   <script src="./lib/audio.js"></script>
   <script src="./lib/art.js"></script>
-<script src="./main.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>

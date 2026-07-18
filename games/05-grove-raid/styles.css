@@ -1,10 +1,1 @@
-@import url("./art.css");
-
-:root {
-  --bg: #0f2418;
-  --bg2: #1d3b28;
-  --accent: #86efac;
-  --accent-2: #f59e0b;
-  --border: color-mix(in srgb, #86efac 45%, transparent);
-  --panel: color-mix(in srgb, #1d3b28 92%, transparent);
-}
+@import url("./ui-stardew.css");
