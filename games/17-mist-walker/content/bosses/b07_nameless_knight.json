@@ -1,0 +1,70 @@
+{
+  "id": "b07_nameless_knight",
+  "name": "失名骑士",
+  "hp": 940,
+  "souls": 5000,
+  "phases": [
+    {
+      "hpAbove": 0.5,
+      "moves": [
+        {
+          "id": "thrust",
+          "name": "突刺",
+          "damage": 56,
+          "startup": 14,
+          "active": 6,
+          "recovery": 22,
+          "range": 70,
+          "parryable": true
+        },
+        {
+          "id": "guardbreak",
+          "name": "破防斩",
+          "damage": 66,
+          "startup": 32,
+          "active": 8,
+          "recovery": 36,
+          "range": 76,
+          "parryable": false
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.5,
+      "moves": [
+        {
+          "id": "thrust",
+          "name": "突刺",
+          "damage": 62,
+          "startup": 11,
+          "active": 6,
+          "recovery": 18,
+          "range": 70,
+          "parryable": true
+        },
+        {
+          "id": "cross",
+          "name": "十字剑舞",
+          "damage": 40,
+          "startup": 12,
+          "active": 5,
+          "recovery": 8,
+          "range": 60,
+          "hits": 3,
+          "parryable": true
+        },
+        {
+          "id": "guardbreak",
+          "name": "破防斩",
+          "damage": 74,
+          "startup": 26,
+          "active": 8,
+          "recovery": 30,
+          "range": 76,
+          "parryable": false
+        }
+      ]
+    }
+  ]
+}

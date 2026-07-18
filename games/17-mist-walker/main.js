@@ -10,14 +10,21 @@ const ZONE_FILES = {
   z01: "./content/zones/z01-mist-dock.json",
   z02: "./content/zones/z02-wreck.json",
   z03: "./content/zones/z03-lighthouse.json",
+  z04: "./content/zones/z04.json",
+  z05: "./content/zones/z05.json",
+  z06: "./content/zones/z06.json",
 };
 const BOSS_FILES = {
   b01_dock_warden: "./content/bosses/b01_dock_warden.json",
   b02_wreck_maw: "./content/bosses/b02_wreck_maw.json",
   b03_shade_walker: "./content/bosses/b03_shade_walker.json",
   b04_twin_lampkeepers: "./content/bosses/b04_twin_lampkeepers.json",
+  b05_cellar_keeper: "./content/bosses/b05_cellar_keeper.json",
+  b06_salt_matriarch: "./content/bosses/b06_salt_matriarch.json",
+  b07_nameless_knight: "./content/bosses/b07_nameless_knight.json",
+  b08_bell_bishop: "./content/bosses/b08_bell_bishop.json",
 };
-const S1_FINAL_BOSS = "b04_twin_lampkeepers";
+const STAGE_FINAL_BOSS = "b08_bell_bishop";
 
 const K = new Set();
 window.addEventListener("keydown", (e) => {
@@ -41,6 +48,7 @@ const S = {
   bossesDead: {},
   stats: { vigor: 0, endurance: 0, strength: 0 },
   charms: [],
+  skills: [],
   estusMax: 3,
   knives: 0,
   menu: null, // 'bonfire' | null
@@ -50,12 +58,19 @@ const S = {
 
 const zone = () => ZONES[S.zoneId];
 
+function hasSkill(id) { return S.skills.includes(id); }
 function derived() {
   return {
     maxHp: CFG.difficulty.playerBaseHp + S.stats.vigor * CFG.leveling.stats.vigor.hpPer,
     maxSt: CFG.difficulty.playerBaseStamina + S.stats.endurance * CFG.leveling.stats.endurance.stPer,
     dmgBonus: S.stats.strength * CFG.leveling.stats.strength.dmgPer,
     defMul: S.charms.includes("charm_iron") ? 0.9 : 1,
+    moveMul: S.charms.includes("charm_swift") ? 1.15 : 1,
+    parryWindow: CFG.difficulty.parryWindowFrames + (hasSkill("sk_parry_window") ? 3 : 0),
+    estusHeal: 55 + (hasSkill("sk_estus_potency") ? 25 : 0),
+    dodgeMul: hasSkill("sk_dodge_dist") ? 1.2 : 1,
+    stRegenMul: hasSkill("sk_stamina_surge") ? 1.3 : 1,
+    soulMul: hasSkill("sk_soul_greed") ? 1.15 : 1,
   };
 }
 
@@ -78,7 +93,7 @@ function levelCost() {
 function persist() {
   const p = S.player;
   save.save({
-    zoneId: S.zoneId, souls: p.souls, stats: S.stats, charms: S.charms,
+    zoneId: S.zoneId, souls: p.souls, stats: S.stats, charms: S.charms, skills: S.skills,
     estusMax: S.estusMax, knives: S.knives,
     dropped: S.droppedSouls, bossesDead: S.bossesDead, ended: S.ended,
   });
@@ -87,6 +102,7 @@ function restore(d) {
   S.zoneId = d.zoneId || "z01";
   S.stats = d.stats || S.stats;
   S.charms = d.charms || [];
+  S.skills = d.skills || [];
   S.estusMax = d.estusMax || 3;
   S.knives = d.knives || 0;
   S.droppedSouls = d.dropped || null;
@@ -175,13 +191,14 @@ function playerAttackHits(atk) {
   for (const e of S.enemies) {
     if (!e.dead && hit(box, bodyBox(e))) {
       e.hp -= dmg; e.state = "hurt"; e.t = 0; p.hitLanded = true;
-      if (e.hp <= 0) { e.dead = true; p.souls += e.def.souls; }
+      if (e.hp <= 0) { e.dead = true; p.souls += Math.floor(e.def.souls * derived().soulMul); if (S.charms.includes("charm_leech")) p.hp = Math.min(p.maxHp, p.hp + 4); }
     }
   }
   for (const b of S.bosses) {
     if (!b.dead && b.active && hit(box, bodyBox(b, true))) {
       const mult = p.riposte > 0 ? 2.4 : 1;
       b.hp -= dmg * mult; p.hitLanded = true;
+      if (atk === CFG.combat.heavyAttack && hasSkill("sk_heavy_stagger") && Math.random() < 0.25 && b.state !== "stagger") { b.state = "stagger"; b.t = 30; }
       if (b.hp <= 0) bossDown(b);
     }
   }
@@ -193,25 +210,25 @@ function upPlayer() {
   if (p.iframes > 0) p.iframes -= 1;
   if (p.parryOpen > 0) p.parryOpen -= 1;
   if (p.riposte > 0) p.riposte -= 1;
-  if (p.stDelay > 0) p.stDelay -= 1; else p.st = Math.min(p.maxSt, p.st + C.staminaRegenPerFrame);
+  if (p.stDelay > 0) p.stDelay -= 1; else p.st = Math.min(p.maxSt, p.st + C.staminaRegenPerFrame * derived().stRegenMul);
 
   const busy = ["dodge", "light", "heavy", "parry", "hurt", "dead"].includes(p.state);
   if (!busy) {
     let mv = 0;
     if (K.has("a")) { mv = -1; p.face = -1; }
     if (K.has("d")) { mv = 1; p.face = 1; }
-    p.vx = mv * 2.0;
+    p.vx = mv * 2.0 * derived().moveMul;
     p.state = mv ? "run" : "idle";
     if (K.has(" ") && p.st >= C.dodge.stamina) { p.state = "dodge"; p.t = 0; p.st -= C.dodge.stamina; p.stDelay = C.staminaRegenDelay; p.iframes = CFG.difficulty.dodgeIframes; }
     else if (K.has("j") && p.st >= C.lightAttack.stamina) { p.state = "light"; p.t = 0; p.st -= C.lightAttack.stamina; p.stDelay = C.staminaRegenDelay; p.hitLanded = false; }
     else if (K.has("k") && p.st >= C.heavyAttack.stamina) { p.state = "heavy"; p.t = 0; p.st -= C.heavyAttack.stamina; p.stDelay = C.staminaRegenDelay; p.hitLanded = false; }
-    else if (K.has("l") && p.st >= C.parry.stamina) { p.state = "parry"; p.t = 0; p.st -= C.parry.stamina; p.stDelay = C.staminaRegenDelay; p.parryOpen = CFG.difficulty.parryWindowFrames; }
-    else if (K.has("f") && p.estus > 0 && p.hp < p.maxHp) { p.estus -= 1; p.hp = Math.min(p.maxHp, p.hp + 55); K.delete("f"); }
+    else if (K.has("l") && p.st >= C.parry.stamina) { p.state = "parry"; p.t = 0; p.st -= C.parry.stamina; p.stDelay = C.staminaRegenDelay; p.parryOpen = derived().parryWindow; }
+    else if (K.has("f") && p.estus > 0 && p.hp < p.maxHp) { p.estus -= 1; p.hp = Math.min(p.maxHp, p.hp + derived().estusHeal); K.delete("f"); }
     else if (K.has("q") && S.knives > 0) { K.delete("q"); S.knives -= 1; S.projectiles.push({ x: p.x, y: p.y - 26, vx: p.face * 5, from: "player", dmg: 26 }); }
     else if (K.has("e")) interact();
   }
 
-  if (p.state === "dodge") { p.vx = p.face * C.dodge.speed; if (p.t >= C.dodge.duration) p.state = "idle"; }
+  if (p.state === "dodge") { p.vx = p.face * C.dodge.speed * derived().dodgeMul; if (p.t >= C.dodge.duration) p.state = "idle"; }
   if (p.state === "light" || p.state === "heavy") {
     const atk = p.state === "light" ? C.lightAttack : C.heavyAttack;
     p.vx = 0;
@@ -221,6 +238,11 @@ function upPlayer() {
   if (p.state === "parry" && p.t >= C.parry.recovery) p.state = "idle";
   if (p.state === "hurt" && p.t >= 24) p.state = "idle";
   if (p.state !== "dead") p.x = Math.max(10, Math.min(zone().width - 10, p.x + p.vx));
+  if (zone().poisonPools && p.state !== "dead") {
+    for (const pool of zone().poisonPools) {
+      if (p.x > pool.x && p.x < pool.x + pool.w) { p.hp -= 0.35; if (p.hp <= 0) { die(); break; } }
+    }
+  }
 
   // boss gates
   for (const b of S.bosses) {
@@ -252,7 +274,7 @@ function interact() {
     if (Math.abs(p.x - ex.x) < 30) {
       if (ex.requiresBoss && !S.bossesDead[ex.requiresBoss]) { flash("浓雾封路——先击败本区首领"); return; }
       if (!ex.to || !ZONES[ex.to]) {
-        if (S.bossesDead[S1_FINAL_BOSS]) { S.ended = true; persist(); showOverlay("S1 完成", "灯塔崖之后的旧城地窖将在 S2 开放。", false); }
+        if (S.bossesDead[STAGE_FINAL_BOSS]) { S.ended = true; persist(); showOverlay("S2 完成", "钟楼之后的溺水教区将在 S3 开放。", false); }
         return;
       }
       const target = ZONES[ex.to];
@@ -270,12 +292,16 @@ function bonfireOptions() {
     { id: "rest", label: `休息（回满 · 存档 · 敌人重置）` },
     { id: "level", label: `升级（当前消耗 ${levelCost()} 魂）` },
   ];
-  if (CFG.vendor.zone === S.zoneId) {
+  if ((CFG.vendor.zones || [CFG.vendor.zone]).includes(S.zoneId)) {
     for (const it of CFG.vendor.items) {
-      const owned = it.id === "estus_up" ? S.estusMax - 3 : (it.id === "charm_iron" ? (S.charms.includes("charm_iron") ? 1 : 0) : 0);
+      const owned = it.id === "estus_up" ? S.estusMax - 3 : (it.id.startsWith("charm_") ? (S.charms.includes(it.id) ? 1 : 0) : 0);
       if (it.max && owned >= it.max) continue;
       opts.push({ id: `buy:${it.id}`, label: `购买 ${it.name}（${it.cost} 魂）` });
     }
+  }
+  for (const sk of CFG.skills || []) {
+    if (S.skills.includes(sk.id)) continue;
+    opts.push({ id: `skill:${sk.id}`, label: `技能 ${sk.name}·${sk.desc}（${sk.cost} 魂）` });
   }
   opts.push({ id: "close", label: "离开" });
   return opts;
@@ -309,10 +335,14 @@ function bonfireAct(optId) {
       p.souls -= it.cost;
       if (it.id === "estus_up") { S.estusMax += 1; p.estus = S.estusMax; }
       if (it.id === "throwing_knife") S.knives += 5;
-      if (it.id === "charm_iron") S.charms.push("charm_iron");
+      if (it.id.startsWith("charm_")) S.charms.push(it.id);
       flash(`获得 ${it.name}`);
       persist();
     } else flash("魂不足");
+  } else if (optId.startsWith("skill:")) {
+    const sk = CFG.skills.find((x) => `skill:${x.id}` === optId);
+    if (p.souls >= sk.cost) { p.souls -= sk.cost; S.skills.push(sk.id); flash(`习得 ${sk.name}`); persist(); }
+    else flash("魂不足");
   } else if (optId === "close") S.menu = null;
 }
 function upMenu() {
@@ -365,7 +395,7 @@ function upProjectiles() {
 function bossDown(b) {
   b.dead = true;
   S.bossesDead[b.slot.id] = true;
-  S.player.souls += b.def.souls;
+  S.player.souls += Math.floor(b.def.souls * derived().soulMul);
   if (!S.bosses.some((x) => x.active && !x.dead)) $("bossbar").classList.add("hidden");
   flash(`击破 ${b.def.name}！+${b.def.souls} 魂`);
   persist();
@@ -388,6 +418,14 @@ function upBoss(b) {
     if (m.teleport && b.t === m.startup) {
       b.x = p.x + (Math.random() < 0.5 ? -70 : 70);
       b.x = Math.max(30, Math.min(zone().width - 30, b.x));
+    } else if (m.summon && b.t === m.startup) {
+      const def = ENEMY_DEFS[m.summon];
+      if (def && S.enemies.filter((e) => !e.dead && e.summoned).length < 2) {
+        S.enemies.push({ type: m.summon, def, hp: def.hp, x: b.x + (b.face * -60), y: 230, face: b.face, state: "idle", t: 0, dead: false, shotCd: 0, summoned: true });
+      }
+    } else if (m.projectile && b.t === m.startup) {
+      const dir = p.x > b.x ? 1 : -1;
+      S.projectiles.push({ x: b.x, y: b.y - 30, vx: dir * 3.6, from: "enemy", dmg: m.damage });
     } else if (b.t === m.startup) {
       if (Math.abs(p.x - b.x) < m.range + 10 && p.state !== "dead") {
         if (p.parryOpen > 0 && m.parryable) { p.parryOpen = 0; p.riposte = 40; b.state = "stagger"; b.t = 0; flash("弹反成功！处决窗口"); }
@@ -414,6 +452,9 @@ function draw() {
   ctx.fillStyle = "rgba(143,179,199,.06)"; ctx.fillRect(0, 100, 480, 80);
   for (const pl of Z.platforms) { ctx.fillStyle = "#1c2836"; ctx.fillRect(pl.x - S.cam, pl.y, pl.w, 270 - pl.y); }
 
+  if (Z.poisonPools) {
+    for (const pool of Z.poisonPools) { ctx.fillStyle = "rgba(101,163,13,.45)"; ctx.fillRect(pool.x - S.cam, 222, pool.w, 8); }
+  }
   const bf = Z.bonfires[0];
   ctx.fillStyle = "#f97316"; ctx.fillRect(bf.x - S.cam - 3, 214, 6, 12);
   ctx.fillStyle = "#fbbf24"; ctx.fillRect(bf.x - S.cam - 1, 208, 3, 7);
@@ -535,8 +576,8 @@ async function boot() {
   spawnEnemies();
   spawnBosses();
   showOverlay(
-    "雾港行者 · S1",
-    "三区互联：雾码头→沉船腹地→灯塔崖。篝火可升级与购物（E 打开菜单，W/S 选择）。隐藏中Boss「影子行者」。",
+    "雾港行者 · S2",
+    "六区互联：雾码头→…→钟楼回廊。新增毒潭、召唤系Boss、技能树与护符。隐藏Boss：影子行者、失名骑士。",
     !!(d && !d.ended)
   );
   loop();

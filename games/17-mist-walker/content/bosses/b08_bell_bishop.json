@@ -1,0 +1,81 @@
+{
+  "id": "b08_bell_bishop",
+  "name": "钟楼主教",
+  "hp": 1150,
+  "souls": 5600,
+  "phases": [
+    {
+      "hpAbove": 0.55,
+      "moves": [
+        {
+          "id": "toll",
+          "name": "丧钟",
+          "damage": 40,
+          "startup": 36,
+          "active": 10,
+          "recovery": 44,
+          "range": 170,
+          "parryable": false
+        },
+        {
+          "id": "staff",
+          "name": "杖击",
+          "damage": 48,
+          "startup": 20,
+          "active": 7,
+          "recovery": 26,
+          "range": 62,
+          "parryable": true
+        },
+        {
+          "id": "summon",
+          "name": "唤侍",
+          "damage": 0,
+          "startup": 40,
+          "active": 1,
+          "recovery": 50,
+          "range": 0,
+          "parryable": false,
+          "summon": "bell_acolyte"
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.3,
+      "moves": [
+        {
+          "id": "toll",
+          "name": "丧钟",
+          "damage": 50,
+          "startup": 30,
+          "active": 10,
+          "recovery": 38,
+          "range": 170,
+          "parryable": false
+        },
+        {
+          "id": "staff",
+          "name": "杖击",
+          "damage": 54,
+          "startup": 15,
+          "active": 7,
+          "recovery": 20,
+          "range": 62,
+          "parryable": true
+        },
+        {
+          "id": "summon",
+          "name": "唤侍",
+          "damage": 0,
+          "startup": 34,
+          "active": 1,
+          "recovery": 44,
+          "range": 0,
+          "parryable": false,
+          "summon": "abyss_spawn"
+        }
+      ]
+    }
+  ]
+}
