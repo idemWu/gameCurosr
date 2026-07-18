@@ -332,12 +332,18 @@ function drawScene() {
   });
 
   if (state.bubble) {
-    // bottom dialogue box
-    A.panel(ctx, 16, 214, 448, 48, {
-      bg: "#f5e6c8",
+    // Stardew-like dialogue: wood outer + parchment inner
+    A.panel(ctx, 14, 212, 452, 52, {
+      bg: "#7a4a22",
       border: "#3d2214",
-      r: 8,
-      bw: 4,
+      r: 6,
+      bw: 3,
+    });
+    A.panel(ctx, 20, 218, 440, 40, {
+      bg: "#f8e7c3",
+      border: "#2b180c",
+      r: 4,
+      bw: 2,
     });
     A.text(ctx, state.bubble.text, 240, 243, {
       align: "center",
