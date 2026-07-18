@@ -1,8 +1,41 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>书架整理 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>书架整理</h1><p>40 关收纳 · 约 30–50 分钟</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>关卡 <span id="level">1</span>/40 · 步数 <span id="moves">0</span></div><button id="reset">重排</button><p class="hint">同色归列。完成40关。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">书架整理</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>书架整理</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>书架整理</h1>
+      <p>40 关收纳谜题 · 约 30–50 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>关卡</span><strong><span id="level">1</span>/40</strong></div>
+        <div class="stat"><span>步数</span><strong id="moves">0</strong></div>
+        <button id="reset" type="button" class="secondary">重排本关</button>
+        <p class="hint">同色书籍归列。点选列顶书籍再点目标列移动。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">书架整理</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续</button>
+        <button id="btn-start" type="button">新游戏</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

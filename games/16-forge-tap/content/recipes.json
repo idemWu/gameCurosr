@@ -1,1 +1,18 @@
-{"recipes": [{"id": 1, "name": "铜钉", "cost": 40}, {"id": 2, "name": "银饰", "cost": 80}, {"id": 3, "name": "星钢刃", "cost": 140}, {"id": 4, "name": "旅人壶", "cost": 200}, {"id": 5, "name": "守夜灯", "cost": 280}, {"id": 6, "name": "潮汐锚", "cost": 380}, {"id": 7, "name": "月纹盾", "cost": 500}, {"id": 8, "name": "港湾大钟", "cost": 700}]}
+{
+  "recipes": [
+    { "id": 1, "name": "铜钉", "zoneMin": 0.28, "zoneMax": 0.52, "desc": "入门锻打" },
+    { "id": 2, "name": "银饰", "zoneMin": 0.32, "zoneMax": 0.50, "desc": "精巧淬火" },
+    { "id": 3, "name": "星钢刃", "zoneMin": 0.38, "zoneMax": 0.48, "desc": "锋芒初现" },
+    { "id": 4, "name": "旅人壶", "zoneMin": 0.30, "zoneMax": 0.46, "desc": "圆润壶身" },
+    { "id": 5, "name": "守夜灯", "zoneMin": 0.40, "zoneMax": 0.52, "desc": "暖光护罩" },
+    { "id": 6, "name": "潮汐锚", "zoneMin": 0.42, "zoneMax": 0.50, "desc": "沉重锚链" },
+    { "id": 7, "name": "月纹盾", "zoneMin": 0.44, "zoneMax": 0.52, "desc": "月光淬火" },
+    { "id": 8, "name": "港湾大钟", "zoneMin": 0.46, "zoneMax": 0.54, "desc": "洪钟铸成" },
+    { "id": 9, "name": "龙牙矛", "zoneMin": 0.48, "zoneMax": 0.56, "desc": "锐利枪尖" },
+    { "id": 10, "name": "秘银链", "zoneMin": 0.36, "zoneMax": 0.44, "desc": "低温编织" },
+    { "id": 11, "name": "凤凰冠", "zoneMin": 0.50, "zoneMax": 0.58, "desc": "烈焰成型" },
+    { "id": 12, "name": "星陨锤", "zoneMin": 0.52, "zoneMax": 0.60, "desc": "陨石核心" },
+    { "id": 13, "name": "霜纹剑", "zoneMin": 0.34, "zoneMax": 0.42, "desc": "极寒淬炼" },
+    { "id": 14, "name": "永恒炉心", "zoneMin": 0.54, "zoneMax": 0.62, "desc": "锻火传世" }
+  ]
+}

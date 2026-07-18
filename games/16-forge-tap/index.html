@@ -1,10 +1,45 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>铁匠一点通 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>铁匠一点通</h1><p>8 配方章节 · 约 30–45 分钟</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>金属 <span id="metal">0</span> · 锤Lv <span id="hammer">1</span></div>
-<div>配方 <span id="rec">0</span>/8 · <span id="rname">-</span></div>
-<button id="tap">捶打</button><button id="up">升级锤子</button><button id="craft">研究当前配方</button><p class="hint">解锁全部8个配方结局。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">铁匠一点通</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>铁匠锻炉</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>铁匠锻炉</h1>
+      <p>14 配方锻打 · 控温甜区 · 约 35–50 分钟</p>
+    </header>
+    <main>
+      <canvas id="game" width="480" height="270"></canvas>
+      <aside class="hud">
+        <div class="stat"><span>配方</span><strong><span id="rec">0</span>/<span id="rtotal">14</span></strong></div>
+        <div class="stat"><span>当前</span><strong id="rname">—</strong></div>
+        <div class="stat"><span>锤艺</span><strong>Lv <span id="hammer">1</span></strong></div>
+        <div class="stat"><span>炉温</span><strong id="heatpct">0%</strong></div>
+        <button id="heat" type="button">鼓风加热</button>
+        <button id="forge" type="button">淬火锻造</button>
+        <button id="up" type="button" class="secondary">升级锤艺</button>
+        <p class="hint">鼓风升温，炉温落入甜区时锻造。锤艺加宽甜区、减缓冷却。</p>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">铁匠锻炉</h2>
+        <p id="overlay-msg"></p>
+        <button id="btn-continue" type="button">继续</button>
+        <button id="btn-start" type="button">新游戏</button>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

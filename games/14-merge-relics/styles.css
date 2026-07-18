@@ -1,9 +1,48 @@
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0f172a;color:#f8fafc;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-#app{max-width:960px;margin:0 auto;padding:16px}.top h1{margin:0 0 4px}.top p{margin:0 0 12px;opacity:.85}
-main{display:grid;grid-template-columns:1fr 250px;gap:12px}@media(max-width:720px){main{grid-template-columns:1fr}}
-#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #334155;border-radius:8px}
-.hud{background:#1e293b;border-radius:8px;padding:12px;font-size:.9rem}.hint{font-size:.8rem;opacity:.85}
-button{border:none;background:#38bdf8;color:#0f172a;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;width:100%;margin-top:6px}
-.row{display:flex;flex-wrap:wrap;gap:6px}.row button{width:auto}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:30}.overlay.hidden{display:none}
-.panel{background:#1e293b;border:2px solid #38bdf8;border-radius:12px;padding:20px;max-width:440px;text-align:center}.panel button{margin-top:8px}
+@import url("./theme.css");
+
+:root {
+  --bg: #1a1410;
+  --panel: #2a2118;
+  --panel-2: #3d3226;
+  --accent: #fbbf24;
+  --accent-2: #c084fc;
+  --border: #6b5344;
+  --text: #fff7ed;
+  --muted: #d6c4a8;
+}
+
+.order-panel {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--panel-2) 80%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.order-title {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.order-desc {
+  margin: 4px 0 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.order-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #0f0a06;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.order-bar > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.2s ease;
+}
