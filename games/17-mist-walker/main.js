@@ -1,6 +1,10 @@
 /* 雾港行者 S1 — multi-zone souls engine
  * Zones z01-z03, bosses b01-b04 (incl. optional mid-boss), vendor + level-up at bonfire.
  */
+import { loadHandPaintedArt } from "./src/art/assets.js";
+import { drawFrame, playerFrame, enemyFrame, bossFrame } from "./src/art/sprite-renderer.js";
+import { drawHandPaintedDock } from "./src/art/background-renderer.js";
+
 const $ = (id) => document.getElementById(id);
 const canvas = $("game");
 const ctx = canvas.getContext("2d");
@@ -50,6 +54,7 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => K.delete(e.key.toLowerCase()));
 
 let CFG = null, ENEMY_DEFS = null;
+let HAND_ART = { ready: false, assets: {} };
 const ZONES = {}, BOSSES = {};
 
 const S = {
@@ -741,6 +746,66 @@ function drawBossSprite(b) {
   px(wx + b.face * 28, y - 48, b.face * 8, 14, final ? "#9ae6ff" : "#d6c7ca");
 }
 
+function handEnemyArchetype(enemy) {
+  const style = enemyStyle(enemy.type || "");
+  if (style === "knight") return 1;
+  if (style === "caster" || style === "archer") return 2;
+  return 0;
+}
+
+function drawHandPaintedActors() {
+  if (!HAND_ART.ready || S.zoneId !== "z01") return false;
+  const p = S.player;
+  const playerAsset = HAND_ART.assets.player;
+  const enemyAsset = HAND_ART.assets.z01Enemies;
+  const bossAsset = HAND_ART.assets.b01;
+
+  for (const enemy of S.enemies) {
+    if (enemy.dead) continue;
+    drawFrame(
+      ctx,
+      enemyAsset,
+      enemyFrame(enemy, handEnemyArchetype(enemy)),
+      enemy.x - S.cam,
+      enemy.y + 2,
+      enemy.elite ? 106 : 88,
+      enemy.elite ? 102 : 86,
+      enemy.face > 0,
+      enemy.state === "hurt" ? 0.72 : 1
+    );
+  }
+
+  for (const boss of S.bosses) {
+    if (boss.dead) continue;
+    drawFrame(
+      ctx,
+      bossAsset,
+      bossFrame(boss),
+      boss.x - S.cam,
+      boss.y + 4,
+      138,
+      164,
+      boss.face > 0,
+      boss.state === "stagger" ? 0.82 : 1
+    );
+  }
+
+  if (p.state !== "dead") {
+    drawFrame(
+      ctx,
+      playerAsset,
+      playerFrame(p),
+      p.x - S.cam,
+      p.y + 3,
+      p.state === "dodge" ? 112 : 94,
+      p.state === "dodge" ? 82 : 104,
+      p.face < 0,
+      p.iframes > 0 && Math.floor(p.t / 2) % 2 ? 0.48 : 1
+    );
+  }
+  return true;
+}
+
 function updateAndDrawParticles() {
   for (const p of S.particles) {
     p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.life -= 1;
@@ -756,7 +821,21 @@ function draw() {
   const Z = zone();
   const A = ZONE_ART[S.zoneId] || ZONE_ART.z01;
   S.cam = Math.max(0, Math.min(Z.width - 480, p.x - 220));
-  drawBackdrop(A, Z);
+  const paintedScene = HAND_ART.ready && S.zoneId === "z01"
+    ? drawHandPaintedDock(ctx, HAND_ART, S.cam, Z.width, performance.now())
+    : null;
+  if (!paintedScene) {
+    drawBackdrop(A, Z);
+  } else {
+    // Preserve collision readability over the painted dock floor.
+    ctx.save();
+    ctx.globalAlpha = 0.34;
+    for (const pl of Z.platforms) {
+      px(pl.x - S.cam, pl.y, pl.w, 2, "#9fc9d4");
+      if (pl.y < 220) px(pl.x - S.cam, pl.y + 2, pl.w, 270 - pl.y, "#08141c");
+    }
+    ctx.restore();
+  }
 
   if (Z.poisonPools) {
     for (const pool of Z.poisonPools) {
@@ -785,14 +864,19 @@ function draw() {
     ctx.globalAlpha = 1; ctx.fillStyle = "#d9f99d"; ctx.beginPath(); ctx.arc(sx, 216, pulse, 0, Math.PI * 2); ctx.fill();
   }
 
-  for (const e of S.enemies) if (!e.dead) drawEnemySprite(e);
+  const handActors = drawHandPaintedActors();
+  if (!handActors) {
+    for (const e of S.enemies) if (!e.dead) drawEnemySprite(e);
+  }
   for (const pr of S.projectiles) {
     const x = pr.x - S.cam, c = pr.from === "enemy" ? "#fb7185" : "#93c5fd";
     ctx.globalAlpha = 0.25; px(x - 9, pr.y - 5, 18, 10, c); ctx.globalAlpha = 1;
     px(x - 4, pr.y - 2, 8, 4, c);
   }
-  for (const b of S.bosses) if (!b.dead) drawBossSprite(b);
-  if (p.state !== "dead") drawPlayerSprite(p);
+  if (!handActors) {
+    for (const b of S.bosses) if (!b.dead) drawBossSprite(b);
+    if (p.state !== "dead") drawPlayerSprite(p);
+  }
   updateAndDrawParticles();
   if (flashMsg) {
     ctx.fillStyle = "rgba(0,0,0,.65)"; ctx.fillRect(30, 18, 420, 26);
@@ -879,11 +963,12 @@ function loop() {
 
 /* ---------- boot ---------- */
 async function boot() {
-  const [cfg, enemies] = await Promise.all([
+  const [cfg, enemies, art] = await Promise.all([
     fetch("./content/config.json").then((r) => r.json()),
     fetch("./content/enemies.json").then((r) => r.json()),
+    loadHandPaintedArt(),
   ]);
-  CFG = cfg; ENEMY_DEFS = enemies;
+  CFG = cfg; ENEMY_DEFS = enemies; HAND_ART = art;
   await Promise.all(Object.entries(ZONE_FILES).map(async ([id, f]) => { ZONES[id] = await fetch(f).then((r) => r.json()); }));
   await Promise.all(Object.entries(BOSS_FILES).map(async ([id, f]) => { BOSSES[id] = await fetch(f).then((r) => r.json()); }));
   const d = save.load();

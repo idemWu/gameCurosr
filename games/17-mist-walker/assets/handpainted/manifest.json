@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "style": "dark-maritime-watercolor-engraving",
+  "assets": {
+    "player": {
+      "path": "./assets/handpainted/characters/player/sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 4,
+      "rows": 3
+    },
+    "z01Enemies": {
+      "path": "./assets/handpainted/characters/enemies/z01-sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 3
+    },
+    "b01": {
+      "path": "./assets/handpainted/characters/bosses/b01-sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 4,
+      "rows": 2
+    },
+    "z01Background": {
+      "path": "./assets/handpainted/backgrounds/z01/background.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "z01Foreground": {
+      "path": "./assets/handpainted/backgrounds/z01/foreground.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "ui": {
+      "path": "./assets/handpainted/ui/sheet.png",
+      "width": 1536,
+      "height": 1024
+    }
+  }
+}
