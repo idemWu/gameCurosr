@@ -1,0 +1,125 @@
+{
+  "floors": 25,
+  "quests": [
+    {
+      "id": "q1",
+      "text": "带回 4 块铜矿",
+      "type": "copper",
+      "amount": 4,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q2",
+      "text": "抵达第 4 层并返回",
+      "type": "depth",
+      "amount": 4,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q3",
+      "text": "收集 3 块秘银",
+      "type": "mythril",
+      "amount": 3,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q4",
+      "text": "在商人处补给 4 次灯油",
+      "type": "oil",
+      "amount": 4,
+      "rewardOil": 20,
+      "rewardPick": 1
+    },
+    {
+      "id": "q5",
+      "text": "击败第 10 层守卫痕迹（下到该层）",
+      "type": "bossdepth",
+      "amount": 10,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q6",
+      "text": "带回 9 块铜矿",
+      "type": "copper",
+      "amount": 9,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q7",
+      "text": "抵达第 9 层并返回",
+      "type": "depth",
+      "amount": 9,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q8",
+      "text": "收集 6 块秘银",
+      "type": "mythril",
+      "amount": 6,
+      "rewardOil": 20,
+      "rewardPick": 1
+    },
+    {
+      "id": "q9",
+      "text": "在商人处补给 9 次灯油",
+      "type": "oil",
+      "amount": 9,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q10",
+      "text": "击败第 20 层守卫痕迹（下到该层）",
+      "type": "bossdepth",
+      "amount": 20,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q11",
+      "text": "带回 14 块铜矿",
+      "type": "copper",
+      "amount": 14,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q12",
+      "text": "抵达第 14 层并返回",
+      "type": "depth",
+      "amount": 14,
+      "rewardOil": 20,
+      "rewardPick": 1
+    },
+    {
+      "id": "q13",
+      "text": "收集 8 块秘银",
+      "type": "mythril",
+      "amount": 8,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q14",
+      "text": "在商人处补给 14 次灯油",
+      "type": "oil",
+      "amount": 14,
+      "rewardOil": 20,
+      "rewardPick": 0
+    },
+    {
+      "id": "q15",
+      "text": "击败第 25 层守卫痕迹（下到该层）",
+      "type": "bossdepth",
+      "amount": 25,
+      "rewardOil": 20,
+      "rewardPick": 0
+    }
+  ]
+}

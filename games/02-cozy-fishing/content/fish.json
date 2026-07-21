@@ -1,0 +1,337 @@
+{
+  "fish": [
+    {
+      "id": "f0",
+      "name": "银闪鱼",
+      "spot": 0,
+      "rare": true
+    },
+    {
+      "id": "f1",
+      "name": "黄昏鳊",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f2",
+      "name": "墨点鲶",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f3",
+      "name": "潮声鲈",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f4",
+      "name": "雾礁鳗",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f5",
+      "name": "珊瑚雀",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f6",
+      "name": "深湾皇",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f7",
+      "name": "夜光鱿",
+      "spot": 2,
+      "rare": true
+    },
+    {
+      "id": "f8",
+      "name": "石斑仔",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f9",
+      "name": "青背鳉",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f10",
+      "name": "琥珀虾虎",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f11",
+      "name": "雪纹鳕",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f12",
+      "name": "紫晶海马",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f13",
+      "name": "鼓眼鲂",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f14",
+      "name": "沙丁浪",
+      "spot": 4,
+      "rare": true
+    },
+    {
+      "id": "f15",
+      "name": "月光鱼",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f16",
+      "name": "火鳍",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f17",
+      "name": "雾蓝灯笼",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f18",
+      "name": "珍珠蚌游",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f19",
+      "name": "风暴旗鱼",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f20",
+      "name": "星砂鲽",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f21",
+      "name": "岩缝泥鳅",
+      "spot": 1,
+      "rare": true
+    },
+    {
+      "id": "f22",
+      "name": "薄暮乌贼",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f23",
+      "name": "金边鲷",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f24",
+      "name": "霜鳞",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f25",
+      "name": "虹吻",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f26",
+      "name": "海璃",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f27",
+      "name": "暗潮鳗",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f28",
+      "name": "白帆鱼",
+      "spot": 3,
+      "rare": true
+    },
+    {
+      "id": "f29",
+      "name": "蜜柑鲳",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f30",
+      "name": "铃铛鱼",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f31",
+      "name": "羽鳍",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f32",
+      "name": "黑曜鲨幼",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f33",
+      "name": "翠涡",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f34",
+      "name": "盐晶鱼",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f35",
+      "name": "风筝鳐",
+      "spot": 0,
+      "rare": true
+    },
+    {
+      "id": "f36",
+      "name": "暮色鲈",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f37",
+      "name": "琉璃虾",
+      "spot": 2,
+      "rare": false
+    },
+    {
+      "id": "f38",
+      "name": "雪灯",
+      "spot": 3,
+      "rare": false
+    },
+    {
+      "id": "f39",
+      "name": "龙骨残骸鱼",
+      "spot": 4,
+      "rare": false
+    },
+    {
+      "id": "f40",
+      "name": "潮歌",
+      "spot": 0,
+      "rare": false
+    },
+    {
+      "id": "f41",
+      "name": "港湾特产鱼",
+      "spot": 1,
+      "rare": false
+    },
+    {
+      "id": "f42",
+      "name": "远洋访客",
+      "spot": 2,
+      "rare": true
+    },
+    {
+      "id": "f43",
+      "name": "谜之漂瓶鱼",
+      "spot": 3,
+      "rare": false
+    }
+  ],
+  "spots": [
+    {
+      "id": 0,
+      "name": "旧码头",
+      "need": 0
+    },
+    {
+      "id": 1,
+      "name": "礁石湾",
+      "need": 5
+    },
+    {
+      "id": 2,
+      "name": "灯塔外海",
+      "need": 12
+    },
+    {
+      "id": 3,
+      "name": "沉船沟",
+      "need": 20
+    },
+    {
+      "id": 4,
+      "name": "星落渊",
+      "need": 30
+    }
+  ],
+  "quests": [
+    {
+      "id": "q1",
+      "text": "收集 8 种鱼",
+      "need": 8
+    },
+    {
+      "id": "q2",
+      "text": "解锁礁石湾",
+      "need": 5
+    },
+    {
+      "id": "q3",
+      "text": "钓到 3 条稀有",
+      "need": 3
+    },
+    {
+      "id": "q4",
+      "text": "图鉴 20",
+      "need": 20
+    },
+    {
+      "id": "q5",
+      "text": "解锁沉船沟",
+      "need": 20
+    },
+    {
+      "id": "q6",
+      "text": "图鉴 30",
+      "need": 30
+    },
+    {
+      "id": "q7",
+      "text": "星落渊报到",
+      "need": 30
+    },
+    {
+      "id": "q8",
+      "text": "完成图鉴 40",
+      "need": 40
+    }
+  ]
+}

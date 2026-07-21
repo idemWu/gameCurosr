@@ -1,0 +1,70 @@
+{
+  "id": "b04_twin_lampkeepers",
+  "name": "双子灯手",
+  "hp": 760,
+  "souls": 2600,
+  "phases": [
+    {
+      "hpAbove": 0.5,
+      "moves": [
+        {
+          "id": "lash",
+          "name": "灯链横抽",
+          "damage": 44,
+          "startup": 22,
+          "active": 7,
+          "recovery": 28,
+          "range": 74,
+          "parryable": true
+        },
+        {
+          "id": "burn",
+          "name": "燃灯",
+          "damage": 58,
+          "startup": 36,
+          "active": 10,
+          "recovery": 42,
+          "range": 120,
+          "parryable": false
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.4,
+      "moves": [
+        {
+          "id": "lash",
+          "name": "灯链横抽",
+          "damage": 50,
+          "startup": 17,
+          "active": 7,
+          "recovery": 22,
+          "range": 74,
+          "parryable": true
+        },
+        {
+          "id": "twin",
+          "name": "双灯齐落",
+          "damage": 36,
+          "startup": 15,
+          "active": 6,
+          "recovery": 10,
+          "range": 64,
+          "hits": 2,
+          "parryable": true
+        },
+        {
+          "id": "burn",
+          "name": "燃灯",
+          "damage": 66,
+          "startup": 30,
+          "active": 10,
+          "recovery": 36,
+          "range": 120,
+          "parryable": false
+        }
+      ]
+    }
+  ]
+}

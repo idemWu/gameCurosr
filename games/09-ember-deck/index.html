@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>余烬牌阵</title>
+  <link rel="stylesheet" href="./ui-stardew.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>余烬牌阵</h1>
+        <p class="subtitle">卡牌战役 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
+    </header>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
+      <aside class="hud">
+        <div class="hud-inner">
+<div class="stat"><span>节点</span><strong><span id="node">1</span>/24 · 第 <span id="act">1</span> 章</strong></div>
+        <div class="stat"><span>金币</span><strong id="gold">0</strong></div>
+        <div class="stat"><span>生命</span><strong><span id="hp">30</span>/<span id="maxhp">30</span></strong></div>
+        <div class="bar-wrap" aria-hidden="true"><i id="hpbar"></i></div>
+        <div class="stat"><span>能量</span><strong><span id="energy">3</span>/<span id="maxenergy">3</span></strong></div>
+        <div class="bar-wrap energy" aria-hidden="true"><i id="energybar"></i></div>
+        <div class="stat fight-only"><span>敌人</span><strong id="ehp">0</strong> · <span id="ntype">-</span></div>
+        <div class="bar-wrap fight-only enemy" aria-hidden="true"><i id="ehpbar"></i></div>
+        <div id="hand" class="row cards"></div>
+        <div id="pick" class="row"></div>
+        <button id="actbtn" class="primary" type="button">进入节点</button>
+        <button id="endturn" class="secondary" type="button" class="secondary fight-only" disabled>结束回合</button>
+        <p class="hint">战斗：出牌至能量耗尽或点「结束回合」，敌方再行动一次并补牌。右下角可静音。</p>
+        </div>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">余烬牌阵</h2>
+          <p id="overlay-msg"></p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./lib/art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

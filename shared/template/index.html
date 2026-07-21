@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>游戏模板 · Template</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1 id="title">游戏模板</h1>
+      <p id="subtitle">复制本目录到 games/NN-slug/ 后改造</p>
+    </header>
+
+    <main>
+      <canvas id="game" width="480" height="270" aria-label="游戏画布"></canvas>
+      <aside class="hud">
+        <div>分数：<span id="score">0</span></div>
+        <div>状态：<span id="status">准备</span></div>
+        <p class="hint" id="hint">点击「开始」后，用方向键或 WASD 移动方块收集星星。</p>
+      </aside>
+    </main>
+
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <h2 id="overlay-title">浏览器小游戏模板</h2>
+        <p id="overlay-msg">这是 Hub 提供的可运行壳。Game Agent 请替换为真实玩法。</p>
+        <button id="btn-start" type="button">开始</button>
+      </div>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>暖汤咖啡馆</title>
+  <link rel="stylesheet" href="./ui-stardew.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>暖汤咖啡馆</h1>
+        <p class="subtitle">经营上菜 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
+    </header>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
+      <aside class="hud">
+        <div class="hud-inner">
+<div class="stat"><span>日程</span><strong>第 <span id="day">1</span>/14 天</strong></div>
+        <div class="stat"><span>金币</span><strong id="gold">0</strong></div>
+        <div class="stat"><span>今日</span><strong><span id="today">0</span>/8</strong></div>
+        <div class="stat"><span>累计</span><strong id="served">0</strong></div>
+        <div class="stat"><span>配方</span><strong><span id="rec">5</span>/14</strong></div>
+        <div class="stat"><span>店铺</span><strong>Lv <span id="lv">1</span></strong></div>
+        <div id="order" class="hint">等待客人…</div>
+        <div id="drinks" class="row"></div>
+        <button id="endday" class="primary" type="button">打烊进入下一天</button>
+        <button id="upgrade" class="secondary" type="button">升级店铺 (40金)</button>
+        <p class="hint">点选与订单一致的饮料。错误会惹客人皱眉哦。</p>
+        </div>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">暖汤咖啡馆</h2>
+          <p id="overlay-msg"></p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./lib/art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

@@ -1,3 +1,47 @@
+
+# gameCurosr · 16 款精致浏览器小品
+
+四大类共 **16 款** Vanilla HTML/CSS/JS 小游戏。本轮重点优化 **美术、音效与游戏体验**（粒子/浮动字/独立色板/WebAudio），带本地存档。**不做种菜/种田。**
+
+> 时长按实际体量诚实标注（多为约 10–30 分钟小品），不再虚标 30–60 分钟。
+
+## 快速试玩
+
+```bash
+python3 -m http.server 8080
+# 总览：http://localhost:8080/preview/
+```
+
+## 游戏清单
+
+| # | 游戏 | 目录 | 说明 |
+|---|------|------|------|
+| 01 | 港湾日记 | `games/01-cozy-harbor/` | 7 天日程 |
+| 02 | 晚潮钓手 | `games/02-cozy-fishing/` | 40 图鉴 |
+| 03 | 暖汤咖啡馆 | `games/03-cozy-cafe/` | 14 天经营 |
+| 04 | 窗边小屋 | `games/04-cozy-home/` | 12 委托 |
+| 05 | 林间轻旅 | `games/05-grove-raid/` | 探索战斗 |
+| 06 | 石纹遗迹 | `games/06-ruin-puzzle/` | 机关解谜 |
+| 07 | 矿灯深途 | `games/07-mine-delve/` | 下矿冒险 |
+| 08 | 云上跳岛 | `games/08-sky-hop/` | 平台跳跃 |
+| 09 | 余烬牌阵 | `games/09-ember-deck/` | 卡牌战役 |
+| 10 | 爪爪战棋 | `games/10-paw-tactics/` | 回合战棋 |
+| 11 | 桥上防线 | `games/11-bridge-td/` | 路径塔防 |
+| 12 | 星尘挂机 | `games/12-idle-stars/` | 点击成长 |
+| 13 | 晶石三消 | `games/13-match-gems/` | 三消闯关 |
+| 14 | 遗物合成 | `games/14-merge-relics/` | 合成订单 |
+| 15 | 书架整理 | `games/15-shelf-sort/` | 收纳关卡 |
+| 16 | 铁匠一点通 | `games/16-forge-tap/` | 锻造小游戏 |
+
+共用工具：`shared/longplay/`（存档/暂停）、`shared/polish/`（绘制/Juice/音效）
+
+## 验收口径
+
+- 打开即玩，中文 UI
+- 美术反馈 + 可静音音效
+- `localStorage` 存档 / 清档
+- 无种田
+=
 # gameCurosr
 
 浏览器小游戏相关仓库。
@@ -15,6 +59,6 @@
 
 刷新：
 
-```bash
+
 python3 scripts/fetch-4399-hot-100.py
-```
+

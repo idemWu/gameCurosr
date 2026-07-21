@@ -1,0 +1,281 @@
+{
+  "cards": [
+    {
+      "id": "slash",
+      "name": "斩击",
+      "dmg": 5,
+      "cost": 1
+    },
+    {
+      "id": "fire",
+      "name": "余烬",
+      "dmg": 7,
+      "cost": 1
+    },
+    {
+      "id": "guard",
+      "name": "守势",
+      "heal": 5,
+      "cost": 1
+    },
+    {
+      "id": "pierce",
+      "name": "穿心",
+      "dmg": 9,
+      "cost": 2
+    },
+    {
+      "id": "spark",
+      "name": "星火",
+      "dmg": 4,
+      "cost": 0
+    },
+    {
+      "id": "bash",
+      "name": "重击",
+      "dmg": 11,
+      "cost": 2
+    },
+    {
+      "id": "drain",
+      "name": "汲取",
+      "dmg": 6,
+      "heal": 3,
+      "cost": 2
+    },
+    {
+      "id": "wall",
+      "name": "岩壁",
+      "heal": 8,
+      "cost": 2
+    },
+    {
+      "id": "nova",
+      "name": "爆焰",
+      "dmg": 14,
+      "cost": 3
+    },
+    {
+      "id": "sting",
+      "name": "毒刺",
+      "dmg": 3,
+      "cost": 0
+    }
+  ],
+  "relics": [
+    {
+      "id": "ember_heart",
+      "name": "余烬之心",
+      "desc": "每场开始+3生命"
+    },
+    {
+      "id": "sharp",
+      "name": "锋羽",
+      "desc": "攻击牌+1伤害"
+    },
+    {
+      "id": "purse",
+      "name": "旅人钱袋",
+      "desc": "战斗胜利+8金"
+    },
+    {
+      "id": "lantern",
+      "name": "暖灯",
+      "desc": "营火额外+5生命"
+    }
+  ],
+  "nodes": [
+    {
+      "id": 1,
+      "act": 1,
+      "type": "fight",
+      "name": "第1章·遭遇",
+      "enemyHp": 20,
+      "enemyDmg": 3
+    },
+    {
+      "id": 2,
+      "act": 1,
+      "type": "fight",
+      "name": "第1章·岔路",
+      "enemyHp": 22,
+      "enemyDmg": 3
+    },
+    {
+      "id": 3,
+      "act": 1,
+      "type": "fight",
+      "name": "第1章·商队",
+      "enemyHp": 24,
+      "enemyDmg": 4
+    },
+    {
+      "id": 4,
+      "act": 1,
+      "type": "shop",
+      "name": "第1章·暗巷",
+      "enemyHp": 26,
+      "enemyDmg": 4
+    },
+    {
+      "id": 5,
+      "act": 1,
+      "type": "fight",
+      "name": "第1章·遗迹",
+      "enemyHp": 28,
+      "enemyDmg": 5
+    },
+    {
+      "id": 6,
+      "act": 1,
+      "type": "fight",
+      "name": "第1章·峡谷",
+      "enemyHp": 30,
+      "enemyDmg": 5
+    },
+    {
+      "id": 7,
+      "act": 1,
+      "type": "camp",
+      "name": "第1章·营火",
+      "enemyHp": 32,
+      "enemyDmg": 6
+    },
+    {
+      "id": 8,
+      "act": 1,
+      "type": "boss",
+      "name": "第1章·首领",
+      "enemyHp": 46,
+      "enemyDmg": 6
+    },
+    {
+      "id": 9,
+      "act": 2,
+      "type": "fight",
+      "name": "第2章·遭遇",
+      "enemyHp": 26,
+      "enemyDmg": 4
+    },
+    {
+      "id": 10,
+      "act": 2,
+      "type": "fight",
+      "name": "第2章·岔路",
+      "enemyHp": 28,
+      "enemyDmg": 4
+    },
+    {
+      "id": 11,
+      "act": 2,
+      "type": "fight",
+      "name": "第2章·商队",
+      "enemyHp": 30,
+      "enemyDmg": 5
+    },
+    {
+      "id": 12,
+      "act": 2,
+      "type": "shop",
+      "name": "第2章·暗巷",
+      "enemyHp": 32,
+      "enemyDmg": 5
+    },
+    {
+      "id": 13,
+      "act": 2,
+      "type": "fight",
+      "name": "第2章·遗迹",
+      "enemyHp": 34,
+      "enemyDmg": 6
+    },
+    {
+      "id": 14,
+      "act": 2,
+      "type": "fight",
+      "name": "第2章·峡谷",
+      "enemyHp": 36,
+      "enemyDmg": 6
+    },
+    {
+      "id": 15,
+      "act": 2,
+      "type": "camp",
+      "name": "第2章·营火",
+      "enemyHp": 38,
+      "enemyDmg": 7
+    },
+    {
+      "id": 16,
+      "act": 2,
+      "type": "boss",
+      "name": "第2章·首领",
+      "enemyHp": 52,
+      "enemyDmg": 7
+    },
+    {
+      "id": 17,
+      "act": 3,
+      "type": "fight",
+      "name": "第3章·遭遇",
+      "enemyHp": 32,
+      "enemyDmg": 5
+    },
+    {
+      "id": 18,
+      "act": 3,
+      "type": "fight",
+      "name": "第3章·岔路",
+      "enemyHp": 34,
+      "enemyDmg": 5
+    },
+    {
+      "id": 19,
+      "act": 3,
+      "type": "fight",
+      "name": "第3章·商队",
+      "enemyHp": 36,
+      "enemyDmg": 6
+    },
+    {
+      "id": 20,
+      "act": 3,
+      "type": "shop",
+      "name": "第3章·暗巷",
+      "enemyHp": 38,
+      "enemyDmg": 6
+    },
+    {
+      "id": 21,
+      "act": 3,
+      "type": "fight",
+      "name": "第3章·遗迹",
+      "enemyHp": 40,
+      "enemyDmg": 7
+    },
+    {
+      "id": 22,
+      "act": 3,
+      "type": "fight",
+      "name": "第3章·峡谷",
+      "enemyHp": 42,
+      "enemyDmg": 7
+    },
+    {
+      "id": 23,
+      "act": 3,
+      "type": "camp",
+      "name": "第3章·营火",
+      "enemyHp": 44,
+      "enemyDmg": 8
+    },
+    {
+      "id": 24,
+      "act": 3,
+      "type": "boss",
+      "name": "第3章·首领",
+      "enemyHp": 58,
+      "enemyDmg": 8
+    }
+  ]
+}

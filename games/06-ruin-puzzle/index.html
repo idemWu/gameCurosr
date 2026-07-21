@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>石纹遗迹</title>
+  <link rel="stylesheet" href="./ui-stardew.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>石纹遗迹</h1>
+        <p class="subtitle">机关解谜 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
+    </header>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
+      <aside class="hud">
+        <div class="hud-inner">
+<div class="stat"><span>关卡</span><strong><span id="level">1</span>/40</strong></div>
+        <div class="stat"><span>石门</span><strong id="door">关闭</strong></div>
+        <button id="reset" class="primary" type="button">重置本关</button>
+        <p class="hint">方向键移动 · 踩蓝开关切换石门 · 金格过关</p>
+        </div>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">石纹遗迹</h2>
+          <p id="overlay-msg">四十重遗迹机关，踩开关开门，抵达金色出口。</p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./lib/art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

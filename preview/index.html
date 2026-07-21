@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>gameCurosr · Art V2 作品集</title>
+  <style>
+    :root {
+      --bg: #070d18;
+      --card: #141f33;
+      --text: #eef4ff;
+      --muted: #93a6c4;
+      --accent: #7dd3fc;
+      --gold: #f6c453;
+      --line: #2a3b55;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 480px at 0% -10%, rgba(125,211,252,.2), transparent 55%),
+        radial-gradient(900px 420px at 100% 0%, rgba(246,196,83,.14), transparent 50%),
+        linear-gradient(180deg, #101a2e, var(--bg));
+      min-height: 100vh;
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+    .hero {
+      padding: 22px 24px;
+      border-radius: 22px;
+      border: 1px solid rgba(246,196,83,.35);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), transparent 45%),
+        linear-gradient(135deg, #1a2a45, #121c30);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: .04em;
+    }
+    .lead { margin: 10px 0 0; color: var(--muted); max-width: 70ch; line-height: 1.6; }
+    .section { margin-top: 28px; }
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: .06em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    a.card {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, #fff), var(--card));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      color: inherit;
+      text-decoration: none;
+      min-height: 148px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.28);
+      transition: transform .14s ease, border-color .14s ease;
+    }
+    a.card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      opacity: .85;
+    }
+    a.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .cat { font-size: .72rem; color: var(--muted); }
+    .name { font-weight: 900; margin: 8px 0 6px; font-size: 1.12rem; }
+    .loop { font-size: .86rem; color: var(--muted); line-height: 1.45; }
+    .badge {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: .7rem;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(125,211,252,.12);
+      color: #b9ebff;
+      border: 1px solid rgba(125,211,252,.28);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>gameCurosr · Art V2</h1>
+      <p class="lead">
+        16 款浏览器小品的高品质视觉重构：原创像素精灵、分层光影、高级 UI 壳。
+        治愈 / 轻冒险 / 策略 / 益智 · Vanilla HTML/CSS/JS · <strong>不做种菜</strong>
+      </p>
+    </section>
+    <div id="sections"></div>
+  </main>
+  <script>
+    const ORDER = ["治愈休闲", "轻冒险", "卡牌/放置/策略", "益智/超休闲"];
+    fetch("../games/_registry.json").then((r) => r.json()).then((data) => {
+      const root = document.getElementById("sections");
+      const byCat = {};
+      for (const g of data.games) (byCat[g.category] ||= []).push(g);
+      root.innerHTML = ORDER.map((cat) => `
+        <section class="section">
+          <h2>${cat}</h2>
+          <div class="grid">
+            ${(byCat[cat] || []).map((g) => `
+              <a class="card" href="../${g.path}/">
+                <div class="cat">${g.category} · #${g.id}</div>
+                <div class="name">${g.name}</div>
+                <div class="loop">${g.loop}</div>
+                <span class="badge">Art V2 · 可存档</span>
+              </a>`).join("")}
+          </div>
+        </section>`).join("");
+    });
+  </script>
+</body>
+</html>
