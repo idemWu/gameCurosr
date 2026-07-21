@@ -1,9 +1,61 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>遗物合成 · Longplay</title><link rel="stylesheet" href="./styles.css"/><link rel="stylesheet" href="./lib/pause.css"/>
-</head><body><div id="app"><header class="top"><h1>遗物合成</h1><p>8 级合成订单链 · 约 30–50 分钟（非种菜）</p></header>
-<main><canvas id="game" width="480" height="270"></canvas><aside class="hud"><div>最高L<span id="max">1</span>/8 · 订单L<span id="olv">2</span> × <span id="oneed">3</span>（<span id="odone">0</span>）</div>
-<div>订单进度 <span id="oi">1</span>/7</div><button id="spawn">召来1级遗物</button><p class="hint">合成相同遗物。完成全部订单并做出8级。</p></aside></main>
-<div id="overlay" class="overlay"><div class="panel"><h2 id="overlay-title">遗物合成</h2><p id="overlay-msg"></p>
-<button id="btn-continue">继续</button><button id="btn-start">新游戏</button></div></div></div>
-<script src="./lib/save.js"></script><script src="./lib/pause.js"></script><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>遗物合成</title>
+  <link rel="stylesheet" href="./ui-stardew.css" />
+  <link rel="stylesheet" href="./lib/pause.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>遗物合成</h1>
+        <p class="subtitle">合成订单 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
+    </header>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
+      <aside class="hud">
+        <div class="hud-inner">
+<div class="stat"><span>最高等级</span><strong>L<span id="max">1</span>/8</strong></div>
+        <div class="order-panel">
+          <div class="order-title">当前订单</div>
+          <strong id="oname">—</strong>
+          <p id="odesc" class="order-desc">—</p>
+          <div class="stat"><span>目标</span><strong>L<span id="olv">2</span> × <span id="oneed">3</span></strong></div>
+          <div class="stat"><span>进度</span><strong><span id="odone">0</span>/<span id="oneed2">3</span></strong></div>
+          <div class="order-bar" aria-hidden="true"><i id="obar"></i></div>
+        </div>
+        <div class="stat"><span>订单</span><strong><span id="oi">1</span>/<span id="ototal">18</span></strong></div>
+        <button id="spawn" class="primary" type="button">召来 1 级遗物</button>
+        <p class="hint">合成相同遗物升级。完成全部订单并做出 8 级遗物。</p>
+        </div>
+      </aside>
+    </main>
+    <div id="overlay" class="overlay">
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">遗物合成</h2>
+          <p id="overlay-msg"></p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/save.js"></script>
+  <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./lib/art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

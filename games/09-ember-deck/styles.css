@@ -1,11 +1,1 @@
-:root{--bg:#1c1210;--panel:#3a221c;--text:#ffe8dc;--accent:#fb923c}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-#app{max-width:960px;margin:0 auto;padding:16px}main{display:grid;grid-template-columns:1fr 260px;gap:12px}
-@media(max-width:720px){main{grid-template-columns:1fr}}
-#game{width:100%;max-width:720px;image-rendering:pixelated;border:3px solid #7c3a1e;border-radius:8px}
-.hud{background:var(--panel);border-radius:8px;padding:12px}.row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.row button,button{border:none;border-radius:8px;padding:8px;font-weight:700;cursor:pointer;background:var(--accent);color:#1c1008}
-.row button{width:auto}.hint{font-size:.8rem;opacity:.85}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:30}
-.overlay.hidden{display:none}.panel{background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:20px;max-width:440px;text-align:center}
-.panel button{display:block;width:100%;margin-top:8px}.top h1{margin:0 0 4px}.top p{margin:0 0 12px;opacity:.85}
+@import url("./ui-stardew.css");

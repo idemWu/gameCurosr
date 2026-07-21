@@ -3,40 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>港湾日记 · Longplay</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <title>港湾日记</title>
+  <link rel="stylesheet" href="./ui-stardew.css" />
   <link rel="stylesheet" href="./lib/pause.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
-      <h1>港湾日记</h1>
-      <p>七天港湾生活 · 约 30–45 分钟主线 · 无种田</p>
+      <div class="brand">
+        <div class="eyebrow">gameCurosr</div>
+        <h1>港湾日记</h1>
+        <p class="subtitle">七天海边日常 · 星露谷风 UI · 可存档</p>
+      </div>
+      <div class="chip">手绘风格 · 无种田</div>
     </header>
-    <main>
-      <canvas id="game" width="480" height="270"></canvas>
+    <main class="stage">
+      <section class="stage-frame" aria-label="游戏画面">
+        <canvas id="game" width="480" height="270"></canvas>
+      </section>
       <aside class="hud">
-        <div>第 <span id="day">1</span> / 7 天 · <span id="period">清晨</span></div>
-        <div>今日待办：<span id="done">0</span>/<span id="need">0</span></div>
-        <div>好感合计：<span id="aff">0</span></div>
-        <div>区域：<span id="zone">码头</span></div>
-        <ul id="quests"></ul>
-        <p class="hint">WASD 移动 · E 交谈 · 完成当日待办后点「结束今天」</p>
-        <button id="endday" type="button">结束今天</button>
-        <button id="travel" type="button">前往下一区域</button>
+        <div class="hud-inner">
+<p class="hud-title">今日清单</p>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="label">日程</span>
+              <div class="value">第 <span id="day">1</span>/7 天</div>
+            </div>
+            <div class="stat-card">
+              <span class="label">时段</span>
+              <div class="value" id="period">清晨</div>
+            </div>
+            <div class="stat-card">
+              <span class="label">区域</span>
+              <div class="value" id="zone">码头</div>
+            </div>
+            <div class="stat-card">
+              <span class="label">待办</span>
+              <div class="value"><span id="done">0</span>/<span id="need">0</span></div>
+            </div>
+          </div>
+
+          <div class="aff-wrap">
+            <div class="aff-meta">
+              <span>好感</span>
+              <strong id="aff">0</strong>
+            </div>
+            <div class="aff-bar" aria-hidden="true"><i id="affbar"></i></div>
+          </div>
+
+          <div class="quest-box">
+            <h3>今日待办</h3>
+            <ul id="quests" class="quest-list"></ul>
+          </div>
+
+          <p class="hint">WASD 移动 · E 交谈 · 做完待办后点「睡觉/结束今天」</p>
+
+          <div class="actions">
+            <button id="endday" class="primary" type="button">结束今天</button>
+            <button id="travel" class="secondary" type="button">前往下一区域</button>
+          </div>
+        </div>
+        </div>
       </aside>
     </main>
     <div id="overlay" class="overlay">
       <div class="panel">
-        <h2 id="overlay-title">港湾日记</h2>
-        <p id="overlay-msg">在七天里认识镇民、完成待办，迎来灯火庆典。</p>
-        <button id="btn-continue" type="button">继续旅程</button>
-        <button id="btn-start" type="button">新的一周</button>
+        <div class="panel-inner">
+          <div class="seal">玩</div>
+          <h2 id="overlay-title">港湾日记</h2>
+          <p id="overlay-msg">新的一周开始了。去码头、广场和灯塔坡见见大家吧！</p>
+          <button id="btn-continue" type="button" class="warm">继续游戏</button>
+          <button id="btn-start" type="button" class="primary">新游戏</button>
+        </div>
       </div>
     </div>
   </div>
   <script src="./lib/save.js"></script>
   <script src="./lib/pause.js"></script>
+  <script src="./lib/draw.js"></script>
+  <script src="./lib/juice.js"></script>
+  <script src="./lib/audio.js"></script>
+  <script src="./lib/art.js"></script>
   <script src="./main.js"></script>
 </body>
 </html>
