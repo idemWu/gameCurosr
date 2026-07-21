@@ -253,6 +253,36 @@
         30,
         60
       ]
+    },
+    {
+      "id": "17",
+      "slug": "mist-walker",
+      "branch": "cursor/game-art-7c49",
+      "name": "雾港行者",
+      "category": "动作魂类",
+      "path": "games/17-mist-walker",
+      "loop": "12区互联+18Boss 的高难度2D魂类：篝火、掉魂、弹反、三结局、NG+、挑战塔",
+      "status": "longplay-flagship",
+      "tier": "flagship",
+      "targetPlayMinutes": [
+        1800,
+        1800
+      ]
+    },
+    {
+      "id": "18",
+      "slug": "windbell-island",
+      "branch": "cursor/game-art-7c49",
+      "name": "风铃岛纪行",
+      "category": "治愈动作冒险",
+      "path": "games/18-windbell-island",
+      "loop": "风语邮差穿越8座岛区、投递8封信并安抚12位守护灵",
+      "status": "longplay-flagship",
+      "tier": "flagship",
+      "targetPlayMinutes": [
+        720,
+        1080
+      ]
     }
   ]
 }

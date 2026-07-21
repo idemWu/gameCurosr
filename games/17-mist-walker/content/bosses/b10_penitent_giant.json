@@ -1,0 +1,70 @@
+{
+  "id": "b10_penitent_giant",
+  "name": "忏悔巨人",
+  "hp": 1500,
+  "souls": 8000,
+  "phases": [
+    {
+      "hpAbove": 0.5,
+      "moves": [
+        {
+          "id": "slam",
+          "name": "巨掌拍击",
+          "damage": 70,
+          "startup": 34,
+          "active": 9,
+          "recovery": 42,
+          "range": 100,
+          "parryable": false
+        },
+        {
+          "id": "sweep",
+          "name": "横扫",
+          "damage": 56,
+          "startup": 24,
+          "active": 8,
+          "recovery": 30,
+          "range": 88,
+          "parryable": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.25,
+      "moves": [
+        {
+          "id": "slam",
+          "name": "巨掌拍击",
+          "damage": 80,
+          "startup": 28,
+          "active": 9,
+          "recovery": 36,
+          "range": 100,
+          "parryable": false
+        },
+        {
+          "id": "sweep",
+          "name": "横扫",
+          "damage": 64,
+          "startup": 18,
+          "active": 8,
+          "recovery": 24,
+          "range": 88,
+          "parryable": true
+        },
+        {
+          "id": "quake",
+          "name": "震地",
+          "damage": 46,
+          "startup": 30,
+          "active": 6,
+          "recovery": 10,
+          "range": 150,
+          "parryable": false,
+          "hits": 2
+        }
+      ]
+    }
+  ]
+}

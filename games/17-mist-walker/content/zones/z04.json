@@ -1,0 +1,96 @@
+{
+  "id": "z04",
+  "name": "旧城地窖",
+  "width": 2100,
+  "hazard": "poison",
+  "bonfires": [
+    {
+      "id": "z04-cell",
+      "name": "地窖囚室",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z03",
+      "x": 40
+    },
+    {
+      "to": "z05",
+      "x": 2060,
+      "requiresBoss": "b05_cellar_keeper"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2100
+    },
+    {
+      "x": 500,
+      "y": 180,
+      "w": 130
+    },
+    {
+      "x": 900,
+      "y": 165,
+      "w": 110
+    },
+    {
+      "x": 1300,
+      "y": 185,
+      "w": 150
+    }
+  ],
+  "poisonPools": [
+    {
+      "x": 700,
+      "w": 120
+    },
+    {
+      "x": 1500,
+      "w": 160
+    }
+  ],
+  "enemies": [
+    {
+      "type": "cellar_rat",
+      "x": 350
+    },
+    {
+      "type": "cellar_rat",
+      "x": 460
+    },
+    {
+      "type": "plague_monk",
+      "x": 640
+    },
+    {
+      "type": "cellar_rat",
+      "x": 880
+    },
+    {
+      "type": "plague_monk",
+      "x": 1080
+    },
+    {
+      "type": "salt_miner",
+      "x": 1250
+    },
+    {
+      "type": "plague_monk",
+      "x": 1420
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1650,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b05_cellar_keeper",
+    "x": 1930,
+    "gate": 1860
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "b06_salt_matriarch",
+  "name": "盐母",
+  "hp": 1020,
+  "souls": 4200,
+  "phases": [
+    {
+      "hpAbove": 0.6,
+      "moves": [
+        {
+          "id": "crush",
+          "name": "盐晶压击",
+          "damage": 58,
+          "startup": 30,
+          "active": 9,
+          "recovery": 36,
+          "range": 92,
+          "parryable": false
+        },
+        {
+          "id": "claw",
+          "name": "裂爪",
+          "damage": 46,
+          "startup": 20,
+          "active": 7,
+          "recovery": 26,
+          "range": 64,
+          "parryable": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0.25,
+      "speedMul": 1.25,
+      "moves": [
+        {
+          "id": "claw",
+          "name": "裂爪",
+          "damage": 52,
+          "startup": 16,
+          "active": 7,
+          "recovery": 22,
+          "range": 64,
+          "parryable": true
+        },
+        {
+          "id": "shards",
+          "name": "盐雨",
+          "damage": 30,
+          "startup": 28,
+          "active": 5,
+          "recovery": 8,
+          "range": 150,
+          "hits": 3,
+          "parryable": false,
+          "projectile": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.45,
+      "moves": [
+        {
+          "id": "crush",
+          "name": "盐晶压击",
+          "damage": 68,
+          "startup": 24,
+          "active": 9,
+          "recovery": 30,
+          "range": 92,
+          "parryable": false
+        },
+        {
+          "id": "claw",
+          "name": "裂爪",
+          "damage": 58,
+          "startup": 13,
+          "active": 7,
+          "recovery": 18,
+          "range": 64,
+          "parryable": true
+        }
+      ]
+    }
+  ]
+}

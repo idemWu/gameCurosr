@@ -1,0 +1,120 @@
+{
+  "id": "z11",
+  "name": "深渊祭坛",
+  "width": 2800,
+  "bonfires": [
+    {
+      "id": "z11-bf",
+      "name": "祭坛裂隙",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z10",
+      "x": 40
+    },
+    {
+      "to": "z12",
+      "x": 2760,
+      "requiresBoss": "b15_abyss_priest"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2800
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    },
+    {
+      "x": 2410,
+      "y": 186,
+      "w": 140
+    }
+  ],
+  "enemies": [
+    {
+      "type": "abyss_zealot",
+      "x": 420
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 660
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 920
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 1180
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 1420
+    },
+    {
+      "type": "abyss_spawn",
+      "x": 1650
+    },
+    {
+      "type": "throne_guard",
+      "x": 1900
+    },
+    {
+      "type": "abyss_zealot",
+      "x": 2150
+    },
+    {
+      "type": "throne_guard",
+      "x": 2350,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b15_abyss_priest",
+    "x": 2630,
+    "gate": 2560
+  },
+  "midBoss": {
+    "id": "b16_forgotten_walker",
+    "x": 1750,
+    "gate": 1700,
+    "optional": true
+  },
+  "poisonPools": [
+    {
+      "x": 1000,
+      "w": 140
+    },
+    {
+      "x": 2000,
+      "w": 180
+    }
+  ]
+}

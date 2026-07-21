@@ -1,0 +1,72 @@
+{
+  "id": "b13_black_banner",
+  "name": "黑旗侍卫长",
+  "hp": 1400,
+  "souls": 9000,
+  "phases": [
+    {
+      "hpAbove": 0.5,
+      "moves": [
+        {
+          "id": "pike",
+          "name": "旗枪突刺",
+          "damage": 60,
+          "startup": 13,
+          "active": 6,
+          "recovery": 20,
+          "range": 74,
+          "parryable": true
+        },
+        {
+          "id": "wave",
+          "name": "旗浪",
+          "damage": 42,
+          "startup": 26,
+          "active": 6,
+          "recovery": 30,
+          "range": 140,
+          "parryable": false,
+          "projectile": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.45,
+      "moves": [
+        {
+          "id": "pike",
+          "name": "旗枪突刺",
+          "damage": 68,
+          "startup": 10,
+          "active": 6,
+          "recovery": 16,
+          "range": 74,
+          "parryable": true
+        },
+        {
+          "id": "double",
+          "name": "双段挑击",
+          "damage": 46,
+          "startup": 12,
+          "active": 5,
+          "recovery": 8,
+          "range": 64,
+          "parryable": true,
+          "hits": 2
+        },
+        {
+          "id": "wave",
+          "name": "旗浪",
+          "damage": 50,
+          "startup": 22,
+          "active": 6,
+          "recovery": 26,
+          "range": 140,
+          "parryable": false,
+          "projectile": true
+        }
+      ]
+    }
+  ]
+}

@@ -74,8 +74,62 @@
         "name": "铁壁护符(减伤10%)",
         "cost": 1400,
         "max": 1
+      },
+      {
+        "id": "charm_leech",
+        "name": "汲魂护符(击杀回血4)",
+        "cost": 2600,
+        "max": 1
+      },
+      {
+        "id": "charm_swift",
+        "name": "迅捷护符(移速+15%)",
+        "cost": 2200,
+        "max": 1
       }
     ],
-    "zone": "z02"
-  }
+    "zone": "z02",
+    "zones": [
+      "z02",
+      "z05"
+    ]
+  },
+  "skills": [
+    {
+      "id": "sk_dodge_dist",
+      "name": "疾影步",
+      "desc": "翻滚距离+20%",
+      "cost": 2200
+    },
+    {
+      "id": "sk_parry_window",
+      "name": "心眼",
+      "desc": "弹反窗口+3帧",
+      "cost": 3600
+    },
+    {
+      "id": "sk_estus_potency",
+      "name": "深酿",
+      "desc": "回复瓶效果+25",
+      "cost": 2800
+    },
+    {
+      "id": "sk_heavy_stagger",
+      "name": "碎岩",
+      "desc": "重击对Boss削韧(小硬直)",
+      "cost": 4200
+    },
+    {
+      "id": "sk_soul_greed",
+      "name": "渊契",
+      "desc": "获得魂+15%",
+      "cost": 5000
+    },
+    {
+      "id": "sk_stamina_surge",
+      "name": "续潮",
+      "desc": "体力回复+30%",
+      "cost": 3200
+    }
+  ]
 }

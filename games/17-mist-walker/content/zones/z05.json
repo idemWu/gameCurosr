@@ -1,0 +1,90 @@
+{
+  "id": "z05",
+  "name": "盐渍矿道",
+  "width": 2300,
+  "bonfires": [
+    {
+      "id": "z05-shaft",
+      "name": "矿井口",
+      "x": 140
+    }
+  ],
+  "exits": [
+    {
+      "to": "z04",
+      "x": 40
+    },
+    {
+      "to": "z06",
+      "x": 2260,
+      "requiresBoss": "b06_salt_matriarch"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2300
+    },
+    {
+      "x": 420,
+      "y": 175,
+      "w": 120
+    },
+    {
+      "x": 820,
+      "y": 155,
+      "w": 140
+    },
+    {
+      "x": 1240,
+      "y": 180,
+      "w": 130
+    },
+    {
+      "x": 1680,
+      "y": 165,
+      "w": 120
+    }
+  ],
+  "enemies": [
+    {
+      "type": "salt_miner",
+      "x": 380
+    },
+    {
+      "type": "salt_miner",
+      "x": 540
+    },
+    {
+      "type": "cellar_rat",
+      "x": 700
+    },
+    {
+      "type": "salt_miner",
+      "x": 900
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1100
+    },
+    {
+      "type": "salt_miner",
+      "x": 1350
+    },
+    {
+      "type": "salt_elite",
+      "x": 1560,
+      "elite": true
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1800
+    }
+  ],
+  "boss": {
+    "id": "b06_salt_matriarch",
+    "x": 2130,
+    "gate": 2050
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "b09_drowned_choir",
+  "name": "溺亡唱诗班",
+  "hp": 1350,
+  "souls": 7200,
+  "phases": [
+    {
+      "hpAbove": 0.55,
+      "moves": [
+        {
+          "id": "hymn",
+          "name": "窒息圣歌",
+          "damage": 44,
+          "startup": 34,
+          "active": 10,
+          "recovery": 40,
+          "range": 160,
+          "parryable": false,
+          "projectile": true
+        },
+        {
+          "id": "claw",
+          "name": "水爪",
+          "damage": 52,
+          "startup": 18,
+          "active": 7,
+          "recovery": 24,
+          "range": 66,
+          "parryable": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.35,
+      "moves": [
+        {
+          "id": "claw",
+          "name": "水爪",
+          "damage": 58,
+          "startup": 14,
+          "active": 7,
+          "recovery": 20,
+          "range": 66,
+          "parryable": true
+        },
+        {
+          "id": "chorus",
+          "name": "合唱冲击",
+          "damage": 36,
+          "startup": 16,
+          "active": 5,
+          "recovery": 8,
+          "range": 60,
+          "parryable": true,
+          "hits": 3
+        },
+        {
+          "id": "hymn",
+          "name": "窒息圣歌",
+          "damage": 52,
+          "startup": 28,
+          "active": 10,
+          "recovery": 34,
+          "range": 160,
+          "parryable": false,
+          "projectile": true
+        }
+      ]
+    }
+  ]
+}

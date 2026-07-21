@@ -1,0 +1,75 @@
+{
+  "id": "z02",
+  "name": "雨铃森林",
+  "width": 1900,
+  "camp": {
+    "x": 140,
+    "name": "雨铃森林茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 1900
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "rain_mushroom",
+      "x": 350
+    },
+    {
+      "type": "leaf_fox",
+      "x": 610
+    },
+    {
+      "type": "rain_mushroom",
+      "x": 870
+    },
+    {
+      "type": "wind_bird",
+      "x": 1130
+    },
+    {
+      "type": "leaf_fox",
+      "x": 1390
+    }
+  ],
+  "guardian": {
+    "id": "g02_umbrella_frog",
+    "x": 1750,
+    "gate": 1640
+  },
+  "exits": [
+    {
+      "to": "z01",
+      "x": 40
+    },
+    {
+      "to": "z03",
+      "x": 1860,
+      "requires": "g02_umbrella_frog"
+    }
+  ],
+  "letter": 1
+}

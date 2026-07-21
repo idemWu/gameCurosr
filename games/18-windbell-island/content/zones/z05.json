@@ -1,0 +1,80 @@
+{
+  "id": "z05",
+  "name": "蓝玻潮池",
+  "width": 2200,
+  "camp": {
+    "x": 140,
+    "name": "蓝玻潮池茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2200
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "tide_crab",
+      "x": 350
+    },
+    {
+      "type": "tide_crab",
+      "x": 610
+    },
+    {
+      "type": "wind_bird",
+      "x": 870
+    },
+    {
+      "type": "tide_crab",
+      "x": 1130
+    },
+    {
+      "type": "leaf_fox",
+      "x": 1390
+    }
+  ],
+  "guardian": {
+    "id": "g06_tide_whale",
+    "x": 2050,
+    "gate": 1940
+  },
+  "exits": [
+    {
+      "to": "z04",
+      "x": 40
+    },
+    {
+      "to": "z06",
+      "x": 2160,
+      "requires": "g06_tide_whale"
+    }
+  ],
+  "letter": 4,
+  "hiddenGuardian": {
+    "id": "g07_pearl_crab",
+    "x": 1450,
+    "optional": true
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "z06",
+  "name": "风车谷",
+  "width": 2100,
+  "camp": {
+    "x": 140,
+    "name": "风车谷茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2100
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "wind_bird",
+      "x": 350
+    },
+    {
+      "type": "cloud_ram",
+      "x": 610
+    },
+    {
+      "type": "wind_bird",
+      "x": 870
+    },
+    {
+      "type": "leaf_fox",
+      "x": 1130
+    },
+    {
+      "type": "wind_bird",
+      "x": 1390
+    }
+  ],
+  "guardian": {
+    "id": "g08_windmill_giant",
+    "x": 1950,
+    "gate": 1840
+  },
+  "exits": [
+    {
+      "to": "z05",
+      "x": 40
+    },
+    {
+      "to": "z07",
+      "x": 2060,
+      "requires": "g08_windmill_giant"
+    }
+  ],
+  "letter": 5
+}

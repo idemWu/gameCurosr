@@ -1,0 +1,67 @@
+{
+  "id": "z01",
+  "name": "蒲公英港",
+  "width": 1800,
+  "camp": {
+    "x": 140,
+    "name": "蒲公英港茶桌"
+  },
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 1800
+    },
+    {
+      "x": 420,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 800,
+      "y": 188,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 170,
+      "w": 130
+    },
+    {
+      "x": 1560,
+      "y": 188,
+      "w": 130
+    }
+  ],
+  "creatures": [
+    {
+      "type": "leaf_fox",
+      "x": 350
+    },
+    {
+      "type": "leaf_fox",
+      "x": 610
+    },
+    {
+      "type": "rain_mushroom",
+      "x": 870
+    },
+    {
+      "type": "wind_bird",
+      "x": 1130
+    }
+  ],
+  "guardian": {
+    "id": "g01_dandelion_lion",
+    "x": 1650,
+    "gate": 1540
+  },
+  "exits": [
+    {
+      "to": "z02",
+      "x": 1760,
+      "requires": "g01_dandelion_lion"
+    }
+  ],
+  "letter": 0
+}

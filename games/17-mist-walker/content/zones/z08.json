@@ -1,0 +1,95 @@
+{
+  "id": "z08",
+  "name": "雾墙荒原",
+  "width": 2600,
+  "bonfires": [
+    {
+      "id": "z08-bf",
+      "name": "荒原石圈",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z07",
+      "x": 40
+    },
+    {
+      "to": "z09",
+      "x": 2560,
+      "requiresBoss": "b11_mist_hag"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2600
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    }
+  ],
+  "enemies": [
+    {
+      "type": "mist_stalker",
+      "x": 400
+    },
+    {
+      "type": "mist_stalker",
+      "x": 650
+    },
+    {
+      "type": "mist_stalker",
+      "x": 900
+    },
+    {
+      "type": "mist_stalker",
+      "x": 1150
+    },
+    {
+      "type": "banner_soldier",
+      "x": 1400
+    },
+    {
+      "type": "mist_stalker",
+      "x": 1650
+    },
+    {
+      "type": "banner_soldier",
+      "x": 1900
+    },
+    {
+      "type": "salt_elite",
+      "x": 2100,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b11_mist_hag",
+    "x": 2430,
+    "gate": 2360
+  }
+}

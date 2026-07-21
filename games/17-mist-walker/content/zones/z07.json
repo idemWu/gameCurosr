@@ -1,0 +1,101 @@
+{
+  "id": "z07",
+  "name": "溺水教区",
+  "width": 2500,
+  "bonfires": [
+    {
+      "id": "z07-bf",
+      "name": "淹没圣坛",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z06",
+      "x": 40
+    },
+    {
+      "to": "z08",
+      "x": 2460,
+      "requiresBoss": "b09_drowned_choir"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2500
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    }
+  ],
+  "enemies": [
+    {
+      "type": "choir_drowned",
+      "x": 380
+    },
+    {
+      "type": "choir_drowned",
+      "x": 560
+    },
+    {
+      "type": "choir_drowned",
+      "x": 760
+    },
+    {
+      "type": "choir_drowned",
+      "x": 1000
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1200
+    },
+    {
+      "type": "choir_drowned",
+      "x": 1450
+    },
+    {
+      "type": "abyss_spawn",
+      "x": 1700
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1950,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b09_drowned_choir",
+    "x": 2330,
+    "gate": 2260
+  },
+  "midBoss": {
+    "id": "b10_penitent_giant",
+    "x": 1550,
+    "gate": 1500,
+    "optional": true
+  }
+}

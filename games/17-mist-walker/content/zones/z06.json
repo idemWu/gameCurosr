@@ -1,0 +1,105 @@
+{
+  "id": "z06",
+  "name": "钟楼回廊",
+  "width": 2400,
+  "bonfires": [
+    {
+      "id": "z06-bell",
+      "name": "哑钟座",
+      "x": 160
+    }
+  ],
+  "exits": [
+    {
+      "to": "z05",
+      "x": 40
+    },
+    {
+      "to": "z07",
+      "x": 2360,
+      "requiresBoss": "b08_bell_bishop"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2400
+    },
+    {
+      "x": 380,
+      "y": 170,
+      "w": 120
+    },
+    {
+      "x": 760,
+      "y": 150,
+      "w": 130
+    },
+    {
+      "x": 1180,
+      "y": 175,
+      "w": 140
+    },
+    {
+      "x": 1600,
+      "y": 160,
+      "w": 120
+    },
+    {
+      "x": 2000,
+      "y": 180,
+      "w": 130
+    }
+  ],
+  "enemies": [
+    {
+      "type": "bell_acolyte",
+      "x": 420
+    },
+    {
+      "type": "plague_monk",
+      "x": 600
+    },
+    {
+      "type": "bell_acolyte",
+      "x": 860
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1050
+    },
+    {
+      "type": "bell_acolyte",
+      "x": 1300
+    },
+    {
+      "type": "abyss_spawn",
+      "x": 1500
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1750,
+      "elite": true
+    },
+    {
+      "type": "abyss_spawn",
+      "x": 1950
+    },
+    {
+      "type": "bell_acolyte",
+      "x": 2100
+    }
+  ],
+  "boss": {
+    "id": "b08_bell_bishop",
+    "x": 2230,
+    "gate": 2160
+  },
+  "midBoss": {
+    "id": "b07_nameless_knight",
+    "x": 1400,
+    "gate": 1350,
+    "optional": true
+  }
+}

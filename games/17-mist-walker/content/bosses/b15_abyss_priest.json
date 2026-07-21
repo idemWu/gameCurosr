@@ -1,0 +1,112 @@
+{
+  "id": "b15_abyss_priest",
+  "name": "深渊祭司",
+  "hp": 2000,
+  "souls": 14000,
+  "phases": [
+    {
+      "hpAbove": 0.6,
+      "moves": [
+        {
+          "id": "rite",
+          "name": "放逐仪式",
+          "damage": 56,
+          "startup": 30,
+          "active": 8,
+          "recovery": 36,
+          "range": 160,
+          "parryable": false,
+          "projectile": true
+        },
+        {
+          "id": "scourge",
+          "name": "黑鞭",
+          "damage": 62,
+          "startup": 17,
+          "active": 7,
+          "recovery": 22,
+          "range": 76,
+          "parryable": true
+        },
+        {
+          "id": "gate",
+          "name": "渊门",
+          "damage": 0,
+          "startup": 20,
+          "active": 1,
+          "recovery": 12,
+          "range": 0,
+          "parryable": false,
+          "teleport": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0.25,
+      "speedMul": 1.35,
+      "moves": [
+        {
+          "id": "scourge",
+          "name": "黑鞭",
+          "damage": 70,
+          "startup": 13,
+          "active": 7,
+          "recovery": 18,
+          "range": 76,
+          "parryable": true
+        },
+        {
+          "id": "torrent",
+          "name": "渊流",
+          "damage": 46,
+          "startup": 18,
+          "active": 5,
+          "recovery": 8,
+          "range": 160,
+          "parryable": false,
+          "hits": 3,
+          "projectile": true
+        },
+        {
+          "id": "gate",
+          "name": "渊门",
+          "damage": 0,
+          "startup": 16,
+          "active": 1,
+          "recovery": 10,
+          "range": 0,
+          "parryable": false,
+          "teleport": true
+        }
+      ]
+    },
+    {
+      "hpAbove": 0,
+      "speedMul": 1.55,
+      "moves": [
+        {
+          "id": "scourge",
+          "name": "黑鞭",
+          "damage": 78,
+          "startup": 10,
+          "active": 7,
+          "recovery": 15,
+          "range": 76,
+          "parryable": true
+        },
+        {
+          "id": "torrent",
+          "name": "渊流",
+          "damage": 52,
+          "startup": 15,
+          "active": 5,
+          "recovery": 6,
+          "range": 160,
+          "parryable": false,
+          "hits": 4,
+          "projectile": true
+        }
+      ]
+    }
+  ]
+}

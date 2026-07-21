@@ -1,0 +1,63 @@
+{
+  "title": "风铃岛纪行",
+  "player": {
+    "hp": 120,
+    "stamina": 110,
+    "tea": 4
+  },
+  "combat": {
+    "light": {
+      "damage": 14,
+      "cost": 15,
+      "total": 24
+    },
+    "heavy": {
+      "damage": 30,
+      "cost": 30,
+      "total": 42
+    },
+    "roll": {
+      "cost": 20,
+      "frames": 22,
+      "iframes": 13
+    },
+    "resonance": {
+      "cost": 12,
+      "window": 12,
+      "total": 28
+    },
+    "regen": 0.7
+  },
+  "fragmentLoss": 0.5,
+  "campHeal": 70,
+  "upgrades": [
+    {
+      "id": "heart",
+      "name": "温暖心意",
+      "desc": "生命+16",
+      "base": 100
+    },
+    {
+      "id": "breath",
+      "name": "顺风呼吸",
+      "desc": "体力+10",
+      "base": 100
+    },
+    {
+      "id": "chime",
+      "name": "清亮风铃",
+      "desc": "伤害+2",
+      "base": 100
+    }
+  ],
+  "letters": [
+    "给港口老爷爷的迟到生日卡",
+    "寄往雨铃森林的防水乐谱",
+    "蜜橘坡失联的蜂蜜订单",
+    "云上牧场小羊的围巾包裹",
+    "蓝玻潮池的贝壳明信片",
+    "风车谷的旧齿轮家书",
+    "星眠山未寄出的告别信",
+    "晨曦灯塔的最后一封信"
+  ]
+}

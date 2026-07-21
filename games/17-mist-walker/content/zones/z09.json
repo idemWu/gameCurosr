@@ -1,0 +1,106 @@
+{
+  "id": "z09",
+  "name": "黑潮堡垒",
+  "width": 2700,
+  "bonfires": [
+    {
+      "id": "z09-bf",
+      "name": "城垛篝火",
+      "x": 150
+    }
+  ],
+  "exits": [
+    {
+      "to": "z08",
+      "x": 40
+    },
+    {
+      "to": "z10",
+      "x": 2660,
+      "requiresBoss": "b12_tide_general"
+    }
+  ],
+  "platforms": [
+    {
+      "x": 0,
+      "y": 230,
+      "w": 2700
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "w": 110
+    },
+    {
+      "x": 730,
+      "y": 168,
+      "w": 140
+    },
+    {
+      "x": 1150,
+      "y": 186,
+      "w": 110
+    },
+    {
+      "x": 1610,
+      "y": 150,
+      "w": 140
+    },
+    {
+      "x": 1990,
+      "y": 168,
+      "w": 110
+    },
+    {
+      "x": 2410,
+      "y": 186,
+      "w": 140
+    }
+  ],
+  "enemies": [
+    {
+      "type": "banner_soldier",
+      "x": 420
+    },
+    {
+      "type": "banner_soldier",
+      "x": 640
+    },
+    {
+      "type": "banner_soldier",
+      "x": 880
+    },
+    {
+      "type": "banner_soldier",
+      "x": 1120
+    },
+    {
+      "type": "banner_soldier",
+      "x": 1380
+    },
+    {
+      "type": "drowned_knight",
+      "x": 1600
+    },
+    {
+      "type": "banner_soldier",
+      "x": 1850
+    },
+    {
+      "type": "throne_guard",
+      "x": 2050,
+      "elite": true
+    }
+  ],
+  "boss": {
+    "id": "b12_tide_general",
+    "x": 2530,
+    "gate": 2460
+  },
+  "midBoss": {
+    "id": "b13_black_banner",
+    "x": 1500,
+    "gate": 1450,
+    "optional": true
+  }
+}
