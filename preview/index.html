@@ -99,32 +99,56 @@
     <section class="hero">
       <h1>gameCurosr · Art V2</h1>
       <p class="lead">
-        16 款浏览器小品的高品质视觉重构：原创像素精灵、分层光影、高级 UI 壳。
-        治愈 / 轻冒险 / 策略 / 益智 · Vanilla HTML/CSS/JS · <strong>不做种菜</strong>
+        <span id="game-count">—</span> 款浏览器小品的高品质视觉重构：原创像素精灵、分层光影、高级 UI 壳。
+        治愈 / 动作 / 冒险 / 策略 / 益智 · Vanilla HTML/CSS/JS · <strong>不做种菜</strong>
       </p>
     </section>
     <div id="sections"></div>
   </main>
   <script>
-    const ORDER = ["治愈休闲", "轻冒险", "卡牌/放置/策略", "益智/超休闲"];
-    fetch("../games/_registry.json").then((r) => r.json()).then((data) => {
-      const root = document.getElementById("sections");
-      const byCat = {};
-      for (const g of data.games) (byCat[g.category] ||= []).push(g);
-      root.innerHTML = ORDER.map((cat) => `
-        <section class="section">
-          <h2>${cat}</h2>
-          <div class="grid">
-            ${(byCat[cat] || []).map((g) => `
-              <a class="card" href="../${g.path}/">
-                <div class="cat">${g.category} · #${g.id}</div>
-                <div class="name">${g.name}</div>
-                <div class="loop">${g.loop}</div>
-                <span class="badge">Art V2 · 可存档</span>
-              </a>`).join("")}
-          </div>
-        </section>`).join("");
-    });
+    const PREFERRED_ORDER = ["治愈休闲", "轻冒险", "卡牌/放置/策略", "益智/超休闲"];
+    const count = document.getElementById("game-count");
+    const root = document.getElementById("sections");
+
+    fetch("../games/_registry.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        const games = Array.isArray(data.games) ? data.games : [];
+        const byCategory = {};
+
+        for (const game of games) {
+          (byCategory[game.category] ||= []).push(game);
+        }
+
+        const categories = [
+          ...PREFERRED_ORDER.filter((category) => byCategory[category]),
+          ...Object.keys(byCategory).filter((category) => !PREFERRED_ORDER.includes(category)),
+        ];
+
+        count.textContent = games.length;
+        root.innerHTML = categories.map((category) => `
+          <section class="section">
+            <h2>${category}</h2>
+            <div class="grid">
+              ${byCategory[category].map((game) => `
+                <a class="card" href="../${game.path}/">
+                  <div class="cat">${game.category} · #${game.id}</div>
+                  <div class="name">${game.name}</div>
+                  <div class="loop">${game.loop}</div>
+                  <span class="badge">Art V2 · 可存档</span>
+                </a>`).join("")}
+            </div>
+          </section>`).join("");
+
+        if (!games.length) root.textContent = "暂时没有可展示的游戏。";
+      })
+      .catch((error) => {
+        count.textContent = "0";
+        root.textContent = `游戏列表加载失败：${error.message}`;
+      });
   </script>
 </body>
 </html>
